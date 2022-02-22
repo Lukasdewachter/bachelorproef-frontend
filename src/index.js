@@ -1,12 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import reportWebVitals from './reportWebVitals'
-import thesisLijst from './components/thesisLijst'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ThesisLijst from './components/ThesisLijst'
+import './index.css';
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <thesisLijst></thesisLijst>
-  
+    <ThesisLijst />
   </React.StrictMode>,
   document.getElementById('root')
 );
