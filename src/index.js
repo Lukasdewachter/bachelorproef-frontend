@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ThesisLijst from './components/ThesisLijst'
 import './index.css';
-import reportWebVitals from './reportWebVitals';
+//import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -11,4 +11,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-reportWebVitals(console.log);
+//reportWebVitals(console.log);
