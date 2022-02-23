@@ -26,12 +26,14 @@ class ThesisLijst extends Component{
         event.preventDefault();
         const name = this.state.name;
         api.post(`/add?name=${name}`);
+        this.getThesis()
     }
 
     deleteThesis = event => {
         event.preventDefault();
         const id = this.state.id;
         api.delete(`/delete?id=${id}`);
+        this.getThesis()
     }
 
     handleAddChange = event =>{
@@ -58,12 +60,12 @@ class ThesisLijst extends Component{
             </thead>
             <tbody>
                 {this.state.thesisList.map(thesis => (
-                    <tr key={'thesis_'+thesis.idthesis+thesis.name+thesis.description+thesis.campus+thesis.fieldofstudy}>
+                    <tr key={'thesis_'+thesis.idthesis+thesis.name+thesis.description+thesis.campus+thesis.fieldOfStudy}>
                         <td>{thesis.idthesis}</td>
                         <td>{thesis.name}</td>
                         <td>{thesis.description}</td>
                         <td>{thesis.campus}</td>
-                        <td>{thesis.fieldofstudy}</td>
+                        <td>{thesis.fieldOfStudy}</td>
                     </tr>
                 ))}
             </tbody>
