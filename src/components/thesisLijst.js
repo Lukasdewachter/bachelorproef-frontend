@@ -12,18 +12,14 @@ class ThesisLijst extends Component{
     this.getThesis = this.getThesis.bind(this);
     this.addThesis = this.addThesis.bind(this);
     this.deleteThesis = this.deleteThesis.bind(this);
+    this.getThesis()
   }
   state = {
     thesisList: []
 }
     getThesis = async () => {
-        if(Object.keys(this.state.thesisList).length === 0 ){
-            let data  = await api.get('/all').then(({data}) => data);
-            this.setState({thesisList: data})
-        } else {
-            this.setState({thesisList: []});
-        }
-    
+        let data  = await api.get('/all').then(({data}) => data);
+        this.setState({thesisList: data})
     }
 
     addThesis = event => {
@@ -50,7 +46,6 @@ class ThesisLijst extends Component{
       <div className="thesisLijst">       
           <hr size="80" noshade="true" color="1d8db0">
           </hr>  
-          <button onClick={this.getThesis}>tijdelijk</button>
           <table>
             <thead>
               <tr>
