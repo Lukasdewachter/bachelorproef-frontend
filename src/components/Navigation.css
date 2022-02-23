@@ -1,0 +1,10 @@
+.app-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 1rem;
+  }
+  nav{
+    background-color: rgb(0, 0, 0);
+    color: blue;
+  }

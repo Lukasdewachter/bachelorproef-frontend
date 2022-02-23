@@ -45,9 +45,7 @@ class ThesisLijst extends Component{
     }        
   render(){
     return (
-      <div className="thesisLijst">       
-          <hr size="80" noshade="true" color="1d8db0">
-          </hr>  
+      <div className="thesisLijst">        
           <table>
             <thead>
               <tr>
@@ -70,7 +68,6 @@ class ThesisLijst extends Component{
                 ))}
             </tbody>
           </table>
-          <hr size="80" noshade="true" color="1d8db0"/>
       </div>
     );
   }
