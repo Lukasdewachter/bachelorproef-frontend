@@ -15,12 +15,11 @@ ReactDOM.render(
   <Router>
   <Navigation />
   <Routes>
-    <Route path="/Home" element={<Home />} />
+    <Route path="/" element={<Home />} />
     <Route path="/Thesis-List" element={<ThesisLijst />} />
+    <Route path="/Students" element={<Studenten />}/>
     <Route path="/FAQ" element={<FAQ />} />
-    <Route path="/contact" element={<Contact />}/>
-    <Route path="/Studenten" element={<Studenten />}>
-    </Route>
+    <Route path="/Contact" element={<Contact />}/>
   </Routes>
   <Footer />
 </Router>,

@@ -15,7 +15,7 @@ class ThesisLijst extends Component{
     this.getThesis()
   }
   state = {
-    thesisList: []
+    thesisList: [] //mag niet met hoofdletter
 }
     getThesis = async () => {
         let data  = await api.get('/all').then(({data}) => data);

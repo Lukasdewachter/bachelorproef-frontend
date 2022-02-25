@@ -15,7 +15,7 @@ class Studenten extends Component{
         this.getStudent()
     }
     state = {
-        Studenten: []
+        studenten: [] //mag niet met hoofdletter
     }
     getStudent = async () => {
         let data  = await api.get('/all').then(({data}) => data);
@@ -52,23 +52,22 @@ class Studenten extends Component{
                         <th>Id</th>
                         <th>Name</th>
                         <th>Surname</th>
-                        <th>Mail</th>
                         <th>Telephone Number</th>
                         <th>Adress</th>
                         <th>Field of Study</th>
-
+                        <th>Mail</th>
                     </tr>
                     </thead>
                     <tbody>
                     {this.state.studenten.map(student => (
-                        <tr key={'student_'+student.idstudent+student.name+student.surname+student.mail+student.tel+student.adress+student.fieldOfStudy}>
-                            <td>{student.idstudent}</td>
+                        <tr key={'student_'+student.id+student.name+student.surname+student.mail+student.tel+student.adress+student.fieldOfStudy}>
+                            <td>{student.id}</td>
                             <td>{student.name}</td>
                             <td>{student.surname}</td>
-                            <td>{student.mail}</td>
                             <td>{student.tel}</td>
                             <td>{student.adress}</td>
                             <td>{student.fieldOfStudy}</td>
+                            <td>{student.mail}</td>
                         </tr>
                     ))}
                     </tbody>
