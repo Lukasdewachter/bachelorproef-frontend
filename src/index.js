@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import thesisLijst from './components/thesisLijst'
+import ThesisLijst from './components/ThesisLijst'
 import Studenten from './components/Studenten'
 import Footer from './components/Footer';
 import Home from './components/Home';
@@ -16,7 +16,7 @@ ReactDOM.render(
   <Navigation />
   <Routes>
     <Route path="/Home" element={<Home />} />
-    <Route path="/thesis-list" element={<thesisLijst />} />
+    <Route path="/Thesis-List" element={<ThesisLijst />} />
     <Route path="/FAQ" element={<FAQ />} />
     <Route path="/contact" element={<Contact />}/>
     <Route path="/Studenten" element={<Studenten />}>

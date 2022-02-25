@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import{Component} from 'react'
-import'./thesisLijst.css'
+import'./ThesisLijst.css'
 
 const api = axios.create({
   baseURL: `http://localhost:8080/thesis/`
@@ -50,7 +50,7 @@ class ThesisLijst extends Component{
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Subject</th>
                 <th>Description</th>
                 <th>Campus</th>
                 <th>Field of Study</th>
