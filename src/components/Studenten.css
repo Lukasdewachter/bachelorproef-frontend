@@ -6,9 +6,11 @@
 }
 button {
     margin: 10px;
-    font-size: 28px;
+    font-size: 15px;
+    position: absolute;
+    top: 450px;
+    left: 10px;
 }
-
 table {
     border-collapse: collapse;
     width: 90%;
@@ -35,8 +37,11 @@ td {
 }
 
 form {
-    display: flex;
+    display: grid;
     gap: 5px;
+    position: absolute;
+    left: 20px;
+    top: 250px;
 }
 
 form td:last-child {

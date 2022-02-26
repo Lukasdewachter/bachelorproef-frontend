@@ -25,7 +25,20 @@ class Studenten extends Component{
     addStudent = event => {
         event.preventDefault();
         const name = this.state.name;
-        api.post(`/add?name=${name}`);
+        const surname = this.state.surname;
+        const tel = this.state.tel;
+        const adress = this.state.adress;
+        const fieldOfStudy = this.state.fieldOfStudy;
+        const mail = this.state.mail;
+        api.post(
+            `/add
+            ?name=${name}
+            ?surname=${surname}
+            ?tel=${tel}
+            ?adress=${adress}
+            ?fieldOfStudy=${fieldOfStudy}
+            ?mail=${mail}
+            `);
         this.getStudent()
     }
 
@@ -72,7 +85,47 @@ class Studenten extends Component{
                     ))}
                     </tbody>
                 </table>
+                <form>
+                    <input 
+                        type='text'
+                        name='name'
+                        required='required'
+                        placeholder='name' 
+                    />
+                    <input 
+                        type='text'
+                        name='surname'
+                        required='required'
+                        placeholder='surname' 
+                    />
+                    <input 
+                        type='text'
+                        name='tel'
+                        required='required'
+                        placeholder='tel number' 
+                    />
+                    <input 
+                        type='text'
+                        name='adress'
+                        required='required'
+                        placeholder='adress' 
+                    />
+                    <input 
+                        type='text'
+                        name='fieldOfStudy'
+                        required='required'
+                        placeholder='field of study' 
+                    />
+                    <input 
+                        type='text'
+                        name='mail'
+                        required='required'
+                        placeholder='mail' 
+                    />
+                </form>
+                <button onClick={this.addStudent}>add student</button>
             </div>
+            
         );
     }
 }
