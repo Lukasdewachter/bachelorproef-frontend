@@ -6,18 +6,26 @@
   }
   .mpt{
     color: aliceblue;
+    position: absolute;
+    left: 120px;
   }
   nav{
     background-color: rgb(29, 141, 176);
+    height: 80px;
     
   }
   li{
     background-color: rgb(22, 122, 153);
     color: rgb(0, 0, 0);
-    }
-  /*.kuleuvenLogo {
-    width: 180px;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-  }*/
+      
+  }
+  .kuleuven-logo {
+    width: 100px;
+    position: absolute;
+    left: 10px;
+  }
+  ul{
+    position: absolute;
+    right: 25px;
+    top: 20%;
+  }

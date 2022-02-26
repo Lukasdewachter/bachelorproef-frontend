@@ -8,6 +8,7 @@ function Navigation() {
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark">  
           <div className="container">
+            <img class='kuleuven-logo' src={require('./images/kuleuven-logo.png')} alt='kuleuven logo' />
             <h4 class='mpt'>Masterproef tool</h4>
             <div>
               <ul className="navbar-nav ml-auto">

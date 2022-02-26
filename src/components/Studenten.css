@@ -11,15 +11,19 @@ button {
 
 table {
     border-collapse: collapse;
-    width: 15%;
+    width: 90%;
+    position: absolute;
+    left: 20px;
+    top: 90px;
+    
 }
 
 th,
 td {
-    border: 1px solid #ffffff;
+    border: 1px solid #000000;
     text-align: left;
-    padding: 8px;
-    font-size: 20px;
+    padding: 5px;
+    font-size: 15px;
 }
 
 th {
@@ -41,5 +45,5 @@ form td:last-child {
 }
 
 form * {
-    font-size: 28px;
+    font-size: 15px;
 }

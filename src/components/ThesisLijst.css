@@ -11,16 +11,20 @@
 
   table {
     border-collapse: collapse;
-    width: 15%;
-  }
-  
-  th,
-  td {
-    border: 1px solid #ffffff;
+    width: 90%;
+    position: absolute;
+    left: 20px;
+    top: 90px;
+    
+}
+
+th,
+td {
+    border: 1px solid #000000;
     text-align: left;
-    padding: 8px;
-    font-size: 20px;
-  }
+    padding: 5px;
+    font-size: 15px;
+}
   
   th {
     background-color: rgb(114, 114, 114);
