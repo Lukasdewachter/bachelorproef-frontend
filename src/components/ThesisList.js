@@ -1,12 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 import{Component} from 'react'
-import'./ThesisLijst.css'
+import'./ThesisList.css'
 
 const api = axios.create({
   baseURL: `http://localhost:8080/thesis/`
 })
-class ThesisLijst extends Component{
+class ThesisList extends Component{
   constructor(){
     super();
     this.getThesis = this.getThesis.bind(this);
@@ -45,11 +45,11 @@ class ThesisLijst extends Component{
     }        
   render(){
     return (
-      <div className="thesisLijst">        
+      <div className="thesisList">
           <table>
             <thead>
               <tr>
-                <th>Id</th>
+                <th>Thesis id</th>
                 <th>Subject</th>
                 <th>Description</th>
                 <th>Campus</th>
@@ -58,8 +58,8 @@ class ThesisLijst extends Component{
             </thead>
             <tbody>
                 {this.state.thesisList.map(thesis => (
-                    <tr key={'thesis_'+thesis.idthesis+thesis.name+thesis.description+thesis.campus+thesis.fieldOfStudy}>
-                        <td>{thesis.idthesis}</td>
+                    <tr key={'thesis_'+thesis.idThesis+thesis.name+thesis.description+thesis.campus+thesis.fieldOfStudy}>
+                        <td>{thesis.idThesis}</td>
                         <td>{thesis.name}</td>
                         <td>{thesis.description}</td>
                         <td>{thesis.campus}</td>
@@ -73,4 +73,4 @@ class ThesisLijst extends Component{
   }
 }
 
-export default ThesisLijst;
+export default ThesisList;

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ThesisLijst from './components/ThesisLijst'
-import Studenten from './components/Studenten'
+import ThesisList from './components/ThesisList'
+import Students from './components/Students'
 import Footer from './components/Footer';
 import Home from './components/Home';
 import Navigation from './components/Navigation'
@@ -16,8 +16,8 @@ ReactDOM.render(
   <Navigation />
   <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/Thesis-List" element={<ThesisLijst />} />
-    <Route path="/Students" element={<Studenten />}/>
+    <Route path="/Thesis-List" element={<ThesisList />} />
+    <Route path="/Students" element={<Students />}/>
     <Route path="/FAQ" element={<FAQ />} />
     <Route path="/Contact" element={<Contact />}/>
   </Routes>

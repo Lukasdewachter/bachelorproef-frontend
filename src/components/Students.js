@@ -1,12 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 import{Component} from 'react'
-import'./Studenten.css'
+import'./Students.css'
 
 const api = axios.create({
     baseURL: `http://localhost:8080/student/`
 })
-class Studenten extends Component{
+class Students extends Component{
     constructor(){
         super();
         this.getStudent = this.getStudent.bind(this);
@@ -58,11 +58,11 @@ class Studenten extends Component{
     }
     render(){
         return (
-            <div className="Studenten">
+            <div className="Students">
                 <table>
                     <thead>
                     <tr>
-                        <th>Id</th>
+                        <th>Student id</th>
                         <th>Name</th>
                         <th>Surname</th>
                         <th>Telephone Number</th>
@@ -73,8 +73,8 @@ class Studenten extends Component{
                     </thead>
                     <tbody>
                     {this.state.studenten.map(student => (
-                        <tr key={'student_'+student.id+student.name+student.surname+student.mail+student.tel+student.adress+student.fieldOfStudy}>
-                            <td>{student.id}</td>
+                        <tr key={'student_'+student.idStudent+student.name+student.surname+student.mail+student.tel+student.adress+student.fieldOfStudy}>
+                            <td>{student.Student}</td>
                             <td>{student.name}</td>
                             <td>{student.surname}</td>
                             <td>{student.tel}</td>
@@ -130,4 +130,4 @@ class Studenten extends Component{
     }
 }
 
-export default Studenten;
+export default Students;
