@@ -9,7 +9,7 @@ function Navigation() {
       <nav className="navbar navbar-expand navbar-dark">  
           <div className="container">
             <img class='kuleuven-logo' src={require('./images/kuleuven-logo.png')} alt='kuleuven logo' />
-            <h4 class='mpt'>Masterproef tool</h4>
+            <h4 class='mpt'>Thesis Platform</h4>
             <div>
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
@@ -26,6 +26,16 @@ function Navigation() {
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/Students">
                    Students
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/Professors">
+                    Professors
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/Companies">
+                    Companies
                   </NavLink>
                 </li>
                 <li className="nav-item">

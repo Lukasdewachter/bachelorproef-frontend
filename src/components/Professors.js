@@ -1,52 +1,55 @@
 import React from 'react'
 import axios from 'axios'
 import{Component} from 'react'
-import './MainStyleSheet.css'
+import'./MainStyleSheet.css'
 
 const api = axios.create({
-    baseURL: `http://localhost:8080/student/`
+    baseURL: `http://localhost:8080/professor/`
 })
-class Students extends Component{
+class Professors extends Component{
     constructor(){
         super();
-        this.getStudent = this.getStudent.bind(this);
-        this.addStudent = this.addStudent.bind(this);
-        this.deleteStudent = this.deleteStudent.bind(this);
-        this.getStudent()
+        this.getProfessor = this.getProfessor.bind(this);
+        this.addProfessor = this.addProfessor.bind(this);
+        this.deleteProfessor = this.deleteProfessor.bind(this);
+        this.getProfessor()
     }
     state = {
-        studenten: [] //mag niet met hoofdletter
+        professors: [] //mag niet met hoofdletter
     }
-    getStudent = async () => {
+    getProfessor = async () => {
         let data  = await api.get('/all').then(({data}) => data);
-        this.setState({studenten: data})
+        this.setState({professors: data})
     }
 
-    addStudent = event => {
+    addProfessor = event => {
         event.preventDefault();
         const name = this.state.name;
         const surname = this.state.surname;
+        const mail = this.state.mail;
         const tel = this.state.tel;
         const adress = this.state.adress;
         const fieldOfStudy = this.state.fieldOfStudy;
-        const mail = this.state.mail;
+        const coordinator = this.state.coordinator;
+
         api.post(
             `/add
             ?name=${name}
             ?surname=${surname}
+            ?mail=${mail}
             ?tel=${tel}
             ?adress=${adress}
             ?fieldOfStudy=${fieldOfStudy}
-            ?mail=${mail}
+            ?coordinator=${coordinator}
             `);
-        this.getStudent()
+        this.getProfessor()
     }
 
-    deleteStudent = event => {
+    deleteProfessor = event => {
         event.preventDefault();
         const id = this.state.id;
         api.delete(`/delete?id=${id}`);
-        this.getStudent()
+        this.getProfessor()
     }
 
     handleAddChange = event =>{
@@ -58,76 +61,85 @@ class Students extends Component{
     }
     render(){
         return (
-            <div className="Students">
+            <div className="Professors">
                 <table>
                     <thead>
                     <tr>
-                        <th>Student id</th>
+                        <th>Professor id</th>
                         <th>Name</th>
                         <th>Surname</th>
+                        <th>Mail</th>
                         <th>Telephone Number</th>
                         <th>Adress</th>
                         <th>Field of Study</th>
-                        <th>Mail</th>
+                        <th>Coordinator</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {this.state.studenten.map(student => (
-                        <tr key={'student_'+student.idStudent+student.name+student.surname+student.mail+student.tel+student.adress+student.fieldOfStudy}>
-                            <td>{student.Student}</td>
-                            <td>{student.name}</td>
-                            <td>{student.surname}</td>
-                            <td>{student.tel}</td>
-                            <td>{student.adress}</td>
-                            <td>{student.fieldOfStudy}</td>
-                            <td>{student.mail}</td>
+                    {this.state.professors.map(professor => (
+                        <tr key={'professor_'+professor.idProfessor+professor.name+professor.surname+professor.mail+professor.tel+professor.adress+professor.fieldOfStudy+professor.coordinator}>
+                            <td>{professor.Professor}</td>
+                            <td>{professor.name}</td>
+                            <td>{professor.surname}</td>
+                            <td>{professor.mail}</td>
+                            <td>{professor.tel}</td>
+                            <td>{professor.adress}</td>
+                            <td>{professor.fieldOfStudy}</td>
+                            <td>{professor.coordinator}</td>
+
                         </tr>
                     ))}
                     </tbody>
                 </table>
                 <form>
-                    <input 
+                    <input
                         type='text'
                         name='name'
                         required='required'
-                        placeholder='name' 
+                        placeholder='name'
                     />
-                    <input 
+                    <input
                         type='text'
                         name='surname'
                         required='required'
-                        placeholder='surname' 
+                        placeholder='surname'
                     />
-                    <input 
+                    <input
                         type='text'
                         name='tel'
                         required='required'
-                        placeholder='tel number' 
+                        placeholder='telephone number'
                     />
-                    <input 
+                    <input
                         type='text'
                         name='adress'
                         required='required'
-                        placeholder='adress' 
+                        placeholder='adress'
                     />
-                    <input 
+                    <input
                         type='text'
                         name='fieldOfStudy'
                         required='required'
-                        placeholder='field of study' 
+                        placeholder='field of study'
                     />
-                    <input 
+                    <input
                         type='text'
                         name='mail'
                         required='required'
-                        placeholder='mail' 
+                        placeholder='mail'
+                    />
+                    <input
+                        type='text'
+                        name='coordinator'
+                        required='required'
+                        placeholder='coordinator'
                     />
                 </form>
-                <button onClick={this.addStudent}>add student</button>
+                <button onClick={this.addProfessor}>add professor</button>
             </div>
-            
+
         );
     }
 }
 
-export default Students;
+export default Professors;

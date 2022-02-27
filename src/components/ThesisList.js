@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import{Component} from 'react'
-import'./ThesisList.css'
+import './MainStyleSheet.css'
 
 const api = axios.create({
   baseURL: `http://localhost:8080/thesis/`

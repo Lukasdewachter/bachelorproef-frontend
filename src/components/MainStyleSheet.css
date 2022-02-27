@@ -3,19 +3,22 @@
     flex-direction: column;
     gap: 10px;
     padding: 1rem;
-  }
-  button {
-    margin: 10px;
-    font-size: 28px;
-  }
+}
+button {
+    margin-top: 50px;
+    font-size: 15px;
+    position: absolute;
+    top: 450px;
+    left: 10px;
 
-  table {
+}
+table {
     border-collapse: collapse;
     width: 90%;
     position: absolute;
     left: 20px;
     top: 90px;
-    
+
 }
 
 th,
@@ -25,25 +28,28 @@ td {
     padding: 5px;
     font-size: 15px;
 }
-  
-  th {
+
+th {
     background-color: rgb(114, 114, 114);
-  }
-  
-  td {
+}
+
+td {
     background-color: rgb(190, 190, 190);
-  }
-  
-  form {
-    display: flex;
+}
+
+form {
+    display: grid;
     gap: 5px;
-  }
-  
-  form td:last-child {
+    position: absolute;
+    left: 20px;
+    top: 250px;
+}
+
+form td:last-child {
     display: flex;
     justify-content: space-evenly;
-  }
-  
-  form * {
-    font-size: 28px;
-  }
+}
+
+form * {
+    font-size: 15px;
+}
