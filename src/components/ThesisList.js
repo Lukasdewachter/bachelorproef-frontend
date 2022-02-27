@@ -25,7 +25,16 @@ class ThesisList extends Component{
     addThesis = event => {
         event.preventDefault();
         const name = this.state.name;
-        api.post(`/add?name=${name}`);
+        const description = this.state.description;
+        const fieldOfStudy = this.state.fieldOfStudy;
+        const campus = this.state.campus;
+        api.post(
+            `/add
+            ?name=${name}
+            ?description=${description}
+            ?fieldOfStudy=${fieldOfStudy}
+            ?campus=${campus}
+            `);
         this.getThesis()
     }
 
@@ -68,6 +77,33 @@ class ThesisList extends Component{
                 ))}
             </tbody>
           </table>
+          <form>
+              <input
+                  type='text'
+                  name='name'
+                  required='required'
+                  placeholder='name'
+              />
+              <input
+                  type='text'
+                  name='description'
+                  required='required'
+                  placeholder='description'
+              />
+              <input
+                  type='text'
+                  name='campus'
+                  required='required'
+                  placeholder='campus'
+              />
+              <input
+                  type='text'
+                  name='fieldOfStudy'
+                  required='required'
+                  placeholder='field of study'
+              />
+          </form>
+          <button onClick={this.addThesis}>add thesis</button>
       </div>
     );
   }
