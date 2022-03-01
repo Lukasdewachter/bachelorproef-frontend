@@ -21,7 +21,6 @@ class ThesisList extends Component{
         let data  = await api.get('/all').then(({data}) => data);
         this.setState({thesisList: data})
     }
-
     addThesis = event => {
         event.preventDefault();
         const name = this.state.name;
@@ -32,14 +31,12 @@ class ThesisList extends Component{
             `/add?name=${name}&description=${description}&fieldOfStudy=${fieldOfStudy}&campus=${campus}`);
         this.getThesis()
     }
-
     deleteThesis = event => {
         event.preventDefault();
         const id = this.state.id;
         api.delete(`/delete?id=${id}`);
         this.getThesis()
     }
-
     handleAddChange = event =>{
         this.setState({
           name: event.target.value,
@@ -48,7 +45,6 @@ class ThesisList extends Component{
           fieldOfStudy: event.target.value,
         });
     }
-
     handleDeleteChange = event =>{
         this.setState({ id: event.target.value});
     }        

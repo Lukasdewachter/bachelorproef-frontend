@@ -144,7 +144,6 @@ class Professors extends Component{
                 </form>
                 <input type="submit" value="add professor"/>
             </div>
-
         );
     }
 }
