@@ -77,36 +77,40 @@ class ThesisList extends Component{
                 ))}
             </tbody>
           </table>
-          <form>
+          <form onSubmit={this.addThesis}>
+            <label>New Thesis</label>
               <input
                   type='text'
                   name='name'
                   required='required'
                   placeholder='name'
+                  onChange=  {this.handleAddChange}
               />
               <input
                   type='text'
                   name='description'
                   required='required'
                   placeholder='description'
+                  onChange=  {this.handleAddChange}
               />
               <input
                   type='text'
                   name='campus'
                   required='required'
                   placeholder='campus'
+                  onChange=  {this.handleAddChange}
               />
               <input
                   type='text'
                   name='fieldOfStudy'
                   required='required'
                   placeholder='field of study'
+                  onChange=  {this.handleAddChange}
               />
+              <input type="submit" value="add thesis" />
           </form>
-          <button onClick={this.addThesis}>add thesis</button>
       </div>
     );
   }
 }
-
 export default ThesisList;
