@@ -8,7 +8,7 @@ class Home extends Component{
     return (
       <div className="home">
       <h1>HOME</h1>
-      <img class='chemie-foto' src={require('./images/Home-chemie-foto.jpeg')} alt='chemie home foto'/>
+      <img className='chemie-foto' src={require('./images/Home-chemie-foto.jpeg')} alt='chemie home foto'/>
       <p>Van hier naar andere pagina's navigeren</p>
      </div>
     );

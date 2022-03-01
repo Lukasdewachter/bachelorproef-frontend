@@ -8,8 +8,8 @@ function Navigation() {
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark">  
           <div className="container">
-            <img class='kuleuven-logo' src={require('./images/kuleuven-logo.png')} alt='kuleuven logo' />
-            <h4 class='mpt'>Thesis Platform</h4>
+            <img className='kuleuven-logo' src={require('./images/kuleuven-logo.png')} alt='kuleuven logo' />
+            <h4 className='mpt'>Thesis Platform</h4>
             <div>
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
