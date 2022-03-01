@@ -33,15 +33,7 @@ class Professors extends Component{
         const coordinator = this.state.coordinator;
 
         api.post(
-            `/add
-            ?name=${name}
-            ?surname=${surname}
-            ?mail=${mail}
-            ?tel=${tel}
-            ?adress=${adress}
-            ?fieldOfStudy=${fieldOfStudy}
-            ?coordinator=${coordinator}
-            `);
+            `/add?name=${name}&surname=${surname}&mail=${mail}&tel=${tel}&adress=${adress}&fieldOfStudy=${fieldOfStudy}&coordinator=${coordinator}`);
         this.getProfessor()
     }
 
@@ -53,7 +45,15 @@ class Professors extends Component{
     }
 
     handleAddChange = event =>{
-        this.setState({ name: event.target.value});
+        this.setState({
+            name: event.target.value,
+            surname: event.target.value,
+            mail: event.target.value,
+            tel: event.target.value,
+            adress: event.target.value,
+            fieldOfStudy: event.target.value,
+            coordinator: event.target.value
+        });
     }
 
     handleDeleteChange = event =>{
@@ -91,51 +91,58 @@ class Professors extends Component{
                     ))}
                     </tbody>
                 </table>
-                <form>
+                <form onSubmit={this.addProfessor}>
                     <input
                         type='text'
                         name='name'
                         required='required'
                         placeholder='name'
+                        onChange=  {this.handleAddChange}
                     />
                     <input
                         type='text'
                         name='surname'
                         required='required'
                         placeholder='surname'
+                        onChange=  {this.handleAddChange}
                     />
                     <input
                         type='text'
                         name='tel'
                         required='required'
                         placeholder='telephone number'
+                        onChange=  {this.handleAddChange}
                     />
                     <input
                         type='text'
                         name='adress'
                         required='required'
                         placeholder='adress'
+                        onChange=  {this.handleAddChange}
                     />
                     <input
                         type='text'
                         name='fieldOfStudy'
                         required='required'
                         placeholder='field of study'
+                        onChange=  {this.handleAddChange}
                     />
                     <input
                         type='text'
                         name='mail'
                         required='required'
                         placeholder='mail'
+                        onChange=  {this.handleAddChange}
                     />
                     <input
                         type='text'
                         name='coordinator'
                         required='required'
                         placeholder='coordinator'
+                        onChange=  {this.handleAddChange}
                     />
                 </form>
-                <button onClick={this.addProfessor}>add professor</button>
+                <input type="submit" value="add professor"/>
             </div>
 
         );

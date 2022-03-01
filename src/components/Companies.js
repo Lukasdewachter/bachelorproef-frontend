@@ -30,13 +30,7 @@ class Companies extends Component{
         const tel = this.state.tel;
         const adress = this.state.adress;
         api.post(
-            `/add
-            ?companyName=${companyName}
-            ?contactName=${contactName}
-            ?mail=${mail}
-            ?tel=${tel}
-            ?adress=${adress}
-            `);
+            `/add?companyName=${companyName}&contactName=${contactName}&mail=${mail}&tel=${tel}&adress=${adress}`);
         this.getCompany()
     }
 
@@ -48,7 +42,12 @@ class Companies extends Component{
     }
 
     handleAddChange = event =>{
-        this.setState({ name: event.target.value});
+        this.setState({
+            companyName: event.target.value,
+            contactName: event.target.value,
+            mail: event.target.value,
+            tel: event.target.value,
+            adress: event.target.value});
     }
 
     handleDeleteChange = event =>{
@@ -81,39 +80,44 @@ class Companies extends Component{
                     ))}
                     </tbody>
                 </table>
-                <form>
+                <form onSubmit={this.addCompany}>
                     <input
                         type='text'
                         name='companyName'
                         required='required'
                         placeholder='Company name'
+                        onChange=  {this.handleAddChange}
                     />
                     <input
                         type='text'
                         name='contactName'
                         required='required'
                         placeholder='Contact person'
+                        onChange=  {this.handleAddChange}
                     />
                     <input
                         type='text'
                         name='mail'
                         required='required'
                         placeholder='mail'
+                        onChange=  {this.handleAddChange}
                     />
                     <input
                         type='text'
                         name='adress'
                         required='required'
                         placeholder='adress'
+                        onChange=  {this.handleAddChange}
                     />
                     <input
                         type='text'
                         name='tel'
                         required='required'
                         placeholder='telephone number'
+                        onChange=  {this.handleAddChange}
                     />
                 </form>
-                <button onClick={this.addCompany}>add company</button>
+                <input type="submit" value="add company"/>
             </div>
 
         );

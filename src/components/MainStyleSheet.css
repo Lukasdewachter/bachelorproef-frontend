@@ -5,24 +5,20 @@
     padding: 1rem;
 }
 button {
-    margin-top: 50px;
+    margin: 10px;
     font-size: 15px;
-    position: absolute;
-    top: 450px;
-    left: 10px;
-
+    position: relative;
 }
 table {
+    margin: 20px;
     border-collapse: collapse;
     width: 90%;
-    position: absolute;
-    left: 20px;
-    top: 90px;
-
+    position: relative;
 }
 
 th,
 td {
+    margin: 10px;
     border: 1px solid #000000;
     text-align: left;
     padding: 5px;
@@ -30,22 +26,25 @@ td {
 }
 
 th {
+    margin: 10px;
     background-color: rgb(114, 114, 114);
 }
 
 td {
+    margin: 10px;
     background-color: rgb(190, 190, 190);
 }
 
 form {
+    margin: 10px;
     display: grid;
     gap: 5px;
-    position: absolute;
     left: 20px;
     top: 250px;
 }
 
 form td:last-child {
+    margin: 10px;
     display: flex;
     justify-content: space-evenly;
 }

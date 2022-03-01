@@ -31,17 +31,9 @@ class Students extends Component{
         const fieldOfStudy = this.state.fieldOfStudy;
         const mail = this.state.mail;
         api.post(
-            `/add
-            ?name=${name}
-            ?surname=${surname}
-            ?tel=${tel}
-            ?adress=${adress}
-            ?fieldOfStudy=${fieldOfStudy}
-            ?mail=${mail}
-            `);
+            `/add?name=${name}&surname=${surname}&tel=${tel}&adress=${adress}&fieldOfStudy=${fieldOfStudy}&mail=${mail}`);
         this.getStudent()
     }
-
     deleteStudent = event => {
         event.preventDefault();
         const id = this.state.id;
@@ -50,7 +42,14 @@ class Students extends Component{
     }
 
     handleAddChange = event =>{
-        this.setState({ name: event.target.value});
+        this.setState({
+            name: event.target.value,
+            surname: event.target.value,
+            tel: event.target.value,
+            adress: event.target.value,
+            fieldOfStudy: event.target.value,
+            mail: event.target.value
+        });
     }
 
     handleDeleteChange = event =>{
@@ -85,45 +84,52 @@ class Students extends Component{
                     ))}
                     </tbody>
                 </table>
-                <form>
+                <form onSubmit={this.addStudent}>
+                    <label>New Student</label>
                     <input 
                         type='text'
                         name='name'
                         required='required'
-                        placeholder='name' 
+                        placeholder='name'
+                        onChange=  {this.handleAddChange}
                     />
                     <input 
                         type='text'
                         name='surname'
                         required='required'
-                        placeholder='surname' 
+                        placeholder='surname'
+                        onChange=  {this.handleAddChange}
                     />
                     <input 
                         type='text'
                         name='tel'
                         required='required'
-                        placeholder='tel number' 
+                        placeholder='tel number'
+                        onChange=  {this.handleAddChange}
                     />
                     <input 
                         type='text'
                         name='adress'
                         required='required'
-                        placeholder='adress' 
+                        placeholder='adress'
+                        onChange=  {this.handleAddChange}
                     />
                     <input 
                         type='text'
                         name='fieldOfStudy'
                         required='required'
-                        placeholder='field of study' 
+                        placeholder='field of study'
+                        onChange=  {this.handleAddChange}
                     />
                     <input 
                         type='text'
                         name='mail'
                         required='required'
-                        placeholder='mail' 
+                        placeholder='mail'
+                        onChange=  {this.handleAddChange}
                     />
+                    <input type="submit" value="add student"/>
                 </form>
-                <button onClick={this.addStudent}>add student</button>
             </div>
             
         );
