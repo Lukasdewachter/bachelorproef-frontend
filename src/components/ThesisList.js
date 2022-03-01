@@ -29,12 +29,7 @@ class ThesisList extends Component{
         const fieldOfStudy = this.state.fieldOfStudy;
         const campus = this.state.campus;
         api.post(
-            `/add
-            ?name=${name}
-            ?description=${description}
-            ?fieldOfStudy=${fieldOfStudy}
-            ?campus=${campus}
-            `);
+            `/add?name=${name}&description=${description}&fieldOfStudy=${fieldOfStudy}&campus=${campus}`);
         this.getThesis()
     }
 
