@@ -78,7 +78,7 @@ class Professors extends Component{
                     <tbody>
                     {this.state.professors.map(professor => (
                         <tr key={'professor_'+professor.idProfessor+professor.name+professor.surname+professor.mail+professor.tel+professor.adress+professor.fieldOfStudy+professor.coordinator}>
-                            <td>{professor.Professor}</td>
+                            <td>{professor.idProfessor}</td>
                             <td>{professor.name}</td>
                             <td>{professor.surname}</td>
                             <td>{professor.mail}</td>

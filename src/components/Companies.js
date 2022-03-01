@@ -64,13 +64,14 @@ class Companies extends Component{
                         <th>Company name</th>
                         <th>Contact person</th>
                         <th>Mail</th>
+                        <th>Adress</th>
                         <th>Telephone number</th>
                     </tr>
                     </thead>
                     <tbody>
                     {this.state.companies.map(company => (
                         <tr key={'company_'+company.idCompany+company.companyName+company.contactName+company.mail+company.tel}>
-                            <td>{company.Company}</td>
+                            <td>{company.idCompany}</td>
                             <td>{company.companyName}</td>
                             <td>{company.contactName}</td>
                             <td>{company.mail}</td>
