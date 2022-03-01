@@ -46,7 +46,12 @@ class ThesisList extends Component{
     }
 
     handleAddChange = event =>{
-        this.setState({ name: event.target.value});
+        this.setState({
+          name: event.target.value,
+          description: event.target.value,
+          campus: event.target.value,
+          fieldOfStudy: event.target.value,
+        });
     }
 
     handleDeleteChange = event =>{
