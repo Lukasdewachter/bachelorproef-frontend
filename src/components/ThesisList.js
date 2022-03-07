@@ -23,12 +23,16 @@ class ThesisList extends Component{
     }
     addThesis = event => {
         event.preventDefault();
-        const name = this.state.name;
-        const description = this.state.description;
-        const fieldOfStudy = this.state.fieldOfStudy;
-        const campus = this.state.campus;
-        api.post(
-            `/add?name=${name}&description=${description}&fieldOfStudy=${fieldOfStudy}&campus=${campus}`);
+        api.post('/add',{
+          name: this.state.name,
+          description: this.state.description,
+          fieldOfStudy: this.state.fieldOfStudy,
+          campus: this.state.campus
+        },{headers: {
+          'Content-Type': 'application/json', 
+          'Access-Control-Allow-Origin' : '*',
+          'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+        }})
         this.getThesis()
     }
     deleteThesis = event => {
