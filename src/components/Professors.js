@@ -75,14 +75,9 @@ class Professors extends Component{
             campus: event.target.value,
         })
     }
-    deleteProfessor = event => {
-        event.preventDefault();
-        const id = this.state.id;
-        api.delete(`/delete?id=${id}`);
+    deleteProfessor(idProfessor){
+        api.delete(`/delete?idProfessor=${idProfessor}`);
         this.getProfessor();
-    }
-    handleDeleteChange = event =>{
-        this.setState({ id: event.target.value});
     }
     render(){
         return (
@@ -99,6 +94,7 @@ class Professors extends Component{
                         <th>Field of Study</th>
                         <th>Campus</th>
                         <th>Coordinator</th>
+                        <th>Edit/Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -113,7 +109,7 @@ class Professors extends Component{
                             <td>{professor.fieldOfStudy}</td>
                             <td>{professor.campus}</td>
                             <td>{professor.coordinator}</td>
-
+                            <td><button onClick={()=>this.deleteProfessor(professor.idProfessor)}>x</button></td>
                         </tr>
                     ))}
                     </tbody>
