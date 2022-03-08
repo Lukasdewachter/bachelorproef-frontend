@@ -24,14 +24,15 @@ class Students extends Component{
 
     addStudent = event => {
         event.preventDefault();
-        const name = this.state.name;
-        const surname = this.state.surname;
-        const tel = this.state.tel;
-        const adress = this.state.adress;
-        const fieldOfStudy = this.state.fieldOfStudy;
-        const mail = this.state.mail;
-        api.post(
-            `/add?name=${name}&surname=${surname}&tel=${tel}&adress=${adress}&fieldOfStudy=${fieldOfStudy}&mail=${mail}`);
+        api.post('/add',{
+            name: this.state.name,
+            surname: this.state.surname,
+            tel: this.state.tel,
+            address: this.state.address,
+            fieldOfStudy: this.state.fieldOfStudy,
+            mail: this.state.mail,
+            campus: this.state.campus
+          });
         this.getStudent()
     }
     deleteStudent = event => {
@@ -40,18 +41,42 @@ class Students extends Component{
         api.delete(`/delete?id=${id}`);
         this.getStudent()
     }
-
-    handleAddChange = event =>{
+    handleNameChange = event =>{
         this.setState({
             name: event.target.value,
-            surname: event.target.value,
-            tel: event.target.value,
-            adress: event.target.value,
-            fieldOfStudy: event.target.value,
-            mail: event.target.value
-        });
+        })
     }
-
+    handleSurNameChange = event =>{
+        this.setState({
+            surname: event.target.value,
+        })
+    }
+    handleTelChange = event =>{
+        this.setState({
+            tel: event.target.value,
+        })
+    }
+    handleAddressChange = event =>{
+        this.setState({
+            address: event.target.value,
+        })
+    }
+    handleFieldOfStudyChange = event =>{
+        this.setState({
+            fieldOfStudy: event.target.value,
+        })
+    }
+    handleMailChange = event =>{
+        this.setState({
+            mail: event.target.value,
+        })
+    }
+    handleCampusChange = event =>{
+        this.setState({
+            campus: event.target.value,
+        })
+    }
+    
     handleDeleteChange = event =>{
         this.setState({ id: event.target.value});
     }
@@ -65,21 +90,23 @@ class Students extends Component{
                         <th>Name</th>
                         <th>Surname</th>
                         <th>Telephone Number</th>
-                        <th>Adress</th>
+                        <th>Address</th>
                         <th>Field of Study</th>
                         <th>Mail</th>
+                        <th>Campus</th>
                     </tr>
                     </thead>
                     <tbody>
                     {this.state.studenten.map(student => (
-                        <tr key={'student_'+student.idStudent+student.name+student.surname+student.mail+student.tel+student.adress+student.fieldOfStudy}>
+                        <tr key={'student_'+student.idStudent+student.name+student.surname+student.mail+student.tel+student.address+student.fieldOfStudy+student.campus}>
                             <td>{student.idStudent}</td>
                             <td>{student.name}</td>
                             <td>{student.surname}</td>
                             <td>{student.tel}</td>
-                            <td>{student.adress}</td>
+                            <td>{student.address}</td>
                             <td>{student.fieldOfStudy}</td>
                             <td>{student.mail}</td>
+                            <td>{student.campus}</td>
                         </tr>
                     ))}
                     </tbody>
@@ -91,42 +118,49 @@ class Students extends Component{
                         name='name'
                         required='required'
                         placeholder='name'
-                        onChange=  {this.handleAddChange}
+                        onChange=  {this.handleNameChange}
                     />
                     <input 
                         type='text'
                         name='surname'
                         required='required'
                         placeholder='surname'
-                        onChange=  {this.handleAddChange}
+                        onChange=  {this.handleSurNameChange}
                     />
                     <input 
-                        type='text'
+                        type='number'
                         name='tel'
                         required='required'
                         placeholder='tel number'
-                        onChange=  {this.handleAddChange}
+                        onChange=  {this.handleTelChange}
                     />
                     <input 
                         type='text'
-                        name='adress'
+                        name='address'
                         required='required'
-                        placeholder='adress'
-                        onChange=  {this.handleAddChange}
+                        placeholder='address'
+                        onChange=  {this.handleAddressChange}
                     />
                     <input 
                         type='text'
                         name='fieldOfStudy'
                         required='required'
                         placeholder='field of study'
-                        onChange=  {this.handleAddChange}
+                        onChange=  {this.handleFieldOfStudyChange}
                     />
                     <input 
-                        type='text'
+                        type='email'
                         name='mail'
                         required='required'
                         placeholder='mail'
-                        onChange=  {this.handleAddChange}
+                        onChange=  {this.handleMailChange}
+                    />
+                    <input 
+                        type='text'
+                        name='campus'
+                        required='required'
+                        placeholder='campus'
+                        onChange=  {this.handleCampusChange}
                     />
                     <input type="submit" value="add student"/>
                 </form>
