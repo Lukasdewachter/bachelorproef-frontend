@@ -12,6 +12,7 @@ class ThesisList extends Component{
     this.getThesis = this.getThesis.bind(this);
     this.addThesis = this.addThesis.bind(this);
     this.deleteThesis = this.deleteThesis.bind(this);
+    this.handleAddChange = this.handleAddChange.bind(this);
     this.getThesis()
   }
   state = {
