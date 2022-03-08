@@ -22,36 +22,40 @@ class ThesisList extends Component{
         this.setState({thesisList: data})
     }
     addThesis = event => {
-        event.preventDefault();
         api.post('/add',{
           name: this.state.name,
           description: this.state.description,
           fieldOfStudy: this.state.fieldOfStudy,
           campus: this.state.campus
-        },{headers: {
-          'Content-Type': 'application/json', 
-          'Access-Control-Allow-Origin' : '*',
-          'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-        }});
-        this.getThesis()
-    }
-    deleteThesis = async(idThesis) => {
-        let data = await api.delete(`/delete?idThesis=${idThesis}`,{headers: {
-          'Content-Type': 'application/json', 
-          'Access-Control-Allow-Origin' : '*',
-          'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-        }});
-        this.getThesis()
-    }
-    handleAddChange = event =>{
-        this.setState({
-          name: event.target.value,
-          description: event.target.value,
-          campus: event.target.value,
-          fieldOfStudy: event.target.value,
         });
+        this.getThesis();
     }
-    handleDeleteChange = event =>{
+    handleNameChange = event =>{
+      this.setState({
+          name: event.target.value,
+      })
+  }
+  handleDescriptionChange = event =>{
+      this.setState({
+          description: event.target.value,
+      })
+  }
+  handleFieldOfStudyChange = event =>{
+      this.setState({
+          fieldOfStudy: event.target.value,
+      })
+  }
+  handleCampusChange = event =>{
+      this.setState({
+          campus: event.target.value,
+      })
+  }
+  deleteThesis = event =>{
+    const idThesis = this.state.idThesis;
+    api.delete(`/delete/${idThesis}`);
+    this.getThesis();
+}
+  handleDeleteChange = event =>{
         this.setState({ id: event.target.value});
     }        
   render(){
@@ -66,6 +70,7 @@ class ThesisList extends Component{
                 <th>Description</th>
                 <th>Campus</th>
                 <th>Field of Study</th>
+                <th>Edit/Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -90,28 +95,28 @@ class ThesisList extends Component{
                   name='name'
                   required='required'
                   placeholder='name'
-                  onChange=  {this.handleAddChange}
+                  onChange=  {this.handleNameChange}
               />
               <input
                   type='text'
                   name='description'
                   required='required'
                   placeholder='description'
-                  onChange=  {this.handleAddChange}
+                  onChange=  {this.handleDescriptionChange}
               />
               <input
                   type='text'
                   name='campus'
                   required='required'
                   placeholder='campus'
-                  onChange=  {this.handleAddChange}
+                  onChange=  {this.handleCampusChange}
               />
               <input
                   type='text'
                   name='fieldOfStudy'
                   required='required'
                   placeholder='field of study'
-                  onChange=  {this.handleAddChange}
+                  onChange=  {this.handleFieldOfStudyChange}
               />
               <input type="submit" value="add thesis" />
           </form>

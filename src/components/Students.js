@@ -38,7 +38,7 @@ class Students extends Component{
     deleteStudent = event => {
         event.preventDefault();
         const id = this.state.id;
-        api.delete(`/delete?id=${id}`);
+        api.delete(`/delete/${id}`);
         this.getStudent()
     }
     handleNameChange = event =>{
@@ -76,7 +76,6 @@ class Students extends Component{
             campus: event.target.value,
         })
     }
-    
     handleDeleteChange = event =>{
         this.setState({ id: event.target.value});
     }
