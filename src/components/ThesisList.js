@@ -12,6 +12,7 @@ class ThesisList extends Component{
     this.getThesis = this.getThesis.bind(this);
     this.addThesis = this.addThesis.bind(this);
     this.deleteThesis = this.deleteThesis.bind(this);
+    this.handleAddChange = this.handleAddChange.bind(this);
     this.getThesis()
   }
   state = {
@@ -30,25 +31,10 @@ class ThesisList extends Component{
         });
         this.getThesis();
     }
-    handleNameChange = event =>{
+    handleAddChange = (event) =>{
       this.setState({
-          name: event.target.value,
-      })
-  }
-  handleDescriptionChange = event =>{
-      this.setState({
-          description: event.target.value,
-      })
-  }
-  handleFieldOfStudyChange = event =>{
-      this.setState({
-          fieldOfStudy: event.target.value,
-      })
-  }
-  handleCampusChange = event =>{
-      this.setState({
-          campus: event.target.value,
-      })
+          [event.target.name] : event.target.value
+      });
   }
   deleteThesis(idThesis){
     api.delete(`/delete?idThesis=${idThesis}`);
@@ -90,28 +76,28 @@ class ThesisList extends Component{
                   name='name'
                   required='required'
                   placeholder='name'
-                  onChange=  {this.handleNameChange}
+                  onChange=  {this.handleAddChange}
               />
               <input
                   type='text'
                   name='description'
                   required='required'
                   placeholder='description'
-                  onChange=  {this.handleDescriptionChange}
+                  onChange=  {this.handleAddChange}
               />
               <input
                   type='text'
                   name='campus'
                   required='required'
                   placeholder='campus'
-                  onChange=  {this.handleCampusChange}
+                  onChange=  {this.handleAddChange}
               />
               <input
                   type='text'
                   name='fieldOfStudy'
                   required='required'
                   placeholder='field of study'
-                  onChange=  {this.handleFieldOfStudyChange}
+                  onChange=  {this.handleAddChange}
               />
               <input type="submit" value="add thesis" />
           </form>
