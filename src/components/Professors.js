@@ -12,7 +12,7 @@ class Professors extends Component{
         this.getProfessor = this.getProfessor.bind(this);
         this.addProfessor = this.addProfessor.bind(this);
         this.deleteProfessor = this.deleteProfessor.bind(this);
-        this.getProfessor()
+        this.getProfessor();
     }
     state = {
         professors: [] //mag niet met hoofdletter
@@ -33,7 +33,7 @@ class Professors extends Component{
             campus: this.state.campus,
             coordinator: this.state.coordinator
         });
-        this.getProfessor()
+        this.getProfessor();
     }
     handleNameChange = event =>{
         this.setState({
@@ -79,7 +79,7 @@ class Professors extends Component{
         event.preventDefault();
         const id = this.state.id;
         api.delete(`/delete?id=${id}`);
-        this.getProfessor()
+        this.getProfessor();
     }
     handleDeleteChange = event =>{
         this.setState({ id: event.target.value});

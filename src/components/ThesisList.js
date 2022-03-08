@@ -79,8 +79,7 @@ class ThesisList extends Component{
                         <td>{thesis.campus}</td>
                         <td>{thesis.fieldOfStudy}</td>
                         <td><button onClick={()=>this.deleteThesis(thesis.idThesis)}>x</button></td>
-                    </tr>
-                    
+                    </tr>   
                 ))}
             </tbody>
           </table>
