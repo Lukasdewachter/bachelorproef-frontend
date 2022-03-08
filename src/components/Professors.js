@@ -23,39 +23,64 @@ class Professors extends Component{
     }
 
     addProfessor = event => {
-        event.preventDefault();
-        const name = this.state.name;
-        const surname = this.state.surname;
-        const mail = this.state.mail;
-        const tel = this.state.tel;
-        const adress = this.state.adress;
-        const fieldOfStudy = this.state.fieldOfStudy;
-        const coordinator = this.state.coordinator;
-
-        api.post(
-            `/add?name=${name}&surname=${surname}&mail=${mail}&tel=${tel}&adress=${adress}&fieldOfStudy=${fieldOfStudy}&coordinator=${coordinator}`);
+        api.post('/add',{
+            name: this.state.name,
+            surname: this.state.surname,
+            tel: this.state.tel,
+            address: this.state.address,
+            fieldOfStudy: this.state.fieldOfStudy,
+            mail: this.state.mail,
+            campus: this.state.campus,
+            coordinator: this.state.coordinator
+        });
         this.getProfessor()
     }
-
+    handleNameChange = event =>{
+        this.setState({
+            name: event.target.value,
+        })
+    }
+    handleSurNameChange = event =>{
+        this.setState({
+            surname: event.target.value,
+        })
+    }
+    handleTelChange = event =>{
+        this.setState({
+            tel: event.target.value,
+        })
+    }
+    handleAddressChange = event =>{
+        this.setState({
+            address: event.target.value,
+        })
+    }
+    handleFieldOfStudyChange = event =>{
+        this.setState({
+            fieldOfStudy: event.target.value,
+        })
+    }
+    handleMailChange = event =>{
+        this.setState({
+            mail: event.target.value,
+        })
+    }
+    handleCoordinatorChange = event =>{
+        this.setState({
+            coordinator: event.target.value,
+        })
+    }
+    handleCampusChange = event =>{
+        this.setState({
+            campus: event.target.value,
+        })
+    }
     deleteProfessor = event => {
         event.preventDefault();
         const id = this.state.id;
         api.delete(`/delete?id=${id}`);
         this.getProfessor()
     }
-
-    handleAddChange = event =>{
-        this.setState({
-            name: event.target.value,
-            surname: event.target.value,
-            mail: event.target.value,
-            tel: event.target.value,
-            adress: event.target.value,
-            fieldOfStudy: event.target.value,
-            coordinator: event.target.value
-        });
-    }
-
     handleDeleteChange = event =>{
         this.setState({ id: event.target.value});
     }
@@ -70,21 +95,23 @@ class Professors extends Component{
                         <th>Surname</th>
                         <th>Mail</th>
                         <th>Telephone Number</th>
-                        <th>Adress</th>
+                        <th>Address</th>
                         <th>Field of Study</th>
+                        <th>Campus</th>
                         <th>Coordinator</th>
                     </tr>
                     </thead>
                     <tbody>
                     {this.state.professors.map(professor => (
-                        <tr key={'professor_'+professor.idProfessor+professor.name+professor.surname+professor.mail+professor.tel+professor.adress+professor.fieldOfStudy+professor.coordinator}>
+                        <tr key={'professor_'+professor.idProfessor+professor.name+professor.surname+professor.mail+professor.tel+professor.address+professor.fieldOfStudy+professor.campus+professor.coordinator}>
                             <td>{professor.idProfessor}</td>
                             <td>{professor.name}</td>
                             <td>{professor.surname}</td>
                             <td>{professor.mail}</td>
                             <td>{professor.tel}</td>
-                            <td>{professor.adress}</td>
+                            <td>{professor.address}</td>
                             <td>{professor.fieldOfStudy}</td>
+                            <td>{professor.campus}</td>
                             <td>{professor.coordinator}</td>
 
                         </tr>
@@ -97,49 +124,56 @@ class Professors extends Component{
                         name='name'
                         required='required'
                         placeholder='name'
-                        onChange=  {this.handleAddChange}
+                        onChange=  {this.handleNameChange}
                     />
                     <input
                         type='text'
                         name='surname'
                         required='required'
                         placeholder='surname'
-                        onChange=  {this.handleAddChange}
+                        onChange=  {this.handleSurNameChange}
                     />
                     <input
-                        type='text'
+                        type='number'
                         name='tel'
                         required='required'
                         placeholder='telephone number'
-                        onChange=  {this.handleAddChange}
+                        onChange=  {this.handleTelChange}
                     />
                     <input
                         type='text'
-                        name='adress'
+                        name='address'
                         required='required'
-                        placeholder='adress'
-                        onChange=  {this.handleAddChange}
+                        placeholder='address'
+                        onChange=  {this.handleAddressChange}
                     />
                     <input
                         type='text'
                         name='fieldOfStudy'
                         required='required'
                         placeholder='field of study'
-                        onChange=  {this.handleAddChange}
+                        onChange=  {this.handleFieldOfStudyChange}
                     />
                     <input
-                        type='text'
+                        type='email'
                         name='mail'
                         required='required'
                         placeholder='mail'
-                        onChange=  {this.handleAddChange}
+                        onChange=  {this.handleMailChange}
                     />
                     <input
                         type='text'
+                        name='campus'
+                        required='required'
+                        placeholder='campus'
+                        onChange=  {this.handleCampusChange}
+                    />
+                    <input
+                        type='number'
                         name='coordinator'
                         required='required'
                         placeholder='coordinator'
-                        onChange=  {this.handleAddChange}
+                        onChange=  {this.handleCoordinatorChange}
                     />
                 </form>
                 <input type="submit" value="add professor"/>

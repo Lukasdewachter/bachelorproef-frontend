@@ -23,33 +23,47 @@ class Companies extends Component{
     }
 
     addCompany = event => {
-        event.preventDefault();
-        const companyName = this.state.companyName;
-        const contactName = this.state.contactName;
-        const mail = this.state.mail;
-        const tel = this.state.tel;
-        const adress = this.state.adress;
-        api.post(
-            `/add?companyName=${companyName}&contactName=${contactName}&mail=${mail}&tel=${tel}&adress=${adress}`);
+        api.post('/add',{
+            companyName: this.state.companyName,
+            contactName: this.state.contactName,
+            mail: this.state.mail,
+            tel: this.state.tel,
+            address: this.state.address,
+        });
         this.getCompany()
     }
 
     deleteCompany = event => {
-        event.preventDefault();
         const id = this.state.id;
         api.delete(`/delete?id=${id}`);
         this.getCompany()
     }
 
-    handleAddChange = event =>{
+    handleCompanyNameChange = event =>{
         this.setState({
             companyName: event.target.value,
-            contactName: event.target.value,
-            mail: event.target.value,
-            tel: event.target.value,
-            adress: event.target.value});
+        })
     }
-
+    handleContactNameChange = event =>{
+        this.setState({
+            contactName: event.target.value,
+        })
+    }
+    handleMailChange = event =>{
+        this.setState({
+            mail: event.target.value,
+        })
+    }
+    handleTelChange = event =>{
+        this.setState({
+            tel: event.target.value,
+        })
+    }
+    handleAddressChange = event =>{
+        this.setState({
+            address: event.target.value,
+        })
+    }
     handleDeleteChange = event =>{
         this.setState({ id: event.target.value});
     }
@@ -63,18 +77,18 @@ class Companies extends Component{
                         <th>Company name</th>
                         <th>Contact person</th>
                         <th>Mail</th>
-                        <th>Adress</th>
+                        <th>Address</th>
                         <th>Telephone number</th>
                     </tr>
                     </thead>
                     <tbody>
                     {this.state.companies.map(company => (
-                        <tr key={'company_'+company.idCompany+company.companyName+company.contactName+company.mail+company.tel}>
+                        <tr key={'company_'+company.idCompany+company.companyName+company.contactName+company.mail+company.address+company.tel}>
                             <td>{company.idCompany}</td>
                             <td>{company.companyName}</td>
                             <td>{company.contactName}</td>
                             <td>{company.mail}</td>
-                            <td>{company.adress}</td>
+                            <td>{company.address}</td>
                             <td>{company.tel}</td>
                         </tr>
                     ))}
@@ -83,38 +97,38 @@ class Companies extends Component{
                 <form onSubmit={this.addCompany}>
                     <input
                         type='text'
-                        name='companyName'
+                        name='companyname'
                         required='required'
-                        placeholder='Company name'
-                        onChange=  {this.handleAddChange}
+                        placeholder='company name'
+                        onChange=  {this.handleCompanyNameChange}
                     />
                     <input
                         type='text'
-                        name='contactName'
+                        name='contactname'
                         required='required'
-                        placeholder='Contact person'
-                        onChange=  {this.handleAddChange}
+                        placeholder='contact name'
+                        onChange=  {this.handleContactNameChange}
                     />
                     <input
-                        type='text'
+                        type='email'
                         name='mail'
                         required='required'
                         placeholder='mail'
-                        onChange=  {this.handleAddChange}
+                        onChange=  {this.handleMailChange}
                     />
                     <input
                         type='text'
-                        name='adress'
+                        name='address'
                         required='required'
-                        placeholder='adress'
-                        onChange=  {this.handleAddChange}
+                        placeholder='address'
+                        onChange=  {this.handleAddressChange}
                     />
                     <input
-                        type='text'
+                        type='number'
                         name='tel'
                         required='required'
                         placeholder='telephone number'
-                        onChange=  {this.handleAddChange}
+                        onChange=  {this.handleTelChange}
                     />
                 </form>
                 <input type="submit" value="add company"/>
