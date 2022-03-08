@@ -175,8 +175,9 @@ class Professors extends Component{
                         placeholder='coordinator'
                         onChange=  {this.handleCoordinatorChange}
                     />
+                    <input type="submit" value="add professor"/>
                 </form>
-                <input type="submit" value="add professor"/>
+
             </div>
         );
     }

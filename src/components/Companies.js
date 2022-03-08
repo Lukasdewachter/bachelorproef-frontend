@@ -130,8 +130,8 @@ class Companies extends Component{
                         placeholder='telephone number'
                         onChange=  {this.handleTelChange}
                     />
+                    <input type="submit" value="add company"/>
                 </form>
-                <input type="submit" value="add company"/>
             </div>
 
         );
