@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import axios from 'axios'
 import { Component } from 'react'
 import './MainStyleSheet.css'
@@ -12,7 +12,8 @@ class Students extends Component {
         this.getStudent = this.getStudent.bind(this);
         this.addStudent = this.addStudent.bind(this);
         this.deleteStudent = this.deleteStudent.bind(this);
-        this.getStudent()
+        this.handleAddChange = this.handleAddChange.bind(this);
+        this.getStudent();
     }
     state = {
         studenten: [] //mag niet met hoofdletter
@@ -34,23 +35,11 @@ class Students extends Component {
         this.getStudent();
     }
     handleAddChange = (event) =>{
-        const [addData, setData] = useState({
-            name:'',
-            surname:'',
-            tel:'',
-            address:'',
-            fieldOfStudy:'',
-            mail:'',
-            campus:''
-        })
-        event.preventdefault();
-        const fieldName = event.target.getAttribute('name');
-        const fieldValue = event.target.value;
-        const newData = {...addData};
-        newData[fieldName] = fieldValue;
-        setData(newData);
+        this.setState({
+            [event.target.name] : event.target.value
+        });
     }
-    deleteStudent = ({ idStudent }, event) => {
+    deleteStudent(idStudent){
         api.delete(`/delete?idStudent=${idStudent}`);
         this.getStudent();
     }
