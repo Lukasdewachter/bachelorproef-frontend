@@ -53,10 +53,7 @@ class ThesisList extends Component{
   deleteThesis(idThesis){
     api.delete(`/delete?idThesis=${idThesis}`);
     this.getThesis();
-  } 
-  handleDeleteChange = event =>{
-        this.setState({ id: event.target.value});
-    }        
+  }       
   render(){
     return (
       <div className="thesisList">
