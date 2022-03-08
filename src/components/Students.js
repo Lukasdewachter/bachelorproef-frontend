@@ -69,9 +69,9 @@ class Students extends Component{
             campus: event.target.value,
         })
     }
-    deleteStudent(idStudent){
+    deleteStudent = ({idStudent},event) => {
         api.delete(`/delete?idStudent=${idStudent}`);
-        this.getStudent()
+        this.getStudent();
     }
     render(){
         return (
