@@ -12,7 +12,7 @@ class Companies extends Component{
         this.getCompany = this.getCompany.bind(this);
         this.addCompany = this.addCompany.bind(this);
         this.deleteCompany = this.deleteCompany.bind(this);
-        this.getCompany()
+        this.getCompany();
     }
     state = {
         companies: [] //mag niet met hoofdletter
@@ -30,13 +30,12 @@ class Companies extends Component{
             tel: this.state.tel,
             address: this.state.address,
         });
-        this.getCompany()
+        this.getCompany();
     }
 
-    deleteCompany = event => {
-        const id = this.state.id;
-        api.delete(`/delete?id=${id}`);
-        this.getCompany()
+    deleteCompany(idCompany) {
+        api.delete(`/delete?idCompany=${idCompany}`);
+        this.getCompany();
     }
 
     handleCompanyNameChange = event =>{
@@ -64,9 +63,6 @@ class Companies extends Component{
             address: event.target.value,
         })
     }
-    handleDeleteChange = event =>{
-        this.setState({ id: event.target.value});
-    }
     render(){
         return (
             <div className="Companies">
@@ -79,6 +75,7 @@ class Companies extends Component{
                         <th>Mail</th>
                         <th>Address</th>
                         <th>Telephone number</th>
+                        <th>Edit/Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -90,11 +87,13 @@ class Companies extends Component{
                             <td>{company.mail}</td>
                             <td>{company.address}</td>
                             <td>{company.tel}</td>
+                            <td><button onClick={()=>this.deleteCompany(company.idCompany)}>x</button></td>
                         </tr>
                     ))}
                     </tbody>
                 </table>
                 <form onSubmit={this.addCompany}>
+                    <label>New Company</label>
                     <input
                         type='text'
                         name='companyname'
