@@ -23,18 +23,24 @@ class ThesisList extends Component{
     }
     addThesis = event => {
         event.preventDefault();
-        const name = this.state.name;
-        const description = this.state.description;
-        const fieldOfStudy = this.state.fieldOfStudy;
-        const campus = this.state.campus;
-        api.post(
-            `/add?name=${name}&description=${description}&fieldOfStudy=${fieldOfStudy}&campus=${campus}`);
+        api.post('/add',{
+          name: this.state.name,
+          description: this.state.description,
+          fieldOfStudy: this.state.fieldOfStudy,
+          campus: this.state.campus
+        },{headers: {
+          'Content-Type': 'application/json', 
+          'Access-Control-Allow-Origin' : '*',
+          'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+        }});
         this.getThesis()
     }
-    deleteThesis = event => {
-        event.preventDefault();
-        const id = this.state.id;
-        api.delete(`/delete?id=${id}`);
+    deleteThesis = async(idThesis) => {
+        let data = await api.delete(`/delete?idThesis=${idThesis}`,{headers: {
+          'Content-Type': 'application/json', 
+          'Access-Control-Allow-Origin' : '*',
+          'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+        }});
         this.getThesis()
     }
     handleAddChange = event =>{
@@ -51,6 +57,7 @@ class ThesisList extends Component{
   render(){
     return (
       <div className="thesisList">
+        <header>
           <table>
             <thead>
               <tr>
@@ -63,13 +70,16 @@ class ThesisList extends Component{
             </thead>
             <tbody>
                 {this.state.thesisList.map(thesis => (
+                    
                     <tr key={'thesis_'+thesis.idThesis+thesis.name+thesis.description+thesis.campus+thesis.fieldOfStudy}>
                         <td>{thesis.idThesis}</td>
                         <td>{thesis.name}</td>
                         <td>{thesis.description}</td>
                         <td>{thesis.campus}</td>
                         <td>{thesis.fieldOfStudy}</td>
+                        <td><button onClick={()=>this.deleteThesis(thesis.idThesis)}>x</button></td>
                     </tr>
+                    
                 ))}
             </tbody>
           </table>
@@ -105,7 +115,8 @@ class ThesisList extends Component{
               />
               <input type="submit" value="add thesis" />
           </form>
-      </div>
+          </header>
+    </div>
     );
   }
 }
