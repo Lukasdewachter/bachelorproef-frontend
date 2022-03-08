@@ -32,12 +32,7 @@ class Students extends Component{
             mail: this.state.mail,
             campus: this.state.campus
           });
-        this.getStudent()
-    }
-    deleteStudent = event => {
-        const id = this.state.id;
-        api.delete(`/delete/${id}`);
-        this.getStudent()
+        this.getStudent();
     }
     handleNameChange = event =>{
         this.setState({
@@ -74,8 +69,9 @@ class Students extends Component{
             campus: event.target.value,
         })
     }
-    handleDeleteChange = event =>{
-        this.setState({ id: event.target.value});
+    deleteStudent(idStudent){
+        api.delete(`/delete?idStudent=${idStudent}`);
+        this.getStudent()
     }
     render(){
         return (
@@ -91,6 +87,7 @@ class Students extends Component{
                         <th>Field of Study</th>
                         <th>Mail</th>
                         <th>Campus</th>
+                        <th>Edit/Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -104,6 +101,7 @@ class Students extends Component{
                             <td>{student.fieldOfStudy}</td>
                             <td>{student.mail}</td>
                             <td>{student.campus}</td>
+                            <td><button onClick={()=>this.deleteStudent(student.idStudent)}>x</button></td>
                         </tr>
                     ))}
                     </tbody>
