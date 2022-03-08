@@ -23,7 +23,6 @@ class Students extends Component{
     }
 
     addStudent = event => {
-        event.preventDefault();
         api.post('/add',{
             name: this.state.name,
             surname: this.state.surname,
@@ -36,7 +35,6 @@ class Students extends Component{
         this.getStudent()
     }
     deleteStudent = event => {
-        event.preventDefault();
         const id = this.state.id;
         api.delete(`/delete/${id}`);
         this.getStudent()
