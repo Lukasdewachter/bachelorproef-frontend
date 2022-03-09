@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {Component,useState} from 'react'
 import axios from 'axios'
-import { Component } from 'react'
 import './MainStyleSheet.css'
+import EditRow from './tables/e-student'
+import ReadOnly from './tables/ro-student'
 
 const api = axios.create({
     baseURL: `http://localhost:8080/student/`
 })
+
 class Students extends Component {
     constructor() {
         super();
@@ -15,6 +17,7 @@ class Students extends Component {
         this.handleAddChange = this.handleAddChange.bind(this);
         this.getStudent();
     }
+    
     state = {
         studenten: [] //mag niet met hoofdletter
     }
@@ -22,7 +25,7 @@ class Students extends Component {
         let data = await api.get('/all').then(({ data }) => data);
         this.setState({ studenten: data })
     }
-    addStudent = event => {
+    addStudent = () => {
         api.post('/add', {
             name: this.state.name,
             surname: this.state.surname,
@@ -39,6 +42,7 @@ class Students extends Component {
             [event.target.name] : event.target.value
         });
     }
+    
     deleteStudent(idStudent){
         api.delete(`/delete?idStudent=${idStudent}`);
         this.getStudent();
@@ -46,36 +50,33 @@ class Students extends Component {
     render() {
         return (
             <div className="Students">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Student id</th>
-                            <th>Name</th>
-                            <th>Surname</th>
-                            <th>Telephone Number</th>
-                            <th>Address</th>
-                            <th>Field of Study</th>
-                            <th>Mail</th>
-                            <th>Campus</th>
-                            <th>Edit/Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.studenten.map(student => (
-                            <tr key={'student_' + student.idStudent + student.name + student.surname + student.mail + student.tel + student.address + student.fieldOfStudy + student.campus}>
-                                <td>{student.idStudent}</td>
-                                <td>{student.name}</td>
-                                <td>{student.surname}</td>
-                                <td>{student.tel}</td>
-                                <td>{student.address}</td>
-                                <td>{student.fieldOfStudy}</td>
-                                <td>{student.mail}</td>
-                                <td>{student.campus}</td>
-                                <td><button onClick={() => this.deleteStudent(student.idStudent)}>x</button></td>
+                <form>
+                    <table>
+                     <thead>
+                            <tr>
+                                <th>Student id</th>
+                                <th>Name</th>
+                                <th>Surname</th>
+                                <th>Telephone Number</th>
+                                <th>Address</th>
+                                <th>Field of Study</th>
+                                <th>Mail</th>
+                                <th>Campus</th>
+                                <th>Edit/Delete</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody key='student_'>
+                            {this.state.studenten.map(student => (
+                                <>
+                                        <EditRow/>
+                                        
+                                        <ReadOnly student={student}/>
+                                        
+                                </>           
+                         ))}
+                        </tbody>
+                    </table>
+                </form>
                 <form onSubmit={this.addStudent}>
                     <label>New Student</label>
                     <input
@@ -122,9 +123,9 @@ class Students extends Component {
                     />
                     <input
                         type='text'
-                        name='campus'
-                        required='required'
-                        placeholder='campus'
+                            name='campus'
+                            required='required'
+                                placeholder='campus'
                         onChange={this.handleAddChange}
                     />
                     <input type="submit" value="add student" />
