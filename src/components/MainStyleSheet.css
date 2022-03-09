@@ -10,11 +10,9 @@ button {
     position: relative;
 }
 table {
-    margin: 20px;
     border-collapse: collapse;
-    width: 90%;
-    position: relative;
-}
+    width: 100%;
+  }
 
 th,
 td {
@@ -26,25 +24,23 @@ td {
 }
 
 th {
-    margin: 10px;
+    
     background-color: rgb(114, 114, 114);
 }
 
 td {
-    margin: 10px;
+    
     background-color: rgb(190, 190, 190);
 }
 
 form {
-    margin: 10px;
-    display: grid;
+   
+    display: flex;
     gap: 5px;
-    left: 20px;
-    top: 250px;
+    
 }
 
 form td:last-child {
-    margin: 10px;
     display: flex;
     justify-content: space-evenly;
 }
