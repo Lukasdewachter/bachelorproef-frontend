@@ -61,7 +61,8 @@ const Student= () =>{
         newFormData[fieldName] = fieldValue;
         setEditFormData(newFormData);
     };
-    const handleEditFormSubmit= (event) =>{
+    const handleEditFormSubmit= () =>{
+        //event.preventDefault();
         api.put(`/update/${editFormData.idStudent}`,{
             name: editFormData.name,
             surname: editFormData.surname,
@@ -72,8 +73,13 @@ const Student= () =>{
             campus: editFormData.campus
         });
         setEditStudentId(null);
-        getStudent();
     };
+    const handleCancelClick = () =>{
+        setEditStudentId(null);
+    };
+    const handleDeleteClick = (idStudent) =>{
+        api.delete(`/delete?idStudent=${idStudent}`);
+    }
     const addStudent = () =>{
         api.post('/add', {
             name: addData.name,
@@ -84,7 +90,7 @@ const Student= () =>{
             mail: addData.mail,
             campus: addData.campus
         });
-        getStudent();
+        this.getStudent();
     };
     const getStudent= async () =>{
         const data = await api.get('/all')
@@ -118,11 +124,13 @@ const Student= () =>{
                                             <EditRow
                                                 editFormData={editFormData}
                                                 handleEditChange={handleEditChange}
+                                                handleCancelClick={handleCancelClick}
                                             />
                                             ):(
                                             <ReadOnly 
                                                 student={student} 
                                                 handleEditClick={handleEditClick}
+                                                handleDeleteClick={handleDeleteClick}
                                                 />
                                         )}
                                     </>
