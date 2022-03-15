@@ -1,6 +1,6 @@
 import React from "react";
 import '../MainStyleSheet.css'
-const EditRow = ({editFormData, handleEditChange}) => {
+const EditRow = ({editFormData, handleEditChange, handleCancelClick}) => {
     return(
     <tr>
         <td></td>
@@ -74,7 +74,10 @@ const EditRow = ({editFormData, handleEditChange}) => {
                 onChange={handleEditChange}
                  />
         </td>
-        <td><button type='submit'>Save</button></td>
+        <td>
+            <button type='submit'>Save</button>
+            <button type='button' onClick={handleCancelClick}>Cancel</button>
+        </td>
     </tr>
     );
 }
