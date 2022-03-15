@@ -5,29 +5,25 @@ import '../MainStyleSheet.css'
 import EditRow from './EditRow'
 
 const api = axios.create({
-    baseURL: `http://localhost:8080/student/`
-});
-const Student= () =>{
-    const [student,setStudent] = useState([])
+    baseURL: `http://localhost:8080/company/`
+})
+const Companies= () =>{
+    const [company,setCompany] = useState([])
     const [addData, setAddData] = useState({
-        name: '',
-        surname: '',
-        tel: '',
+        companyName: '',
+        contactName: '',
+        tel:'',
         address: '',
-        fieldOfStudy: '',
-        mail: '',
-        campus:''
+        mail: ''
     });
     const [editFormData, setEditFormData] = useState({
-        name: '',
-        surname: '',
-        tel: '',
+        companyName: '',
+        contactName: '',
+        tel:'',
         address: '',
-        fieldOfStudy: '',
-        mail: '',
-        campus:''
+        mail: ''
     });
-    const [editStudentId, setEditStudentId] = useState(null);
+    const [editCompanyId, setEditCompanyId] = useState(null);
     const handleAddChange = (event) =>{
         event.preventDefault();
         const fieldName = event.target.getAttribute('name');
@@ -37,18 +33,16 @@ const Student= () =>{
         newData[fieldName] = fieldValue;
         setAddData(newData);
     };
-    const handleEditClick = (event,student) =>{
+    const handleEditClick = (event,company) =>{
         event.preventDefault();
-        setEditStudentId(student.idStudent);
+        setEditCompanyId(company.idCompany);
         const formValues = {
-            idStudent: student.idStudent,
-            name: student.name,
-            surname: student.surname,
-            tel: student.tel,
-            address: student.address,
-            fieldOfStudy: student.fieldOfStudy,
-            mail: student.mail,
-            campus: student.campus
+            idCompany: company.idCompany,
+            companyName: company.companyName,
+            contactName: company.contactName,
+            tel: company.tel,
+            address: company.address,
+            mail: company.mail
         };
         setEditFormData(formValues);
     };
@@ -62,65 +56,57 @@ const Student= () =>{
         setEditFormData(newFormData);
     };
     const handleEditFormSubmit= () =>{
-        //event.preventDefault();
-        api.put(`/update/${editFormData.idStudent}`,{
-            name: editFormData.name,
-            surname: editFormData.surname,
+        api.put(`/update/${editFormData.idCompany}`,{
+            companyName: editFormData.companyName,
+            contactName: editFormData.contactName,
             tel: editFormData.tel,
             address: editFormData.address,
-            fieldOfStudy: editFormData.fieldOfStudy,
-            mail: editFormData.mail,
-            campus: editFormData.campus
+            mail: editFormData.mail
         });
-        setEditStudentId(null);
+        setEditCompanyId(null);
     };
     const handleCancelClick = () =>{
-        setEditStudentId(null);
+        setEditCompanyId(null);
     };
-    const handleDeleteClick = (idStudent) =>{
-        api.delete(`/delete?idStudent=${idStudent}`);
+    const handleDeleteClick = (idCompany) =>{
+        api.delete(`/delete?idCompany=${idCompany}`);
     }
-    const addStudent = () =>{
+    const addCompany = () =>{
         api.post('/add', {
-            name: addData.name,
-            surname: addData.surname,
+            companyName: addData.companyName,
+            contactName: addData.contactName,
             tel: addData.tel,
             address: addData.address,
-            fieldOfStudy: addData.fieldOfStudy,
-            mail: addData.mail,
-            campus: addData.campus
+            mail: addData.mail
         });
-        this.getStudent();
     };
-    const getStudent= async () =>{
+    const getCompany= async () =>{
         const data = await api.get('/all')
-        setStudent(data.data) 
+        setCompany(data.data) 
     };
     useEffect(()=>{
-        getStudent()
+        getCompany()
     },[]);
     return (
-        <div className="Students">
+        <div className="Company">
                 <form className='editForm' onSubmit={handleEditFormSubmit}>
                     <table>
                         <thead>
                             <tr>
-                                <th>Student id</th>
-                                <th>Name</th>
-                                <th>Surname</th>
+                                <th>Company id</th>
+                                <th>Company</th>
+                                <th>Contact</th>
                                 <th>Telephone Number</th>
                                 <th>Address</th>
-                                <th>Field of Study</th>
                                 <th>Mail</th>
-                                <th>Campus</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody key='student_'>
-                            {student.map((student)=>{
+                        <tbody key='company'>
+                            {company.map((company)=>{
                                 return(
                                     <>
-                                        {editStudentId === student.idStudent ? (
+                                        {editCompanyId === company.idCompany ? (
                                             <EditRow
                                                 editFormData={editFormData}
                                                 handleEditChange={handleEditChange}
@@ -128,7 +114,7 @@ const Student= () =>{
                                             />
                                             ):(
                                             <ReadOnly 
-                                                student={student} 
+                                                company={company} 
                                                 handleEditClick={handleEditClick}
                                                 handleDeleteClick={handleDeleteClick}
                                                 />
@@ -139,61 +125,47 @@ const Student= () =>{
                         </tbody>
                     </table>
                 </form>
-                <form onSubmit={addStudent} className='addForm'>
-                    <label>New Student</label>
+                <form onSubmit={addCompany} className='addForm'>
+                    <label>New Company</label>
                     <input
                         type='text'
-                        name='name'
+                        name='companyName'
                         required='required'
-                        placeholder='name'
-                        onChange={handleAddChange}
-                        />
-                    <input
-                        type='text'
-                        name='surname'
-                        required='required'
-                        placeholder='surname'
-                        onChange={handleAddChange}
+                        placeholder='company name'
+                        onChange=  {handleAddChange}
                     />
                     <input
+                        type='text'
+                        name='contactName'
+                        required='required'
+                        placeholder='contact name'
+                        onChange=  {handleAddChange}
+                    />
+                     <input
                         type='number'
                         name='tel'
                         required='required'
-                        placeholder='tel number'
-                        onChange={handleAddChange}
+                        placeholder='telephone number'
+                        onChange=  {handleAddChange}
                     />
                     <input
                         type='text'
                         name='address'
                         required='required'
                         placeholder='address'
-                        onChange={handleAddChange}
-                    />
-                    <input
-                        type='text'
-                        name='fieldOfStudy'
-                        required='required'
-                        placeholder='field of study'
-                        onChange={handleAddChange}
+                        onChange=  {handleAddChange}
                     />
                     <input
                         type='email'
                         name='mail'
                         required='required'
                         placeholder='mail'
-                        onChange={handleAddChange}
+                        onChange=  {handleAddChange}
                     />
-                    <input
-                        type='text'
-                        name='campus'
-                        required='required'
-                        placeholder='campus'
-                        onChange={handleAddChange}
-                    />
-                    <input type="submit" value="add student" />
+                    <input type="submit" value="add company" />
                 </form>
             </div>
 
     );
 };
-export default Student;
+export default Companies;

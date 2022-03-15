@@ -5,10 +5,10 @@ import '../MainStyleSheet.css'
 import EditRow from './EditRow'
 
 const api = axios.create({
-    baseURL: `http://localhost:8080/student/`
-});
-const Student= () =>{
-    const [student,setStudent] = useState([])
+    baseURL: `http://localhost:8080/professor/`
+})
+const Professors= () =>{
+    const [professor,setProfessor] = useState([])
     const [addData, setAddData] = useState({
         name: '',
         surname: '',
@@ -16,7 +16,8 @@ const Student= () =>{
         address: '',
         fieldOfStudy: '',
         mail: '',
-        campus:''
+        campus:'',
+        coordinator:''
     });
     const [editFormData, setEditFormData] = useState({
         name: '',
@@ -25,9 +26,10 @@ const Student= () =>{
         address: '',
         fieldOfStudy: '',
         mail: '',
-        campus:''
+        campus:'',
+        coordinator:''
     });
-    const [editStudentId, setEditStudentId] = useState(null);
+    const [editProfessorId, setEditProfessorId] = useState(null);
     const handleAddChange = (event) =>{
         event.preventDefault();
         const fieldName = event.target.getAttribute('name');
@@ -37,18 +39,19 @@ const Student= () =>{
         newData[fieldName] = fieldValue;
         setAddData(newData);
     };
-    const handleEditClick = (event,student) =>{
+    const handleEditClick = (event,professor) =>{
         event.preventDefault();
-        setEditStudentId(student.idStudent);
+        setEditProfessorId(professor.idProfessor);
         const formValues = {
-            idStudent: student.idStudent,
-            name: student.name,
-            surname: student.surname,
-            tel: student.tel,
-            address: student.address,
-            fieldOfStudy: student.fieldOfStudy,
-            mail: student.mail,
-            campus: student.campus
+            idProfessor: professor.idProfessor,
+            name: professor.name,
+            surname: professor.surname,
+            tel: professor.tel,
+            address: professor.address,
+            fieldOfStudy: professor.fieldOfStudy,
+            mail: professor.mail,
+            campus: professor.campus,
+            coordinator: professor.coordinator
         };
         setEditFormData(formValues);
     };
@@ -62,25 +65,25 @@ const Student= () =>{
         setEditFormData(newFormData);
     };
     const handleEditFormSubmit= () =>{
-        //event.preventDefault();
-        api.put(`/update/${editFormData.idStudent}`,{
+        api.put(`/update/${editFormData.idProfessor}`,{
             name: editFormData.name,
             surname: editFormData.surname,
             tel: editFormData.tel,
             address: editFormData.address,
             fieldOfStudy: editFormData.fieldOfStudy,
             mail: editFormData.mail,
-            campus: editFormData.campus
+            campus: editFormData.campus,
+            coordinator: editFormData.coordinator
         });
-        setEditStudentId(null);
+        setEditProfessorId(null);
     };
     const handleCancelClick = () =>{
-        setEditStudentId(null);
+        setEditProfessorId(null);
     };
-    const handleDeleteClick = (idStudent) =>{
-        api.delete(`/delete?idStudent=${idStudent}`);
+    const handleDeleteClick = (idProfessor) =>{
+        api.delete(`/delete?idProfessor=${idProfessor}`);
     }
-    const addStudent = () =>{
+    const addProfessor = () =>{
         api.post('/add', {
             name: addData.name,
             surname: addData.surname,
@@ -88,24 +91,24 @@ const Student= () =>{
             address: addData.address,
             fieldOfStudy: addData.fieldOfStudy,
             mail: addData.mail,
-            campus: addData.campus
+            campus: addData.campus,
+            coordinator: addData.coordinator
         });
-        this.getStudent();
     };
-    const getStudent= async () =>{
+    const getProfessor= async () =>{
         const data = await api.get('/all')
-        setStudent(data.data) 
+        setProfessor(data.data) 
     };
     useEffect(()=>{
-        getStudent()
+        getProfessor()
     },[]);
     return (
-        <div className="Students">
+        <div className="Professor">
                 <form className='editForm' onSubmit={handleEditFormSubmit}>
                     <table>
                         <thead>
                             <tr>
-                                <th>Student id</th>
+                                <th>Professor id</th>
                                 <th>Name</th>
                                 <th>Surname</th>
                                 <th>Telephone Number</th>
@@ -113,14 +116,15 @@ const Student= () =>{
                                 <th>Field of Study</th>
                                 <th>Mail</th>
                                 <th>Campus</th>
+                                <th>Coordinator</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody key='student_'>
-                            {student.map((student)=>{
+                        <tbody key='professor'>
+                            {professor.map((professor)=>{
                                 return(
                                     <>
-                                        {editStudentId === student.idStudent ? (
+                                        {editProfessorId === professor.idProfessor ? (
                                             <EditRow
                                                 editFormData={editFormData}
                                                 handleEditChange={handleEditChange}
@@ -128,7 +132,7 @@ const Student= () =>{
                                             />
                                             ):(
                                             <ReadOnly 
-                                                student={student} 
+                                                professor={professor} 
                                                 handleEditClick={handleEditClick}
                                                 handleDeleteClick={handleDeleteClick}
                                                 />
@@ -139,8 +143,8 @@ const Student= () =>{
                         </tbody>
                     </table>
                 </form>
-                <form onSubmit={addStudent} className='addForm'>
-                    <label>New Student</label>
+                <form onSubmit={addProfessor} className='addForm'>
+                    <label>New Professor</label>
                     <input
                         type='text'
                         name='name'
@@ -190,10 +194,18 @@ const Student= () =>{
                         placeholder='campus'
                         onChange={handleAddChange}
                     />
-                    <input type="submit" value="add student" />
+                    <input
+                        type='number'
+                        name='coordinator'
+                        required='required'
+                        placeholder='coordinator'
+                        onChange={handleAddChange}
+                    />
+                    <input type="submit" value="add professor" />
                 </form>
             </div>
 
     );
 };
-export default Student;
+
+export default Professors;
