@@ -1,15 +1,17 @@
 import React from "react";
 import '../MainStyleSheet.css'
-const EditRow = () => (
+const EditRow = ({editFormData, handleEditChange}) => {
+    return(
     <tr>
-        <td>
-        </td>
+        <td></td>
         <td>
             <input
                 type='text'
                 name='name'
                 required='required'
-                placeholder='name' 
+                placeholder='name'
+                value={editFormData.name}
+                onChange={handleEditChange} 
             />
         </td>
         <td>
@@ -17,7 +19,9 @@ const EditRow = () => (
                 type='text'
                 name='surname'
                 required='required'
-                placeholder='surname' 
+                placeholder='surname'
+                value={editFormData.surname}
+                onChange={handleEditChange} 
             />
         </td>
         <td>
@@ -26,6 +30,8 @@ const EditRow = () => (
                 name='tel'
                 required='required'
                 placeholder='tel number'
+                value={editFormData.tel}
+                onChange={handleEditChange}
                 />
         </td>
         <td>
@@ -34,6 +40,8 @@ const EditRow = () => (
                 name='address'
                 required='required'
                 placeholder='address'
+                value={editFormData.address}
+                onChange={handleEditChange}
                  />
         </td>
         <td>
@@ -42,6 +50,8 @@ const EditRow = () => (
                 name='fieldOfStudy'
                 required='required'
                 placeholder='field of study'
+                value={editFormData.fieldOfStudy}
+                onChange={handleEditChange}
                 />
         </td>
         <td>
@@ -50,6 +60,8 @@ const EditRow = () => (
                 name='mail'
                 required='required'
                 placeholder='mail'
+                value={editFormData.mail}
+                onChange={handleEditChange}
                  />
         </td>
         <td>
@@ -58,9 +70,12 @@ const EditRow = () => (
                 name='campus'
                 required='required'
                 placeholder='campus'
+                value={editFormData.campus}
+                onChange={handleEditChange}
                  />
         </td>
-        <td></td>
+        <td><button type='submit'>Save</button></td>
     </tr>
-)
+    );
+}
 export default EditRow;

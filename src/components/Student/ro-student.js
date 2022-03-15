@@ -1,8 +1,8 @@
 import React from "react";
 
-const ReadOnly = ({ student }) =>{
+const ReadOnly = ({ student, handleEditClick }) =>{
     return(
-        <tr key={'student_'+student.idStudent+student.name+student.surname+student.tel+student.address+student.fieldOfStudy+student.mail+student.campus}>
+        <tr key={student.idStudent}>
             <td>{student.idStudent}</td>
             <td>{student.name}</td>
             <td>{student.surname}</td>
@@ -11,8 +11,7 @@ const ReadOnly = ({ student }) =>{
             <td>{student.fieldOfStudy}</td>
             <td>{student.mail}</td>
             <td>{student.campus}</td>
-            <td></td>
-            {/*<td><button onClick={() => this.deleteStudent(student.idStudent)}>x</button></td>*/}
+            <td><button onClick={(event)=>handleEditClick(event,student)}>Edit</button></td>
             </tr>
         );
 };
