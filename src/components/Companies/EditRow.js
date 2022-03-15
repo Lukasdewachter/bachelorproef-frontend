@@ -17,7 +17,7 @@ const EditRow = ({editFormData, handleEditChange, handleCancelClick}) => {
         <td>
             <input
                 type='text'
-                name='companyContact'
+                name='contactName'
                 required='required'
                 placeholder='contact'
                 value={editFormData.contactName}

@@ -37,7 +37,7 @@ const handleEditClick = (event,thesis) =>{
     const formValues = {
         idThesis: thesis.idThesis,
         name: thesis.name,
-        description: thesis.surname,
+        description: thesis.description,
         address: thesis.address,
         fieldOfStudy: thesis.fieldOfStudy,
         campus: thesis.campus
