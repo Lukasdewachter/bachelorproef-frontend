@@ -12,8 +12,8 @@ button {
 table {
     margin: 20px;
     border-collapse: collapse;
-    width: 90%;
     position: relative;
+    table-layout: fixed; 
 }
 
 th,
@@ -34,21 +34,13 @@ td {
     margin: 10px;
     background-color: rgb(190, 190, 190);
 }
-
-form {
+form{
     margin: 10px;
-    display: grid;
     gap: 5px;
-    left: 20px;
-    top: 250px;
-}
-
-form td:last-child {
-    margin: 10px;
-    display: flex;
-    justify-content: space-evenly;
-}
-
-form * {
+    left: 0x;
+    top: 5px;
+    display: grid;
+    justify-content:baseline;
+    position: relative;
     font-size: 15px;
 }

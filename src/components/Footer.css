@@ -1,9 +1,6 @@
-.app-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 1rem;
-  }
   footer{
     background-color: rgb(29, 141, 176);
+    position:static;
+    top: 92%;
+
   }
