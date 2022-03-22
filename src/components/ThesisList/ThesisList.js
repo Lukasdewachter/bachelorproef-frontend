@@ -85,7 +85,7 @@ useEffect(()=>{
 },[]);      
     return (
       <div className="thesisList">
-        <form classname='editForm' onSubmit={handleEditFormSubmit}>
+        <form className='form-table' onSubmit={handleEditFormSubmit}>
           <table>
             <thead>
               <tr>
@@ -120,7 +120,7 @@ useEffect(()=>{
             </tbody>
           </table>
           </form>
-          <form onSubmit={addThesis}>
+          <form className="form-table" onSubmit={addThesis}>
             <label>New Thesis</label>
               <input
                   type='text'

@@ -10,6 +10,7 @@ import Home from './components/Home';
 import Navigation from './components/Navigation'
 import Contact from './components/Contact';
 import FAQ from './components/FAQ';
+import Login from './components/Login';
 import './index.css';
 //import reportWebVitals from './reportWebVitals';
 
@@ -18,12 +19,13 @@ ReactDOM.render(
   <Navigation />
   <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/Thesis-List" element={<ThesisList />} />
-    <Route path="/Students" element={<Student />}/>
-    <Route path="/Companies" element={<Companies />}/>
-    <Route path="/Professors" element={<Professors />}/>
+    <Route path="/thesis-list" element={<ThesisList />} />
+    <Route path="/students" element={<Student />}/>
+    <Route path="/companies" element={<Companies />}/>
+    <Route path="/professors" element={<Professors />}/>
     <Route path="/FAQ" element={<FAQ />} />
-    <Route path="/Contact" element={<Contact />}/>
+    <Route path="/contact" element={<Contact />}/>
+    <Route path='/login' element={<Login/>}/>
   </Routes>
   <Footer />
 </Router>,
