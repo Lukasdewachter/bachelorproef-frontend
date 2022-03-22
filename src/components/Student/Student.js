@@ -101,7 +101,7 @@ const Student= () =>{
     },[]);
     return (
         <div className="Students">
-                <form className='form-table' onSubmit={handleEditFormSubmit}>
+      <form className='form-table' onSubmit={handleEditFormSubmit}>
                     <table>
                         <thead>
                             <tr>

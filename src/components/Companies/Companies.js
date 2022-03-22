@@ -90,6 +90,7 @@ const Companies= () =>{
     return (
         <div className="Company">
                 <form className='form-table' onSubmit={handleEditFormSubmit}>
+
                     <table>
                         <thead>
                             <tr>
