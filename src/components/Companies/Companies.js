@@ -89,7 +89,8 @@ const Companies= () =>{
     },[]);
     return (
         <div className="Company">
-                <form className='editForm' onSubmit={handleEditFormSubmit}>
+                <form className='form-table' onSubmit={handleEditFormSubmit}>
+
                     <table>
                         <thead>
                             <tr>
@@ -125,7 +126,7 @@ const Companies= () =>{
                         </tbody>
                     </table>
                 </form>
-                <form onSubmit={addCompany} className='addForm'>
+                <form onSubmit={addCompany} className='form-table'>
                     <label>New Company</label>
                     <input
                         type='text'

@@ -104,7 +104,7 @@ const Professors= () =>{
     },[]);
     return (
         <div className="Professor">
-                <form className='editForm' onSubmit={handleEditFormSubmit}>
+                <form className='form-table' onSubmit={handleEditFormSubmit}>
                     <table>
                         <thead>
                             <tr>
@@ -143,7 +143,7 @@ const Professors= () =>{
                         </tbody>
                     </table>
                 </form>
-                <form onSubmit={addProfessor} className='addForm'>
+                <form onSubmit={addProfessor} className='form-table'>
                     <label>New Professor</label>
                     <input
                         type='text'

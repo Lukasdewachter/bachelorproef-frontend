@@ -15,7 +15,32 @@ table {
     position: relative;
     table-layout: fixed; 
 }
-
+.login {
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    left:0;
+}
+.box{
+    position: fixed;
+    top: 130px;
+    left: 32.5%;
+    width: 35%;
+    background-color: #fff;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    margin: 20px auto;
+    padding: 20px;
+    overflow: auto;
+}
+.btn-login{
+    border-radius: 12px;
+    background-color: rgb(98, 185, 211);
+    color:rgba(255, 255, 255, 0.842);
+    margin: 15px;
+}
 th,
 td {
     margin: 10px;
@@ -34,7 +59,7 @@ td {
     margin: 10px;
     background-color: rgb(190, 190, 190);
 }
-form{
+.form-table{
     margin: 10px;
     gap: 5px;
     left: 0x;
@@ -43,4 +68,16 @@ form{
     justify-content:baseline;
     position: relative;
     font-size: 15px;
+}
+.form-login{
+    margin: 5px;
+    display: grid;
+    justify-content:flex-start;
+}
+label{
+    margin-top: 10px;
+    position: relative;
+}
+.box-register{
+    margin-top: 40px;
 }
