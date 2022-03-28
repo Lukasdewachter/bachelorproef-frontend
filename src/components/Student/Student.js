@@ -139,7 +139,7 @@ const Student= () =>{
                         </tbody>
                     </table>
                 </form>
-                <form onSubmit={addStudent} className='form-table'>
+                <form onSubmit={addStudent} className='form-add'>
                     <label>New Student</label>
                     <input
                         type='text'

@@ -9,8 +9,9 @@ const ReadOnly = ({ thesis, handleEditClick,handleDeleteClick }) =>{
             <td>{thesis.fieldOfStudy}</td>
             <td>{thesis.campus}</td>
             <td>
-                <button onClick={(event)=>handleEditClick(event,thesis)}>Edit</button>
-                <button onClick={()=>handleDeleteClick(thesis.idThesis)}>Delete</button>
+                <button className='btn-edit' onClick={(event)=>handleEditClick(event,thesis)}><ion-icon name="pencil-outline"></ion-icon></button>
+                <button className='btn-delete' onClick={()=>handleDeleteClick(thesis.idThesis)}><ion-icon name="close-circle-outline"></ion-icon></button>
+                
             </td>
             </tr>
         );

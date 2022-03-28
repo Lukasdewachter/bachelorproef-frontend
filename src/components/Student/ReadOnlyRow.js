@@ -12,8 +12,9 @@ const ReadOnly = ({ student, handleEditClick,handleDeleteClick }) =>{
             <td>{student.mail}</td>
             <td>{student.campus}</td>
             <td>
-                <button onClick={(event)=>handleEditClick(event,student)}>Edit</button>
-                <button onClick={()=>handleDeleteClick(student.idStudent)}>Delete</button>
+                <button className='btn-edit' onClick={(event)=>handleEditClick(event,student)}><ion-icon name="pencil-outline"></ion-icon></button>
+                <button className='btn-delete' onClick={()=>handleDeleteClick(student.idStudent)}><ion-icon name="close-circle-outline"></ion-icon></button>
+                           
             </td>
             </tr>
         );

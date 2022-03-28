@@ -80,11 +80,14 @@ const getThesis= async () =>{
     const data = await api.get('/all')
     setThesis(data.data) 
 };
+const nextPath= (path) =>{
+  this.props.history.push(path);
+}
 useEffect(()=>{
     getThesis()
 },[]);      
     return (
-      <div className="thesisList">
+      <div className="table-div">
         <form className='form-table' onSubmit={handleEditFormSubmit}>
           <table>
             <thead>
@@ -119,8 +122,9 @@ useEffect(()=>{
               })}
             </tbody>
           </table>
+          
           </form>
-          <form className="form-table" onSubmit={addThesis}>
+          <form className="add-table" onSubmit={addThesis}>
             <label>New Thesis</label>
               <input
                   type='text'

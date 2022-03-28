@@ -55,8 +55,8 @@ const EditRow = ({editFormData, handleEditChange, handleCancelClick}) => {
                  />
         </td>
         <td>
-            <button type='submit'>Save</button>
-            <button type='button' onClick={handleCancelClick}>Cancel</button>
+        <button className='btn-save' type='submit'><ion-icon name="checkmark-outline"></ion-icon></button>
+        <button className='btn-delete' type='button' onClick={handleCancelClick}><ion-icon name="close-circle-outline"></ion-icon></button>
         </td>
     </tr>
     );

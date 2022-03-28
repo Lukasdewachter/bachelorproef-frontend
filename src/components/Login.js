@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import { Link } from "react-router-dom";
 //import axios from "axios";
 import './MainStyleSheet.css'
 
@@ -18,7 +19,8 @@ const Login = (props) =>{
     return(
         <div className="login">
             <div className="box">
-                <div className="box-content">
+            <Link to="/"><button className='btn-escape'><ion-icon name="close-circle-outline"></ion-icon></button></Link>
+                <div className="box-login">
                     <h2>Login</h2>
                     <form className="form-login">
                         <label>Email</label>
