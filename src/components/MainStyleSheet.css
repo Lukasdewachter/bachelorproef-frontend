@@ -1,19 +1,8 @@
-.app-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 1rem;
-}
-button {
-    margin: 10px;
-    font-size: 15px;
-    position: relative;
-}
 table {
-    margin: 20px;
-    border-collapse: collapse;
+    margin: 15px;
+    border-collapse:collapse;
     position: relative;
-    table-layout: fixed; 
+    table-layout:auto; 
 }
 .login {
     background-color: rgba(0,0,0,0.5);
@@ -24,60 +13,101 @@ table {
     left:0;
 }
 .box{
-    position: fixed;
+    position: relative;
+    width: 15%;
     top: 130px;
-    left: 32.5%;
-    width: 35%;
     background-color: #fff;
     border: 1px solid #000000;
     border-radius: 4px;
     margin: 20px auto;
     padding: 20px;
-    overflow: auto;
 }
+
 .btn-login{
     border-radius: 12px;
     background-color: rgb(98, 185, 211);
     color:rgba(255, 255, 255, 0.842);
     margin: 15px;
 }
-th,
+.btn-escape{
+    position: relative;
+    left: 90%;
+    font-size: 25px;
+    margin: 5px;
+    background-color: rgb(255, 255, 255);
+    border:none;
+    color:rgb(255, 0, 0)
+}
 td {
-    margin: 10px;
+    position: relative;
     border: 1px solid #000000;
     text-align: left;
-    padding: 5px;
+    padding: 2px;
     font-size: 15px;
+    background-color: rgb(190, 190, 190);
 }
-
 th {
-    margin: 10px;
+    border: 1px solid #000000;  
     background-color: rgb(114, 114, 114);
 }
 
-td {
-    margin: 10px;
-    background-color: rgb(190, 190, 190);
-}
 .form-table{
+    width: 15000px;
     margin: 10px;
-    gap: 5px;
     left: 0x;
-    top: 5px;
-    display: grid;
-    justify-content:baseline;
+    display:grid;
+    justify-content:flex-start;
     position: relative;
-    font-size: 15px;
 }
 .form-login{
     margin: 5px;
     display: grid;
     justify-content:flex-start;
 }
+.form-add{
+    margin: 10px;
+    gap: 5px;
+    left: 0x;
+    top: 5px;
+    display:inline-table;
+    justify-content:baseline;
+    position: relative;
+    font-size: 15px;
+}
 label{
     margin-top: 10px;
     position: relative;
 }
-.box-register{
-    margin-top: 40px;
+.btn-edit{
+    margin: 5px;
+    background-color: rgb(190, 190, 190);
+    border:none;
+    font-size: 25px;
+    transition-duration: 0.4s;
+    color: rgb(46, 161, 255);
+}
+.btn-edit:hover{
+    background-color: rgba(150, 149, 149, 0.726);
+}
+.btn-delete{
+    font-size: 25px;
+    margin: 5px;
+    background-color: rgb(190, 190, 190);
+    border:none;
+    transition-duration: 0.4s;
+    color:rgb(255, 0, 0)
+}
+.btn-delete:hover{
+    background-color: rgba(150, 149, 149, 0.726);
+}
+.btn-save{
+    font-size: 25px;
+    margin: 5px;
+    background-color: rgb(190, 190, 190);
+    color:rgb(23, 255, 23);
+    border:none;
+    transition-duration: 0.4s;
+}
+.btn-save:hover{
+    background-color: rgba(150, 149, 149, 0.726);
 }
