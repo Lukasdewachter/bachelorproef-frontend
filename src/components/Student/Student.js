@@ -90,7 +90,7 @@ const Student= () =>{
             mail: addData.mail,
             campus: addData.campus
         });
-        this.getStudent();
+        getStudent();
     };
     const getStudent= async () =>{
         const data = await api.get('/all')
