@@ -54,13 +54,17 @@ const handleCancelClick = () =>{
 const handleDeleteClick = (idThesis) =>{
     api.delete(`/delete?idThesis=${idThesis}`);
 }
+const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsdWthc0BtYWlsLmNvbSIsImV4cCI6MTY0OTcxMDU2OCwiaWF0IjoxNjQ5NjkyNTY4fQ.x21W6AJKMXjHHKBfbWVg4IFmLk8lVG8TF9w8f9L2u968oFMI_H5Berh4K_fo0-kqHheUX-NNUoW-JFzAPErZuQ'
+
 const getThesis= async () =>{
-    const data = await api.get('/all')
+    const data = await api.get('/all', {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+        'Authorization': 'Bearer '+ token
+      }})
     setThesis(data.data) 
 };
-const nextPath= (path) =>{
-  this.props.history.push(path);
-}
 useEffect(()=>{
     getThesis()
 },[]);      
