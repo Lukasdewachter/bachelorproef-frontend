@@ -1,8 +1,25 @@
-import React from "react";
+import React, {useState} from "react";
 import { NavLink } from "react-router-dom";
 import './Navigation.css'
 
 function Navigation() {
+  const [modal, setModal] = useState(false);
+
+  const toggleLogin = () =>{
+    setModal(!modal)
+  }
+  const [editFormData, setEditFormData] = useState({
+    email: '',
+    password: ''
+});
+const handleEditChange = (event) =>{
+    event.preventDefault();
+    const fieldName = event.target.getAttribute('name');
+    const fieldValue = event.target.value;
+    const newFormData = {...editFormData};
+    newFormData[fieldName] = fieldValue;
+    setEditFormData(newFormData);
+};
   return (
     
     <div className="navigation">
@@ -50,8 +67,42 @@ function Navigation() {
                 </li>
               </ul>
             </div>
+            <button onClick={toggleLogin} className="btn-login">Login</button>
           </div>
       </nav>
+      {modal && (
+      <div className="div-login">
+              <div onClick={toggleLogin} className="div-overlay">
+                <div className="login-content">
+                <div className="box-login">
+                    <h2>Login</h2>
+                    <form className="form-login">
+                        <label>Email</label>
+                        <input
+                            type='email'
+                            name='mail'
+                            required='required'
+                            placeholder='email'
+                            onChange={handleEditChange}
+                            size="40" 
+                        />
+                        <label>Password</label>
+                        <input
+                            type='password'
+                            name='password'
+                            required='required'
+                            placeholder='password'
+                            onChange={handleEditChange}
+                            size="40" 
+                        />
+                        <input className="btn-login" type="submit" value="login" />
+                    </form>
+                </div>
+                  <button onClick={toggleLogin}>X</button>
+                </div>
+              </div>
+            </div>
+            )}
       </div>
     );
 }

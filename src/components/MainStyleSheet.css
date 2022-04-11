@@ -69,8 +69,8 @@ th {
     gap: 5px;
     left: 0x;
     top: 5px;
-    display:inline-table;
-    justify-content:baseline;
+    display:grid;
+    justify-content:flex-start;
     position: relative;
     font-size: 15px;
 }

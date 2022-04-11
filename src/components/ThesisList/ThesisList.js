@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from 'react'
 import axios from 'axios'
+import { Link } from "react-router-dom";
 import ReadOnly from './ReadOnlyRow'
 import '../MainStyleSheet.css'
 import EditRow from './EditRow'
@@ -9,12 +10,6 @@ const api = axios.create({
 })
 const ThesisList = () => {
   const [thesis,setThesis] = useState([])
-  const [addData, setAddData] = useState({
-    name: '',
-    description: '',
-    fieldOfStudy: '',
-    campus: '',
-  });
   const [editFormData, setEditFormData] = useState({
     name: '',
     description: '',
@@ -22,15 +17,6 @@ const ThesisList = () => {
     campus: ''
 });
 const [editThesisId, setEditThesisId] = useState(null);
-const handleAddChange = (event) =>{
-    event.preventDefault();
-    const fieldName = event.target.getAttribute('name');
-    const fieldValue = event.target.value;
-
-    const newData = {...addData};
-    newData[fieldName] = fieldValue;
-    setAddData(newData);
-};
 const handleEditClick = (event,thesis) =>{
     event.preventDefault();
     setEditThesisId(thesis.idThesis);
@@ -68,14 +54,6 @@ const handleCancelClick = () =>{
 const handleDeleteClick = (idThesis) =>{
     api.delete(`/delete?idThesis=${idThesis}`);
 }
-const addThesis = () =>{
-    api.post('/add', {
-        name: addData.name,
-        description: addData.description,
-        fieldOfStudy: addData.fieldOfStudy,
-        campus: addData.campus
-    });
-};
 const getThesis= async () =>{
     const data = await api.get('/all')
     setThesis(data.data) 
@@ -122,39 +100,9 @@ useEffect(()=>{
               })}
             </tbody>
           </table>
-          
-          </form>
-          <form className="add-table" onSubmit={addThesis}>
-            <label>New Thesis</label>
-              <input
-                  type='text'
-                  name='name'
-                  required='required'
-                  placeholder='name'
-                  onChange=  {handleAddChange}
-              />
-              <input
-                  type='text'
-                  name='description'
-                  required='required'
-                  placeholder='description'
-                  onChange=  {handleAddChange}
-              />
-              <input
-                  type='text'
-                  name='campus'
-                  required='required'
-                  placeholder='campus'
-                  onChange=  {handleAddChange}
-              />
-              <input
-                  type='text'
-                  name='fieldOfStudy'
-                  required='required'
-                  placeholder='field of study'
-                  onChange=  {handleAddChange}
-              />
-              <input type="submit" value="add thesis" />
+          <div>
+          <Link to="/thesis-add"><button className='btn-login' onClick={() => nextPath('/thesis-add')}>Add Thesis</button></Link>
+          </div>
           </form>
     </div>
     );
