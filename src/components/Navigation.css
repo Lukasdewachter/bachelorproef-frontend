@@ -26,8 +26,8 @@
   }
   ul{
     position: absolute;
-    right: 25px;
-    top: 20%;
+    right: 100px;
+    top: 30%;
   }
   .div-login, .div-overlay {
     width: 100vw;
@@ -52,4 +52,15 @@
     border-radius: 3px;
     max-width: 600px;
     min-width: 300px;
+}
+.btn-login{
+  position: absolute;
+  right: 10px;
+}
+.btn-login-2{
+  position: relative;
+  border-radius: 12px;
+    background-color: rgb(98, 185, 211);
+    color:rgba(255, 255, 255, 0.842);
+    margin: 15px;
 }

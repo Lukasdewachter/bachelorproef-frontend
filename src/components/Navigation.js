@@ -1,25 +1,37 @@
 import React, {useState} from "react";
+import axios from "axios";
 import { NavLink } from "react-router-dom";
 import './Navigation.css'
-
+const api = axios.create({
+  baseURL: `http://localhost:8080/authenticate/`
+})
 function Navigation() {
   const [modal, setModal] = useState(false);
 
   const toggleLogin = () =>{
     setModal(!modal)
   }
-  const [editFormData, setEditFormData] = useState({
-    email: '',
-    password: ''
+const [login, setLogin] = useState({
+  username: '',
+  wachtwoord: '',
 });
-const handleEditChange = (event) =>{
-    event.preventDefault();
+const loginService = () => {
+  api.post({
+    username: login.username,
+    wachtwoord: login.wachtwoord
+  }).then(response =>{
+    return(response);
+  })
+  
+}
+const loginChange = (event) => {
+  event.preventDefault();
     const fieldName = event.target.getAttribute('name');
     const fieldValue = event.target.value;
-    const newFormData = {...editFormData};
+    const newFormData = {...login};
     newFormData[fieldName] = fieldValue;
-    setEditFormData(newFormData);
-};
+    setLogin(newFormData);
+}
   return (
     
     <div className="navigation">
@@ -71,19 +83,19 @@ const handleEditChange = (event) =>{
           </div>
       </nav>
       {modal && (
-      <div className="div-login">
-              <div onClick={toggleLogin} className="div-overlay">
+      <div  className="div-login">
+              <div  className="div-overlay">
                 <div className="login-content">
                 <div className="box-login">
                     <h2>Login</h2>
-                    <form className="form-login">
+                    <form onSubmit={loginService} className="form-login">
                         <label>Email</label>
                         <input
                             type='email'
                             name='mail'
                             required='required'
                             placeholder='email'
-                            onChange={handleEditChange}
+                            onChange={loginChange}
                             size="40" 
                         />
                         <label>Password</label>
@@ -92,10 +104,10 @@ const handleEditChange = (event) =>{
                             name='password'
                             required='required'
                             placeholder='password'
-                            onChange={handleEditChange}
+                            onChange={loginChange}
                             size="40" 
                         />
-                        <input className="btn-login" type="submit" value="login" />
+                        <input className="btn-login-2" type="submit" value="login" />
                     </form>
                 </div>
                   <button onClick={toggleLogin}>X</button>
