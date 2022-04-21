@@ -3,9 +3,15 @@ import axios from 'axios'
 import ReadOnly from './ReadOnlyRow'
 import '../MainStyleSheet.css'
 import EditRow from './EditRow'
-
+const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsdWthc0BtYWlsLmNvbSIsImV4cCI6MTY1MDM3ODg2NywiaWF0IjoxNjUwMzYwODY3fQ.5UTkURCds1QfnFVrjx9lS5SATYOgX8pUs1oGURLzyxAxwS8ScLzzi2PLBPVHdGU92OZnwpUW2OGCr5YVe67Rvw'
 const api = axios.create({
-    baseURL: `http://localhost:8080/student/`
+    baseURL: `http://localhost:8080/student/`,
+    headers: {
+        'Authorization': 'Bearer '+ token,
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials':true
+      }
 });
 const Student= () =>{
     const [student,setStudent] = useState([])

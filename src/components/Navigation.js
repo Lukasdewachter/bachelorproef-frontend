@@ -13,15 +13,18 @@ function Navigation() {
   }
 const [login, setLogin] = useState({
   username: '',
-  wachtwoord: '',
+  password: '',
 });
 const loginService = () => {
   api.post({
-    username: login.username,
-    wachtwoord: login.wachtwoord
-  }).then(response =>{
-    return(response);
-  })
+    username: login.mail,
+    password: login.password
+  }).then(function (response) {
+
+    console.log(JSON.stringify(response.data));
+  }).catch(function (error) {
+    console.log(error);
+  });
   
 }
 const loginChange = (event) => {
@@ -96,7 +99,6 @@ const loginChange = (event) => {
                             required='required'
                             placeholder='email'
                             onChange={loginChange}
-                            size="40" 
                         />
                         <label>Password</label>
                         <input
@@ -105,7 +107,6 @@ const loginChange = (event) => {
                             required='required'
                             placeholder='password'
                             onChange={loginChange}
-                            size="40" 
                         />
                         <input className="btn-login-2" type="submit" value="login" />
                     </form>
