@@ -2,39 +2,53 @@ import React, {useState} from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import './Navigation.css'
-const api = axios.create({
-  baseURL: `http://localhost:8080/authenticate/`
-})
+
 function Navigation() {
   const [modal, setModal] = useState(false);
 
   const toggleLogin = () =>{
     setModal(!modal)
   }
-const [login, setLogin] = useState({
-  username: '',
-  password: '',
-});
-const loginService = () => {
-  api.post({
-    username: login.mail,
-    password: login.password
-  }).then(function (response) {
-
-    console.log(JSON.stringify(response.data));
-  }).catch(function (error) {
-    console.log(error);
+  const [login, setLogin] = useState({
+    username: '',
+    password: '',
   });
-  
-}
-const loginChange = (event) => {
-  event.preventDefault();
+  const loginChange = (event) => {
+    event.preventDefault();
     const fieldName = event.target.getAttribute('name');
     const fieldValue = event.target.value;
     const newFormData = {...login};
     newFormData[fieldName] = fieldValue;
     setLogin(newFormData);
-}
+  }
+  var data = {
+    username: login.mail,
+    password: login.password
+  }
+  var config = {
+    method: 'post',
+    url: 'http://localhost:8080/authenticate',
+    headers: { 
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials':true,
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+  const loginService = () => {
+    axios(config)
+    .then(function (response) {
+    localStorage.setItem("user", JSON.stringify(response.data));
+    console.log(JSON.parse(localStorage.getItem('user')));
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+  console.log(error);
+  });
+  }
+  const logout = () =>{
+    localStorage.removeItem('user');
+  }
   return (
     
     <div className="navigation">
@@ -83,6 +97,7 @@ const loginChange = (event) => {
               </ul>
             </div>
             <button onClick={toggleLogin} className="btn-login">Login</button>
+            <button onClick={logout}>logoutt</button>
           </div>
       </nav>
       {modal && (
