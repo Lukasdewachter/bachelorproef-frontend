@@ -3,8 +3,12 @@ import axios from 'axios'
 import ReadOnly from './ReadOnlyRow'
 import '../MainStyleSheet.css'
 import EditRow from './EditRow'
+<<<<<<< HEAD
 
 const user = JSON.parse(localStorage.getItem('user')); 
+=======
+const user = JSON.parse(localStorage.getItem('user'));
+>>>>>>> 506c4aabdb8ba152079d0bd9049308774306fbfe
 const api = axios.create({
     baseURL: `http://localhost:8080/student/`,
     headers: {

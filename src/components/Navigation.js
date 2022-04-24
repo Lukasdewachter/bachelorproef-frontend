@@ -97,7 +97,11 @@ function Navigation() {
               </ul>
             </div>
             <button onClick={toggleLogin} className="btn-login">Login</button>
+<<<<<<< HEAD
             <button onClick={logout}>logoutt</button>
+=======
+            <button onClick={logout}>logout</button>
+>>>>>>> 506c4aabdb8ba152079d0bd9049308774306fbfe
           </div>
       </nav>
       {modal && (
