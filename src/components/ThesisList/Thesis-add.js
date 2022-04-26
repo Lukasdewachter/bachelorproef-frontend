@@ -1,101 +1,91 @@
 import React,{useEffect, useState} from 'react'
 import axios from 'axios'
-import { Link } from "react-router-dom";
 import ReadOnly from './ReadOnlyRow'
 import '../MainStyleSheet.css'
 import EditRow from './EditRow'
+import { Link } from 'react-router-dom'
 
 const api = axios.create({
-  baseURL: `http://localhost:8080/thesis/`
-})
-const ThesisList = () => {
-  const [thesis,setThesis] = useState([])
-  const [editFormData, setEditFormData] = useState({
-    name: '',
-    description: '',
-    fieldOfStudy: '',
-    campus: ''
-});
-const [editThesisId, setEditThesisId] = useState(null);
-const handleEditClick = (event,thesis) =>{
-    event.preventDefault();
-    setEditThesisId(thesis.idThesis);
-    const formValues = {
-        idThesis: thesis.idThesis,
-        name: thesis.name,
-        description: thesis.description,
-        address: thesis.address,
-        fieldOfStudy: thesis.fieldOfStudy,
-        campus: thesis.campus
-    };
-    setEditFormData(formValues);
-};
-const [addData, setAddData] = useState({
-  name: '',
-description: '',
-fieldOfStudy: '',
-campus: ''
-});
-const addThesis = () =>{
-  api.post('/add', {
-      name: addData.name,
-      description: addData.description,
-      fieldOfStudy: addData.fieldOfStudy,
-      campus: addData.campus
+    baseURL: `http://localhost:8080/thesis/`
+  })
+  const ThesisAdd = () => {
+    const [thesis,setThesis] = useState([]);
+    const [addData, setAddData] = useState({
+        name: '',
+      description: '',
+      fieldOfStudy: '',
+      campus: ''
+    });
+    const [editFormData, setEditFormData] = useState({
+      name: '',
+      description: '',
+      fieldOfStudy: '',
+      campus: ''
   });
-  getThesis();
+  const addThesis = () =>{
+    api.post('/add', {
+        name: addData.name,
+        description: addData.description,
+        fieldOfStudy: addData.fieldOfStudy,
+        campus: addData.campus
+    });
+    getThesis();
 };
-
-const handleAddChange = (event) =>{
-  event.preventDefault();
-  const fieldName = event.target.getAttribute('name');
-  const fieldValue = event.target.value;
-
-  const newData = {...addData};
-  newData[fieldName] = fieldValue;
-  setAddData(newData);
-};
-
-const handleEditChange = (event) =>{
+  const [editThesisId, setEditThesisId] = useState(null);
+  const handleEditClick = (event,thesis) =>{
+      event.preventDefault();
+      setEditThesisId(thesis.idThesis);
+      const formValues = {
+          idThesis: thesis.idThesis,
+          name: thesis.name,
+          description: thesis.description,
+          address: thesis.address,
+          fieldOfStudy: thesis.fieldOfStudy,
+          campus: thesis.campus
+      };
+      setEditFormData(formValues);
+  };
+  const handleAddChange = (event) =>{
     event.preventDefault();
     const fieldName = event.target.getAttribute('name');
     const fieldValue = event.target.value;
-    const newFormData = {...editFormData};
-    newFormData[fieldName] = fieldValue;
-    setEditFormData(newFormData);
-};
-const handleEditFormSubmit= () =>{
-    api.put(`/update/${editFormData.idThesis}`,{
-        name: editFormData.name,
-        description: editFormData.description,
-        campus: editFormData.campus,
-        fieldOfStudy: editFormData.fieldOfStudy
-    });
-    setEditThesisId(null);
-};
-const handleCancelClick = () =>{
-    setEditThesisId(null);
-};
-const handleDeleteClick = (idThesis) =>{
-    api.delete(`/delete?idThesis=${idThesis}`);
-}
 
-const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsdWthc0BtYWlsLmNvbSIsImV4cCI6MTY0OTcxMDU2OCwiaWF0IjoxNjQ5NjkyNTY4fQ.x21W6AJKMXjHHKBfbWVg4IFmLk8lVG8TF9w8f9L2u968oFMI_H5Berh4K_fo0-kqHheUX-NNUoW-JFzAPErZuQ'
-
-const getThesis= async () =>{
-    const data = await api.get('/all', {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-        'Authorization': 'Bearer '+ token
-      }})
-    setThesis(data.data) 
+    const newData = {...addData};
+    newData[fieldName] = fieldValue;
+    setAddData(newData);
 };
-useEffect(()=>{
-    getThesis()
-},[]);      
-    return (
-      <div className="table-div">
+  const handleEditChange = (event) =>{
+      event.preventDefault();
+      const fieldName = event.target.getAttribute('name');
+      const fieldValue = event.target.value;
+      const newFormData = {...editFormData};
+      newFormData[fieldName] = fieldValue;
+      setEditFormData(newFormData);
+  };
+  const handleEditFormSubmit= () =>{
+      api.put(`/update/${editFormData.idThesis}`,{
+          name: editFormData.name,
+          description: editFormData.description,
+          campus: editFormData.campus,
+          fieldOfStudy: editFormData.fieldOfStudy
+      });
+      setEditThesisId(null);
+  };
+  const handleCancelClick = () =>{
+      setEditThesisId(null);
+  };
+  const handleDeleteClick = (idThesis) =>{
+      api.delete(`/delete?idThesis=${idThesis}`);
+  }
+  const getThesis= async () =>{
+      const data = await api.get('/all')
+      setThesis(data.data) 
+  };
+  useEffect(()=>{
+      getThesis()
+  },[]); 
+    return(
+        <div className="table-div">
         <form className='form-table' onSubmit={handleEditFormSubmit}>
           <table>
             <thead>
@@ -130,8 +120,9 @@ useEffect(()=>{
               })}
             </tbody>
           </table>
-          </form>
-          <div className="add">
+        </form>
+        <div className="add">
+            <Link to="/Thesis-list"><button className='btn-escape'><ion-icon name="close-circle-outline"></ion-icon></button></Link>
              <form className="add-table" onSubmit={addThesis}>
             <label>New Thesis</label>
               <input
@@ -165,7 +156,7 @@ useEffect(()=>{
               <input type="submit" value="add thesis" />
           </form>
         </div>
-    </div>
+        </div>
     );
 }
-export default ThesisList;
+export default ThesisAdd;
