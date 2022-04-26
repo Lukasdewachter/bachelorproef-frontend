@@ -68,5 +68,9 @@
 .btn-logout{
   position: absolute;
   right: 10px;
-  top: 50px;
+  top: 35px;
+  border-radius: 12px;
+  background-color: rgb(98, 185, 211);
+  color:rgba(255, 255, 255, 0.842);
+  margin: 15px;
 }

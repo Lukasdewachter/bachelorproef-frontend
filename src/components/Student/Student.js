@@ -13,41 +13,40 @@ const api = axios.create({
 });
 const Student= () =>{
     const [student,setStudent] = useState([])
-    const [addData, setAddData] = useState({
+    /*const [addData, setAddData] = useState({
         firstName: '',
-        surname: '',
+        lastName: '',
         tel: '',
         address: '',
         fieldOfStudy: '',
         mail: '',
         campus:''
-    });
+    });*/
     const [editFormData, setEditFormData] = useState({
         firstName: '',
-        surname: '',
+        lastName: '',
         tel: '',
         address: '',
         fieldOfStudy: '',
         mail: '',
         campus:''
     });
-    const [editStudentId, setEditStudentId] = useState(null);
-    const handleAddChange = (event) =>{
+    const [editId, setEditId] = useState(null);
+    /*const handleAddChange = (event) =>{
         event.preventDefault();
         const fieldName = event.target.getAttribute('name');
         const fieldValue = event.target.value;
-
         const newData = {...addData};
         newData[fieldName] = fieldValue;
         setAddData(newData);
-    };
+    };*/
     const handleEditClick = (event,student) =>{
         event.preventDefault();
-        setEditStudentId(student.idStudent);
+        setEditId(student.id);
         const formValues = {
             id: student.id,
             firstName: student.firstName,
-            surname: student.surname,
+            lastName: student.lastName,
             tel: student.tel,
             address: student.address,
             fieldOfStudy: student.fieldOfStudy,
@@ -66,28 +65,27 @@ const Student= () =>{
         setEditFormData(newFormData);
     };
     const handleEditFormSubmit= () =>{
-        //event.preventDefault();
-        api.put(`/update/${editFormData.idStudent}`,{
+        api.put(`/update/${editFormData.id}`,{
             firstName: editFormData.firstName,
-            surname: editFormData.surname,
+            lastName: editFormData.lastName,
             tel: editFormData.tel,
             address: editFormData.address,
             fieldOfStudy: editFormData.fieldOfStudy,
             mail: editFormData.mail,
             campus: editFormData.campus
         });
-        setEditStudentId(null);
+        setEditId(null);
     };
     const handleCancelClick = () =>{
-        setEditStudentId(null);
+        setEditId(null);
     };
     const handleDeleteClick = (idStudent) =>{
         api.delete(`/delete?idStudent=${idStudent}`);
     }
-    const addStudent = () =>{
+   /* const addStudent = () =>{
         api.post('/add', {
-            firstName: addData.name,
-            surname: addData.surname,
+            firstName: addData.firstName,
+            lastName: addData.lastName,
             tel: addData.tel,
             address: addData.address,
             fieldOfStudy: addData.fieldOfStudy,
@@ -95,27 +93,24 @@ const Student= () =>{
             campus: addData.campus
         });
         getStudent();
-    };
+    };*/
     const getStudent= async () =>{
         const data = await api.get('/all')
         setStudent(data.data) 
     };
-    const clearLocal = () =>{
-        localStorage.clear();
-    }
     useEffect(()=>{
         getStudent()
     },[]);
     return (
         <div className="Students">
-            <button onClick={clearLocal}>clear local</button>
-            <form className='form-table' onSubmit={handleEditFormSubmit}>
+            <div>
+                <form className='form-table' onSubmit={handleEditFormSubmit}>
                     <table>
                         <thead>
                             <tr>
                                 <th>Student id</th>
-                                <th>Name</th>
-                                <th>Surname</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
                                 <th>Telephone Number</th>
                                 <th>Address</th>
                                 <th>Field of Study</th>
@@ -128,7 +123,7 @@ const Student= () =>{
                             {student.map((student)=>{
                                 return(
                                     <>
-                                        {editStudentId === student.id ? (
+                                        {editId === student.id ? (
                                             <EditRow
                                                 editFormData={editFormData}
                                                 handleEditChange={handleEditChange}
@@ -147,59 +142,7 @@ const Student= () =>{
                         </tbody>
                     </table>
                 </form>
-                <form onSubmit={addStudent} className='form-add'>
-                    <label>New Student</label>
-                    <input
-                        type='text'
-                        name='firstName'
-                        required='required'
-                        placeholder='name'
-                        onChange={handleAddChange}
-                        />
-                    <input
-                        type='text'
-                        name='surname'
-                        required='required'
-                        placeholder='surname'
-                        onChange={handleAddChange}
-                    />
-                    <input
-                        type='number'
-                        name='tel'
-                        required='required'
-                        placeholder='tel number'
-                        onChange={handleAddChange}
-                    />
-                    <input
-                        type='text'
-                        name='address'
-                        required='required'
-                        placeholder='address'
-                        onChange={handleAddChange}
-                    />
-                    <input
-                        type='text'
-                        name='fieldOfStudy'
-                        required='required'
-                        placeholder='field of study'
-                        onChange={handleAddChange}
-                    />
-                    <input
-                        type='email'
-                        name='mail'
-                        required='required'
-                        placeholder='mail'
-                        onChange={handleAddChange}
-                    />
-                    <input
-                        type='text'
-                        name='campus'
-                        required='required'
-                        placeholder='campus'
-                        onChange={handleAddChange}
-                    />
-                    <input type="submit" value="add student" />
-                </form>
+                </div>
             </div>
 
     );

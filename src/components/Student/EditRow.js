@@ -7,26 +7,26 @@ const EditRow = ({editFormData, handleEditChange, handleCancelClick}) => {
         <td>
             <input
                 type='text'
-                name='name'
+                name='firstName'
                 required='required'
-                placeholder='name'
-                value={editFormData.name}
+                placeholder='first name'
+                value={editFormData.firstName}
                 onChange={handleEditChange} 
             />
         </td>
         <td>
             <input
                 type='text'
-                name='surname'
+                name='lastName'
                 required='required'
-                placeholder='surname'
-                value={editFormData.surname}
+                placeholder='last name'
+                value={editFormData.lastName}
                 onChange={handleEditChange} 
             />
         </td>
         <td>
             <input
-                type='number'
+                type='text'
                 name='tel'
                 required='required'
                 placeholder='tel number'

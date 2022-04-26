@@ -5,7 +5,7 @@ const ReadOnly = ({ student, handleEditClick,handleDeleteClick }) =>{
         <tr key={student.id}>
             <td>{student.id}</td>
             <td>{student.firstName}</td>
-            <td>{student.surname}</td>
+            <td>{student.lastName}</td>
             <td>{student.tel}</td>
             <td>{student.address}</td>
             <td>{student.fieldOfStudy}</td>

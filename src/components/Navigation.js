@@ -39,6 +39,7 @@ function Navigation() {
     axios(config)
     .then(function (response) {
     localStorage.setItem("user", JSON.stringify(response.data));
+    window.location.reload(false);
   })
   .catch(function (error) {
   console.log(error);
