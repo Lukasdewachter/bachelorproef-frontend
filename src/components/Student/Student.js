@@ -3,25 +3,18 @@ import axios from 'axios'
 import ReadOnly from './ReadOnlyRow'
 import '../MainStyleSheet.css'
 import EditRow from './EditRow'
-<<<<<<< HEAD
+import authHeader from '../auth'
 
-const user = JSON.parse(localStorage.getItem('user')); 
-=======
-const user = JSON.parse(localStorage.getItem('user'));
->>>>>>> 506c4aabdb8ba152079d0bd9049308774306fbfe
 const api = axios.create({
     baseURL: `http://localhost:8080/student/`,
     headers: {
-        'Authorization': 'Bearer '+ user.token,
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials':true
+        'Authorization': 'Bearer '+authHeader(),
       }
 });
 const Student= () =>{
     const [student,setStudent] = useState([])
     const [addData, setAddData] = useState({
-        name: '',
+        firstName: '',
         surname: '',
         tel: '',
         address: '',
@@ -30,7 +23,7 @@ const Student= () =>{
         campus:''
     });
     const [editFormData, setEditFormData] = useState({
-        name: '',
+        firstName: '',
         surname: '',
         tel: '',
         address: '',
@@ -52,8 +45,8 @@ const Student= () =>{
         event.preventDefault();
         setEditStudentId(student.idStudent);
         const formValues = {
-            idStudent: student.idStudent,
-            name: student.name,
+            id: student.id,
+            firstName: student.firstName,
             surname: student.surname,
             tel: student.tel,
             address: student.address,
@@ -75,7 +68,7 @@ const Student= () =>{
     const handleEditFormSubmit= () =>{
         //event.preventDefault();
         api.put(`/update/${editFormData.idStudent}`,{
-            name: editFormData.name,
+            firstName: editFormData.firstName,
             surname: editFormData.surname,
             tel: editFormData.tel,
             address: editFormData.address,
@@ -93,7 +86,7 @@ const Student= () =>{
     }
     const addStudent = () =>{
         api.post('/add', {
-            name: addData.name,
+            firstName: addData.name,
             surname: addData.surname,
             tel: addData.tel,
             address: addData.address,
@@ -135,7 +128,7 @@ const Student= () =>{
                             {student.map((student)=>{
                                 return(
                                     <>
-                                        {editStudentId === student.idStudent ? (
+                                        {editStudentId === student.id ? (
                                             <EditRow
                                                 editFormData={editFormData}
                                                 handleEditChange={handleEditChange}
@@ -158,7 +151,7 @@ const Student= () =>{
                     <label>New Student</label>
                     <input
                         type='text'
-                        name='name'
+                        name='firstName'
                         required='required'
                         placeholder='name'
                         onChange={handleAddChange}

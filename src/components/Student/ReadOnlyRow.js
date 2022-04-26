@@ -2,9 +2,9 @@ import React from "react";
 
 const ReadOnly = ({ student, handleEditClick,handleDeleteClick }) =>{
     return(
-        <tr key={student.idStudent}>
-            <td>{student.idStudent}</td>
-            <td>{student.name}</td>
+        <tr key={student.id}>
+            <td>{student.id}</td>
+            <td>{student.firstName}</td>
             <td>{student.surname}</td>
             <td>{student.tel}</td>
             <td>{student.address}</td>

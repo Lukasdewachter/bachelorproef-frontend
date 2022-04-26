@@ -39,8 +39,6 @@ function Navigation() {
     axios(config)
     .then(function (response) {
     localStorage.setItem("user", JSON.stringify(response.data));
-    console.log(JSON.parse(localStorage.getItem('user')));
-    console.log(JSON.stringify(response.data));
   })
   .catch(function (error) {
   console.log(error);
@@ -48,6 +46,7 @@ function Navigation() {
   }
   const logout = () =>{
     localStorage.removeItem('user');
+    window.location.reload(false);
   }
   return (
     
@@ -97,11 +96,7 @@ function Navigation() {
               </ul>
             </div>
             <button onClick={toggleLogin} className="btn-login">Login</button>
-<<<<<<< HEAD
-            <button onClick={logout}>logoutt</button>
-=======
-            <button onClick={logout}>logout</button>
->>>>>>> 506c4aabdb8ba152079d0bd9049308774306fbfe
+            <button onClick={logout} className="btn-logout">logout</button>
           </div>
       </nav>
       {modal && (
