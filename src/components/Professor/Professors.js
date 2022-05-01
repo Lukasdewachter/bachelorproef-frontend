@@ -9,16 +9,7 @@ const api = axios.create({
 })
 const Professors= () =>{
     const [professor,setProfessor] = useState([])
-    const [addData, setAddData] = useState({
-        name: '',
-        surname: '',
-        tel: '',
-        address: '',
-        fieldOfStudy: '',
-        mail: '',
-        campus:'',
-        coordinator:''
-    });
+    
     const [editFormData, setEditFormData] = useState({
         name: '',
         surname: '',
@@ -30,15 +21,6 @@ const Professors= () =>{
         coordinator:''
     });
     const [editProfessorId, setEditProfessorId] = useState(null);
-    const handleAddChange = (event) =>{
-        event.preventDefault();
-        const fieldName = event.target.getAttribute('name');
-        const fieldValue = event.target.value;
-
-        const newData = {...addData};
-        newData[fieldName] = fieldValue;
-        setAddData(newData);
-    };
     const handleEditClick = (event,professor) =>{
         event.preventDefault();
         setEditProfessorId(professor.idProfessor);
@@ -83,18 +65,6 @@ const Professors= () =>{
     const handleDeleteClick = (idProfessor) =>{
         api.delete(`/delete?idProfessor=${idProfessor}`);
     }
-    const addProfessor = () =>{
-        api.post('/add', {
-            name: addData.name,
-            surname: addData.surname,
-            tel: addData.tel,
-            address: addData.address,
-            fieldOfStudy: addData.fieldOfStudy,
-            mail: addData.mail,
-            campus: addData.campus,
-            coordinator: addData.coordinator
-        });
-    };
     const getProfessor= async () =>{
         const data = await api.get('/all')
         setProfessor(data.data) 
@@ -104,10 +74,10 @@ const Professors= () =>{
     },[]);
     return (
         <div className="Professor">
-                <form className='form-table' onSubmit={handleEditFormSubmit}>
-                    <table>
-                        <thead>
-                            <tr>
+            <form className='form-table' onSubmit={handleEditFormSubmit}>
+                <table>
+                    <thead>
+                        <tr>
                                 <th>Professor id</th>
                                 <th>Name</th>
                                 <th>Surname</th>
@@ -136,74 +106,14 @@ const Professors= () =>{
                                                 handleEditClick={handleEditClick}
                                                 handleDeleteClick={handleDeleteClick}
                                                 />
-                                        )}
-                                    </>
-                                );
-                            })}       
-                        </tbody>
-                    </table>
-                </form>
-                <form onSubmit={addProfessor} className='form-table'>
-                    <label>New Professor</label>
-                    <input
-                        type='text'
-                        name='name'
-                        required='required'
-                        placeholder='name'
-                        onChange={handleAddChange}
-                        />
-                    <input
-                        type='text'
-                        name='surname'
-                        required='required'
-                        placeholder='surname'
-                        onChange={handleAddChange}
-                    />
-                    <input
-                        type='number'
-                        name='tel'
-                        required='required'
-                        placeholder='tel number'
-                        onChange={handleAddChange}
-                    />
-                    <input
-                        type='text'
-                        name='address'
-                        required='required'
-                        placeholder='address'
-                        onChange={handleAddChange}
-                    />
-                    <input
-                        type='text'
-                        name='fieldOfStudy'
-                        required='required'
-                        placeholder='field of study'
-                        onChange={handleAddChange}
-                    />
-                    <input
-                        type='email'
-                        name='mail'
-                        required='required'
-                        placeholder='mail'
-                        onChange={handleAddChange}
-                    />
-                    <input
-                        type='text'
-                        name='campus'
-                        required='required'
-                        placeholder='campus'
-                        onChange={handleAddChange}
-                    />
-                    <input
-                        type='number'
-                        name='coordinator'
-                        required='required'
-                        placeholder='coordinator'
-                        onChange={handleAddChange}
-                    />
-                    <input type="submit" value="add professor" />
-                </form>
-            </div>
+                                    )}
+                                </>
+                            );
+                        })}       
+                    </tbody>
+                </table>
+            </form>
+        </div>
 
     );
 };

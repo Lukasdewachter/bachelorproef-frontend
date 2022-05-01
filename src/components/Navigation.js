@@ -1,12 +1,19 @@
 import React, {useState} from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import './Navigation.css'
+import '../components/MainStyleSheet.css'
+
+const api = axios.create({
+  headers: {
+    'Content-Type': 'application/json'
+    }
+});
 
 function Navigation() {
   const [modal, setModal] = useState(false);
-
+  const [loggedIn, setLoggedIn] = useState(false);
   const toggleLogin = () =>{
+    setLoggedIn(!login)
     setModal(!modal)
   }
   const [login, setLogin] = useState({
@@ -21,34 +28,34 @@ function Navigation() {
     newFormData[fieldName] = fieldValue;
     setLogin(newFormData);
   }
-  var data = {
-    username: login.mail,
-    password: login.password
-  }
-  var config = {
-    method: 'post',
-    url: 'http://localhost:8080/authenticate',
-    headers: { 
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials':true,
-      'Content-Type': 'application/json'
-    },
-    data : data
-  };
-  const loginService = () => {
-    axios(config)
+  const loginService = (event) => {
+    event.preventDefault();
+    api.post(`http://localhost:8080/authenticate`,{
+      username: login.username,
+      password: login.password
+    })
     .then(function (response) {
-    localStorage.setItem("user", JSON.stringify(response.data));
-    window.location.reload(false);
+      localStorage.setItem("user", JSON.stringify(response.data))
+      window.location.reload(false)
+      event.setLoggedIn(true)
   })
-  .catch(function (error) {
-  console.log(error);
-  });
+    .catch(function (error) {
+      console.log(error);
+      });
+    setLoggedIn(true);
+    };
+  const [userInfo, setUserInfo] = useState(false);
+  const userInformation = () =>{
+    setUserInfo(true)
   }
   const logout = () =>{
+    setLoggedIn(false);
     localStorage.removeItem('user');
     window.location.reload(false);
   }
+  const setLoggedInn = () =>{
+    setLoggedIn(true);
+}
   return (
     
     <div className="navigation">
@@ -56,6 +63,7 @@ function Navigation() {
           <div className="container">
             <img className='kuleuven-logo' src={require('./images/kuleuven-logo.png')} alt='kuleuven logo' />
             <h4 className='mpt'>Thesis Platform</h4>
+            <button onClick={setLoggedInn}>X</button>
             <div>
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
@@ -96,10 +104,22 @@ function Navigation() {
                 </li>
               </ul>
             </div>
-            <button onClick={toggleLogin} className="btn-login">Login</button>
-            <button onClick={logout} className="btn-logout">logout</button>
+            {!loggedIn && (
+              <button onClick={toggleLogin} className="btn-login">Login</button>)}
+            {loggedIn && (
+              <button onClick={userInformation} className="btn-logout">User</button>)}
           </div>
       </nav>
+      {userInfo &&(
+        <div className = 'userInfo'>
+            <ul>
+              hallo
+            </ul>
+            <ul>
+              <button onClick={logout}>uitloggen</button>
+            </ul>
+        </div>
+      )}
       {modal && (
       <div  className="div-login">
               <div  className="div-overlay">
@@ -110,7 +130,7 @@ function Navigation() {
                         <label>Email</label>
                         <input
                             type='email'
-                            name='mail'
+                            name='username'
                             required='required'
                             placeholder='email'
                             onChange={loginChange}

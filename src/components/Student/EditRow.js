@@ -1,40 +1,29 @@
 import React from "react";
 import '../MainStyleSheet.css'
-const EditRow = ({editFormData, handleEditChange, handleCancelClick}) => {
+const EditRow = ({student,editFormData, handleEditChange, handleCancelClick}) => {
     return(
-    <tr>
-        <td></td>
-        <td>
+    <dl className="dl-edit">
+        <dt>
             <input
                 type='text'
                 name='firstName'
                 required='required'
                 placeholder='first name'
                 value={editFormData.firstName}
-                onChange={handleEditChange} 
+                onChange={handleEditChange}
+                size = "10" 
             />
-        </td>
-        <td>
             <input
                 type='text'
                 name='lastName'
                 required='required'
                 placeholder='last name'
                 value={editFormData.lastName}
-                onChange={handleEditChange} 
-            />
-        </td>
-        <td>
-            <input
-                type='text'
-                name='tel'
-                required='required'
-                placeholder='tel number'
-                value={editFormData.tel}
                 onChange={handleEditChange}
-                />
-        </td>
-        <td>
+                size = "10" 
+            />
+        </dt>
+        <dt>
             <input
                 type='text'
                 name='address'
@@ -43,18 +32,17 @@ const EditRow = ({editFormData, handleEditChange, handleCancelClick}) => {
                 value={editFormData.address}
                 onChange={handleEditChange}
                  />
-        </td>
-        <td>
             <input
                 type='text'
-                name='fieldOfStudy'
+                name='tel'
                 required='required'
-                placeholder='field of study'
-                value={editFormData.fieldOfStudy}
+                placeholder='tel number'
+                value={editFormData.tel}
                 onChange={handleEditChange}
+                size="9"
                 />
-        </td>
-        <td>
+        </dt>
+        <dt>
             <input
                 type='email'
                 name='mail'
@@ -63,8 +51,16 @@ const EditRow = ({editFormData, handleEditChange, handleCancelClick}) => {
                 value={editFormData.mail}
                 onChange={handleEditChange}
                  />
-        </td>
-        <td>
+        </dt>
+        <dt>
+            <input
+                type='text'
+                name='fieldOfStudy'
+                required='required'
+                placeholder='field of study'
+                value={editFormData.fieldOfStudy}
+                onChange={handleEditChange}
+                />
             <input
                 type='text'
                 name='campus'
@@ -73,12 +69,12 @@ const EditRow = ({editFormData, handleEditChange, handleCancelClick}) => {
                 value={editFormData.campus}
                 onChange={handleEditChange}
                  />
-        </td>
-        <td>
+        </dt>
+        <dt>
         <button className='btn-save' type='submit'><ion-icon name="checkmark-outline"></ion-icon></button>
             <button className='btn-delete' type='button' onClick={handleCancelClick}><ion-icon name="close-circle-outline"></ion-icon></button>
-        </td>
-    </tr>
+        </dt>
+    </dl>
     );
 }
 export default EditRow;

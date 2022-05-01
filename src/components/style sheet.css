@@ -1,0 +1,134 @@
+table {
+    margin: 15px;
+    border-collapse:collapse;
+    position: relative;
+    table-layout:auto; 
+}
+.box{
+    position: relative;
+    width: 15%;
+    top: 130px;
+    background-color: #fff;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.btn-login{
+    border-radius: 12px;
+    background-color: rgb(98, 185, 211);
+    color:rgba(255, 255, 255, 0.842);
+    margin: 15px;
+}
+.btn-escape{
+    position: relative;
+    left: 90%;
+    font-size: 25px;
+    margin: 5px;
+    background-color: rgb(255, 255, 255);
+    border:none;
+    color:rgb(255, 0, 0)
+}
+td {
+    position: relative;
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 2px;
+    font-size: 15px;
+    background-color: rgb(190, 190, 190);
+}
+th {
+    border: 1px solid #000000;  
+    background-color: rgb(114, 114, 114);
+}
+
+.form-table{
+    width: 15000px;
+    margin: 10px;
+    left: 0x;
+    display:grid;
+    justify-content:flex-start;
+    position: relative;
+}
+
+.form-add{
+    margin: 10px;
+    gap: 5px;
+    left: 0x;
+    top: 5px;
+    display:grid;
+    justify-content:flex-start;
+    position: relative;
+    font-size: 15px;
+}
+label{
+    margin-top: 10px;
+    position: relative;
+}
+.btn-edit{
+    margin: 5px;
+    background-color: rgb(190, 190, 190);
+    border:none;
+    font-size: 25px;
+    transition-duration: 0.4s;
+    color: rgb(46, 161, 255);
+}
+.btn-edit:hover{
+    background-color: rgba(150, 149, 149, 0.726);
+}
+.btn-delete{
+    font-size: 25px;
+    margin: 5px;
+    background-color: rgb(190, 190, 190);
+    border:none;
+    transition-duration: 0.4s;
+    color:rgb(255, 0, 0)
+}
+.btn-delete:hover{
+    background-color: rgba(150, 149, 149, 0.726);
+}
+.btn-save{
+    font-size: 25px;
+    margin: 5px;
+    background-color: rgb(190, 190, 190);
+    color:rgb(23, 255, 23);
+    border:none;
+    transition-duration: 0.4s;
+}
+.btn-save:hover{
+    background-color: rgba(150, 149, 149, 0.726);
+}
+.mpt{
+    color: aliceblue;
+    position: absolute;
+    left: 120px;
+  }
+  nav{
+    background-color: rgb(29, 141, 176);
+    height: 80px;
+    
+  }
+  .nav-item{
+    background-color: rgb(22, 122, 153);
+    color: rgb(0, 0, 0);
+      
+  }
+  .kuleuven-logo {
+    width: 100px;
+    position: absolute;
+    left: 10px;
+  }
+  .navbar-nav{
+    position: absolute;
+    right: 100px;
+    top: 30%;
+  }
+
+.btn-login{
+  position: absolute;
+  right: 10px;
+  top: 0px;
+}
+
+

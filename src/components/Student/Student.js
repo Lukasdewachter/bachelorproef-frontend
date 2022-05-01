@@ -94,9 +94,17 @@ const Student= () =>{
         });
         getStudent();
     };*/
+    
+    const [loggedIn, setLoggedIn] = useState(false);
     const getStudent= async () =>{
-        const data = await api.get('/all')
-        setStudent(data.data) 
+        api.get('/all')
+        .then(function(response){
+            setLoggedIn(false)
+            setStudent(response.data)
+        })
+        .catch(function () {
+            setLoggedIn(true);
+        });
     };
     useEffect(()=>{
         getStudent()
@@ -104,44 +112,37 @@ const Student= () =>{
     return (
         <div className="Students">
             <div>
-                <form className='form-table' onSubmit={handleEditFormSubmit}>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Student id</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Telephone Number</th>
-                                <th>Address</th>
-                                <th>Field of Study</th>
-                                <th>Mail</th>
-                                <th>Campus</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody key='student_'>
+                {loggedIn && (
+                    <div>
+                        <p>You don't have permission for this action</p>
+                    </div>
+                )}
+                <div className='div-list'>
+                <form className='form-table' onSubmit={handleEditFormSubmit}>                
                             {student.map((student)=>{
                                 return(
-                                    <>
+                                    <React.Fragment >
                                         {editId === student.id ? (
                                             <EditRow
+                                                key={editId}
+                                                student={student}
                                                 editFormData={editFormData}
                                                 handleEditChange={handleEditChange}
                                                 handleCancelClick={handleCancelClick}
                                             />
                                             ):(
                                             <ReadOnly 
+                                                key={editId+1}
                                                 student={student} 
                                                 handleEditClick={handleEditClick}
                                                 handleDeleteClick={handleDeleteClick}
                                                 />
                                         )}
-                                    </>
+                                    </React.Fragment>
                                 );
-                            })}       
-                        </tbody>
-                    </table>
+                            })} 
                 </form>
+                </div>
                 </div>
             </div>
 
