@@ -20,12 +20,6 @@ function Navigation() {
   const toggleRegister = () =>{
     setRegisterPage(!registerPage);
   }
-  const registerChange =()=>{
-
-  }
-  const registerService =()=>{
-
-  }
   const [login, setLogin] = useState({
     username: '',
     password: '',
@@ -65,8 +59,58 @@ function Navigation() {
   const setLoggedInn = () =>{
     setLoggedIn(true);
 }
-  return (
+const [role, setRole] = useState({
+  role:''
+})
+const [isCoordinator, setIsCoordinator] = useState(false);
+const roleChange=(event)=>{
+    event.preventDefault();
+    const fieldName = event.target.getAttribute('name');
+    const fieldValue = event.target.value;
+    if(fieldValue === "professor"){
+      setIsCoordinator(true)
+    }else{setIsCoordinator(false)}
+    const newFormData = {...role};
+    newFormData[fieldName] = fieldValue;
+    setRole(newFormData);
     
+}
+const registerService =()=>{
+  api.post(`http://localhost:8080/`+role.role+"/add", {
+    firstName: addData.firstName,
+    lastName: addData.lastName,
+    address: addData.address,
+    tel: addData.tel,
+    mail: addData.mail,
+    fieldOfStudy: addData.fieldOfStudy,
+    campus: addData.campus,
+    password: addData.password,
+    coordinator: addData.coordinator
+  }).then(function(){setModal(false)})
+  .catch(function(error){
+    console.log(error);
+  })
+}
+const [addData, setAddData] = useState({
+  firstName: '',
+  lastName: '',
+  address: '',
+  tel:'',
+  mail: '',
+  fieldOfStudy:'',
+  campus:'',
+  password:'',
+  coordinator:''
+});
+const registerChange = (event) =>{
+  event.preventDefault();
+  const fieldName = event.target.getAttribute('name');
+  const fieldValue = event.target.value;
+  const newData = {...addData};
+  newData[fieldName] = fieldValue;
+  setAddData(newData);
+};
+  return (
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark">  
           <div className="container">
@@ -168,22 +212,18 @@ function Navigation() {
                 <div className="register-content">
                 <div className="box-register">
                     <h2>Register</h2>
+                    <label className="label-role">Role</label>
+                    <select name="role" onChange={roleChange} className="select-role">
+                      <option value="" selected disabled hidden>Choose here</option>
+                      <option value="student">Student</option>
+                      <option value="professor">Professor</option>
+                      <option value="company">Company</option>
+                    </select>
                     <form onSubmit={registerService} className="form-login">
-                        <label>Role</label>
-                        <select>
-                          <option>
-                            <input
-                              type="checkbox"
-                              value="student"
-                            >
-                            Student
-                            </input>
-                          </option>
-                        </select>
                         <label>First Name</label>
                         <input
                           type="text"
-                          name="fistName"
+                          name="firstName"
                           required="required"
                           placeholder="first name"
                           onChange={registerChange}
@@ -221,7 +261,7 @@ function Navigation() {
                           onChange={registerChange}
                         />
                         <label>Field Of Study</label>
-                        <select className="select-FOS" name="fieldOfStudy" onChange="" >
+                        <select className="select-FOS" name="fieldOfStudy" onChange={registerChange} >
                             <option value="" selected disabled hidden>Choose here</option>
                             <option value="Sociale Wetenschappen">Sociale Wetenschappen</option>
                             <option value="Burgerlijk Ingenieur">Burgerlijk Ingenieur</option>
@@ -236,7 +276,7 @@ function Navigation() {
                             <option value="Wijsbegeerte">Wijsbegeerte</option>
                           </select>
                         <label>Campus</label>
-                        <select className="select-C" name="campus" onChange="">
+                        <select className="select-C" name="campus" onChange={registerChange}>
                           <option value="" selected disabled hidden>Choose here</option>
                           <option value="Aalst">Aalst</option>
                           <option value="Antwerpen">Antwerpen</option>
@@ -249,6 +289,18 @@ function Navigation() {
                           <option value="Leuven">Leuven</option>
                           <option value="Sint-Katelijne-Waver">Sint-Katelijne-Waver</option>
                         </select>
+                        <input type="hidden" name="coordinator" value="0" />
+                        {isCoordinator && (
+                          <label>
+                          Coordinator
+                          <input
+                            type="checkbox"
+                            name="coordinator"
+                            value="1"
+                            onChange={registerChange}
+                          /> 
+                          </label>
+                        )}
                         <label>Password</label>
                         <input
                             type='password'

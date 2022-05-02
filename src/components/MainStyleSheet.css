@@ -145,6 +145,9 @@ nav{
   position: relative;
   left: 17px;
 }
+.label-role{
+  margin: 5px;
+}
 /*USER CONTENT*/
 .userInfo{
   position: absolute;
