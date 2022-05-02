@@ -53,25 +53,34 @@ const EditRow = ({student,editFormData, handleEditChange, handleCancelClick}) =>
                  />
         </dt>
         <dt>
-            <input
-                type='text'
-                name='fieldOfStudy'
-                required='required'
-                placeholder='field of study'
-                value={editFormData.fieldOfStudy}
-                onChange={handleEditChange}
-                />
-            <input
-                type='text'
-                name='campus'
-                required='required'
-                placeholder='campus'
-                value={editFormData.campus}
-                onChange={handleEditChange}
-                 />
+            <select className="select-FOS" name="fieldOfStudy" value={editFormData.fieldOfStudy} onChange={handleEditChange} >
+                <option value="Sociale Wetenschappen">Sociale Wetenschappen</option>
+                <option value="Burgerlijk Ingenieur">Burgerlijk Ingenieur</option>
+                <option value="Bio-ingenieur">Bio-ingenieur</option>
+                <option value="Industrieel Ingenieur">Industrieel Ingenieur</option>
+                <option value="Wetenschappen">Wetenschappen</option>
+                <option value="Architectuur">Architectuur</option>
+                <option value="Geneeskunde">Geneeskunde</option>
+                <option value="Farmacie">Farmacie</option>
+                <option value="Letteren">Letteren</option>
+                <option value="Economie">Economie</option>
+                <option value="Wijsbegeerte">Wijsbegeerte</option>
+            </select>
+            <select className="select-C" name="campus" value={editFormData.campus} onChange={handleEditChange}>
+                <option value="Aalst">Aalst</option>
+                <option value="Antwerpen">Antwerpen</option>
+                <option value="Brugge">Brugge</option>
+                <option value="Brussel">Brussel</option>
+                <option value="Diepenbeek">Diepenbeek</option>
+                <option value="Geel">Geel</option>
+                <option value="Gent">Gent</option>
+                <option value="Kortrijk">Kortrijk</option>
+                <option value="Leuven">Leuven</option>
+                <option value="Sint-Katelijne-Waver">Sint-Katelijne-Waver</option>
+            </select>
         </dt>
         <dt>
-        <button className='btn-save' type='submit'><ion-icon name="checkmark-outline"></ion-icon></button>
+            <button className='btn-save' type='submit'><ion-icon name="checkmark-outline"></ion-icon></button>
             <button className='btn-cancel' type='button' onClick={handleCancelClick}><ion-icon name="close-circle-outline"></ion-icon></button>
         </dt>
     </dl>
