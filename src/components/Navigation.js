@@ -46,7 +46,7 @@ function Navigation() {
     };
   const [userInfo, setUserInfo] = useState(false);
   const userInformation = () =>{
-    setUserInfo(true)
+    setUserInfo(!userInfo)
   }
   const logout = () =>{
     setLoggedIn(false);
@@ -113,7 +113,7 @@ function Navigation() {
       {userInfo &&(
         <div className = 'userInfo'>
             <ul>
-              hallo
+              <h2>User Info</h2>
             </ul>
             <ul>
               <button onClick={logout}>uitloggen</button>

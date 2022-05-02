@@ -101,36 +101,45 @@ nav{
 .userInfo{
   position: absolute;
   right: 0px;
-  transform: translate(-50%, -50%);
-  background:rgba(98, 185, 211, 0.792);
+  background:rgba(221, 221, 221, 0.792);
   padding: 14px 28px;
+  border-style: groove;
   border-radius: 3px;
-  min-width: 300px;
-  border-width: 10px;
+  min-width: 250px;
+  border-width: 3px;
 }
 /*LIST*/
 .dl-read{
   margin: 10px;
-  padding: 10px 28px;
-  max-width: 270px;
+  padding: 10px 10px;
+  max-width: 500px;
   min-height: 238px;
   border-style: groove;
   border-radius: 8px;
   border-width: 3px;
+  background-color: rgb(193, 193, 193);
+  border-color: rgb(108, 107, 107);
 }
 .dl-edit{
   margin: 10px;
   padding: 10px 28px;
-  max-width: 270px;
+  max-width: 500px;
   min-height: 238px;
   border-style: groove;
   border-radius: 8px;
   border-width: 3px;
+  border-color: rgb(108, 107, 107);
+  background-color: rgb(193, 193, 193);
 }
+
 .btn-edit{
   margin: 5px;
-  background-color: rgb(255, 255, 255);
+  position: relative;
+  top:25px;
+  right: 25px;
+  background-color: rgb(193, 193, 193);
   border:none;
+  border-radius: 8px;
   font-size: 25px;
   transition-duration: 0.4s;
   color: rgb(46, 161, 255);
@@ -140,10 +149,14 @@ nav{
   border-radius: 8px;
 }
 .btn-delete{
+  position:relative;
+  left: 385px;
+  top:25px;
   font-size: 25px;
   margin: 5px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(193, 193, 193);
   border:none;
+  border-radius: 8px;
   transition-duration: 0.4s;
   color:rgb(255, 0, 0)
 }
@@ -151,15 +164,43 @@ nav{
   background-color: rgba(150, 149, 149, 0.726);
   border-radius: 8px;
 }
-.btn-save{
+.btn-cancel{
+  position:relative;
+  left: 371px;
+  top:21px;
   font-size: 25px;
   margin: 5px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(193, 193, 193);
+  border:none;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+  color:rgb(255, 0, 0)
+}
+.btn-cancel:hover{
+  background-color: rgba(150, 149, 149, 0.726);
+  border-radius: 8px;
+}
+.btn-save{
+  position:relative;
+  right: 37px;
+  top:21px;
+  font-size: 25px;
+  margin: 5px;
+  background-color: rgb(193, 193, 193);
   color:rgb(23, 255, 23);
   border:none;
+  border-radius: 8px;
   transition-duration: 0.4s;
 }
 .btn-save:hover{
   background-color: rgba(150, 149, 149, 0.726);
   border-radius: 8px;
+}
+dt{
+  margin: 5px;
+  padding: 0px;
+  font-size: 18px;
+}
+.dt-read{
+  margin: 10px
 }

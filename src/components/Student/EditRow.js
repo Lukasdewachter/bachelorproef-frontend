@@ -72,7 +72,7 @@ const EditRow = ({student,editFormData, handleEditChange, handleCancelClick}) =>
         </dt>
         <dt>
         <button className='btn-save' type='submit'><ion-icon name="checkmark-outline"></ion-icon></button>
-            <button className='btn-delete' type='button' onClick={handleCancelClick}><ion-icon name="close-circle-outline"></ion-icon></button>
+            <button className='btn-cancel' type='button' onClick={handleCancelClick}><ion-icon name="close-circle-outline"></ion-icon></button>
         </dt>
     </dl>
     );
