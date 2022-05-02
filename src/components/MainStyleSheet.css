@@ -104,6 +104,14 @@ nav{
 .div-login{
   background-color: #414040;
 }
+.btn-register{
+  position: relative;
+  left: 20px;
+  width: 136.4px;
+  border-radius: 12px;
+  background-color: rgb(98, 185, 211);
+  color:rgba(255, 255, 255, 0.842);
+}
 /*REGISTER CONTENT*/
 .register-content {
   position: absolute;
@@ -119,7 +127,7 @@ nav{
 }
 .btn-exit{
   position:absolute;
-  left: 193px;
+  left: 190px;
   top:0px;
   font-size: 25px;
   margin: 5px;
@@ -132,6 +140,10 @@ nav{
 .btn-exit:hover{
   background-color: rgba(150, 149, 149, 0.726);
   border-radius: 8px;
+}
+.p-register{
+  position: relative;
+  left: 17px;
 }
 /*USER CONTENT*/
 .userInfo{

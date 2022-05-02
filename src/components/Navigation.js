@@ -154,10 +154,10 @@ function Navigation() {
                         />
                         <input className="btn-login-2" type="submit" value="login" />
                     </form>
-                    <p>Don't have an account?</p>
-                    <button onClick={toggleRegister}>Register</button>
+                    <p className="p-register">Don't have an account?</p>
+                    <button className="btn-register" onClick={toggleRegister}>Register</button>
                 </div>
-                  <button onClick={toggleLogin}>X</button>
+                  <button className="btn-exit" onClick={toggleLogin}><ion-icon name="close-circle-outline"></ion-icon></button>
                 </div>
               </div>
             </div>
@@ -174,6 +174,7 @@ function Navigation() {
                           <option>
                             <input
                               type="checkbox"
+                              value="student"
                             >
                             Student
                             </input>
@@ -258,7 +259,6 @@ function Navigation() {
                         />
                         <input className="btn-login-2" type="submit" value="Register" />
                     </form>
-                   
                   <button className="btn-exit" onClick={toggleRegister}><ion-icon name="close-circle-outline"></ion-icon></button>
                 </div>
               </div>
