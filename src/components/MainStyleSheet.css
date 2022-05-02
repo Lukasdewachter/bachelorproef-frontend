@@ -76,8 +76,7 @@ nav{
   background: #f1f1f1;
   padding: 14px 28px;
   border-radius: 3px;
-  max-width: 600px;
-  min-width: 300px;
+  min-width: 200px;
 }
 .btn-login-2{
   position: relative;
@@ -86,7 +85,7 @@ nav{
   color:rgba(255, 255, 255, 0.842);
   margin: 15px;
 }
-.btn-logout{
+.btn-user{
   position: absolute;
   right: 10px;
   border-radius: 12px;
@@ -94,8 +93,45 @@ nav{
   color:rgba(255, 255, 255, 0.842);
   margin: 15px;
 }
+.btn-logout{
+  position: relative;
+  left: 12px;
+  border-radius: 12px;
+  background-color: rgb(98, 185, 211);
+  color:rgba(255, 255, 255, 0.842);
+  margin: 10px;
+}
 .div-login{
   background-color: #414040;
+}
+/*REGISTER CONTENT*/
+.register-content {
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  padding: 14px 28px;
+  border-radius: 3px;
+  min-height: 400px;
+  min-width: 238px;
+}
+.btn-exit{
+  position:absolute;
+  left: 193px;
+  top:0px;
+  font-size: 25px;
+  margin: 5px;
+  background-color: #f1f1f1;
+  border:none;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+  color:rgb(255, 0, 0)
+}
+.btn-exit:hover{
+  background-color: rgba(150, 149, 149, 0.726);
+  border-radius: 8px;
 }
 /*USER CONTENT*/
 .userInfo{
