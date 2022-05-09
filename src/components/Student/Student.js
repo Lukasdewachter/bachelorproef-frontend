@@ -3,12 +3,12 @@ import axios from 'axios'
 import ReadOnly from './ReadOnlyRow'
 import '../MainStyleSheet.css'
 import EditRow from './EditRow'
-import authHeader from '../auth'
+import {authHeader} from '../auth'
 
 const api = axios.create({
     baseURL: `http://localhost:8080/student/`,
     headers: {
-        'Authorization': 'Bearer '+authHeader(),
+        'Authorization': ''+authHeader(),
       }
 });
 const Student= () =>{
@@ -43,6 +43,7 @@ const Student= () =>{
     const handleEditClick = (event,student) =>{
         event.preventDefault();
         setEditId(student.id);
+        setEditStudentId(student.id);
         const formValues = {
             id: student.id,
             firstName: student.firstName,
