@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import {authHeader} from "./auth";
+import {authHeader,getRole} from "./auth";
 import '../components/MainStyleSheet.css'
 
 const api = axios.create({
@@ -16,7 +16,6 @@ function Navigation() {
   const toggleLogin = () =>{
     setModal(!modal)
   }
-  const [role, setRole] = useState('');
   const [registerPage, setRegisterPage] = useState(false);
   const toggleRegister = () =>{
     setRegisterPage(!registerPage);
@@ -42,6 +41,7 @@ function Navigation() {
     .then(function (response) {
       localStorage.setItem("user", JSON.stringify(response.data))
       setModal(false);
+      window.location.reload();
   })
     .catch(function (error) {
       console.log(error);
@@ -88,7 +88,6 @@ const registerService =()=>{
     coordinator: addData.coordinator,
     companyName: addData.companyName
   }).then(function(response){
-    setModal(false);
     console.log(response)
   })
   .catch(function(error){
@@ -121,7 +120,7 @@ const handleCheckbox =()=>{
 }
   return (
     <div className="navigation">
-      <nav className="navbar navbar-expand navbar-dark">  
+      <nav className="navbar navbar-expand navbar-dark fixed-top">  
           <div className="container">
             <img className='kuleuven-logo' src={require('./images/kuleuven-logo.png')} alt='kuleuven logo' />
             <h4 className='mpt'>Thesis Platform</h4>
@@ -133,27 +132,40 @@ const handleCheckbox =()=>{
                     <span className="sr-only">(current)</span>
                   </NavLink>
                 </li>
-                
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/Thesis-List">
                     Thesis list
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                {getRole()==="Admin" && (
+                  <li className="nav-item">
                   <NavLink className="nav-link" to="/Students">
                    Students
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                )}
+                {getRole()==="Professor" && (
+                  <li className="nav-item">
+                  <NavLink className="nav-link" to="/Students">
+                   Students
+                  </NavLink>
+                </li>
+                )}
+                {getRole()==="Admin" && (
+                  <li className="nav-item">
                   <NavLink className="nav-link" to="/Professors">
                     Professors
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                  )}
+                  {getRole()==="Admin" && (
+                    <li className="nav-item">
                   <NavLink className="nav-link" to="/Companies">
                     Companies
                   </NavLink>
                 </li>
+                  )}
+                
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/FAQ">
                     FAQ
@@ -189,7 +201,7 @@ const handleCheckbox =()=>{
                 <div className="box-login">
                     <h2>Login</h2>
                     <form onSubmit={loginService} className="form-login">
-                        <label>Email</label>
+                        
                         <input
                             type='email'
                             name='username'
@@ -197,7 +209,7 @@ const handleCheckbox =()=>{
                             placeholder='email'
                             onChange={loginChange}
                         />
-                        <label>Password</label>
+                        
                         <input
                             type='password'
                             name='password'
@@ -229,47 +241,52 @@ const handleCheckbox =()=>{
                       <option value="company">Company</option>
                     </select>
                     <form onSubmit={registerService} className="form-login">
-                        <label>First Name
+                        
                         <input
+                        className="input-register"
                           type="text"
                           name="firstName"
                           required="required"
                           placeholder="first name"
                           onChange={registerChange}
-                        /></label>
-                        <label>Last Name
+                        />
+                        
                         <input
+                        className="input-register"
                           type="text"
                           name="lastName"
                           required="required"
                           placeholder="last name"
                           onChange={registerChange}
-                        /></label>
-                        <label>Email
+                        />
+                        
                         <input
+                        className="input-register"
                             type='email'
                             name='mail'
                             required='required'
                             placeholder='email'
                             onChange={registerChange}
-                        /></label>
-                        <label>Tel Nr
+                        />
+                       
                         <input
+                        className="input-register"
                           type="text"
                           name="tel"
                           required="required"
                           placeholder="tel nr"
                           onChange={registerChange}
-                        /></label>
-                        <label>Address
+                        />
+                        
                         <input
+                        className="input-register"
                           type="text"
                           name="address"
                           required="required"
                           placeholder="adress"
                           onChange={registerChange}
-                        /></label>
-                        <label>Field Of Study
+                        />
+                       
                         <select className="select-FOS" name="fieldOfStudy" onChange={registerChange} >
                             <option value="" selected disabled hidden>Choose here</option>
                             <option value="Sociale Wetenschappen">Sociale Wetenschappen</option>
@@ -283,8 +300,8 @@ const handleCheckbox =()=>{
                             <option value="Letteren">Letteren</option>
                             <option value="Economie">Economie</option>
                             <option value="Wijsbegeerte">Wijsbegeerte</option>
-                          </select></label>
-                        <label>Campus
+                          </select>
+                        
                         <select className="select-C" name="campus" onChange={registerChange}>
                           <option value="" selected disabled hidden>Choose here</option>
                           <option value="Aalst">Aalst</option>
@@ -297,23 +314,25 @@ const handleCheckbox =()=>{
                           <option value="Kortrijk">Kortrijk</option>
                           <option value="Leuven">Leuven</option>
                           <option value="Sint-Katelijne-Waver">Sint-Katelijne-Waver</option>
-                        </select></label>
+                        </select>
                         <input type="hidden" name="coordinator" value="0" />
                         {isCompany && (
-                          <label>Company name
+                          
                             <input
+                            className="input-register"
                               type="text"
                               name="companyName"
                               required="required"
                               placeholder="company name"
                               onChange={registerChange}
                             />
-                          </label>
+                        
                         )}
                         {isCoordinator && (
                           <label>
                           Coordinator
                           <input
+                          className="input-register"
                             type="checkbox"
                             name="coordinator"
                             value="1"
@@ -322,14 +341,15 @@ const handleCheckbox =()=>{
                           /> 
                           </label>
                         )}
-                        <label>Password
+                        
                         <input
+                        className="input-register"
                             type='password'
                             name='password'
                             required='required'
                             placeholder='password'
                             onChange={registerChange}
-                        /></label>
+                        />
                         <input className="btn-login-2" type="submit" value="Register" />
                     </form>
                   <button className="btn-exit" onClick={toggleRegister}><ion-icon name="close-circle-outline"></ion-icon></button>
