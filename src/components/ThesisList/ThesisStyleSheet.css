@@ -1,3 +1,6 @@
+.thesisPage {
+    height: 80%
+}
 .thesisContainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -24,3 +27,4 @@
 .thesisSectionTitle {
     column-span: all;
 }
+

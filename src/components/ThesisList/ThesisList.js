@@ -32,7 +32,7 @@ const handleEditClick = (event,thesis) =>{
     const formValues = {
         id: thesis.id,
         name: thesis.name,
-        description: thesis.description,
+        shortDescription: thesis.description,
         address: thesis.address,
         fieldOfStudy: thesis.fieldOfStudy,
         campus: thesis.campus
@@ -182,20 +182,23 @@ if (getRole() === "Admin"){
   )
 } else if(getRole() === "Student" || getRole() === ""){
   return(
-      <div className='thesisContainer'>
+      <div className='thesisPage'>
         <h1 className='thesisSectionTitle'>Student</h1>
-        {thesis.map((thesis)=>{
-              return(
-                <>
-                  <ThesisBlock 
-                    thesis={thesis} 
-                    handleEditClick={handleEditClick}
-                    handleDeleteClick={handleDeleteClick}
-                  />
-              </>
-            );
-          })}  
-    </div>    
+        <p>Uitleg ivm met hoe thesis te kiezen</p>
+        <div className='thesisContainer'>
+          {thesis.map((thesis)=>{
+                return(
+                  <>
+                    <ThesisBlock 
+                      thesis={thesis} 
+                      handleEditClick={handleEditClick}
+                      handleDeleteClick={handleDeleteClick}
+                    />
+                </>
+              );
+            })}  
+        </div> 
+      </div>   
   )    
 } else {
   return(

@@ -43,6 +43,7 @@ const Student= () =>{
     const handleEditClick = (event,student) =>{
         event.preventDefault();
         setEditId(student.id);
+        //setEditStudentId(student.id);
         const formValues = {
             id: student.id,
             firstName: student.firstName,
