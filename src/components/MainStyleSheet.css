@@ -77,6 +77,7 @@ table {
   right: 0;
   bottom: 0;
   position: fixed;
+  z-index: 10;
 }
 
 .login-content {
@@ -170,6 +171,7 @@ table {
   border-radius: 3px;
   min-width: 250px;
   border-width: 3px;
+  z-index: 100;
 }
 /*LIST*/
 .dl-read{

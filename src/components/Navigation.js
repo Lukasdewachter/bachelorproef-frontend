@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import {authHeader} from "./auth";
 import '../components/MainStyleSheet.css'
-import Role from "./role"
 
 const api = axios.create({
   headers: {
@@ -11,8 +11,8 @@ const api = axios.create({
 });
 
 function Navigation() {
-  const [modal, setModal] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [modal, setModal] = useState(false)
+  const loggedIn = authHeader();
   const toggleLogin = () =>{
     setModal(!modal)
   }
@@ -41,9 +41,7 @@ function Navigation() {
     })
     .then(function (response) {
       localStorage.setItem("user", JSON.stringify(response.data))
-      window.location.reload();
-      setLoggedInn();
-      setRole(Role());
+      setModal(false);
   })
     .catch(function (error) {
       console.log(error);
@@ -54,13 +52,9 @@ function Navigation() {
     setUserInfo(!userInfo)
   }
   const logout = () =>{
-    setLoggedIn(false);
     localStorage.removeItem('user');
     window.location.reload();
   }
-  const setLoggedInn = () =>{
-    setLoggedIn(true);
-}
 const [registerRole, setRegisterRole] = useState({
   role:''
 })
@@ -131,7 +125,6 @@ const handleCheckbox =()=>{
           <div className="container">
             <img className='kuleuven-logo' src={require('./images/kuleuven-logo.png')} alt='kuleuven logo' />
             <h4 className='mpt'>Thesis Platform</h4>
-            <button onClick={setLoggedInn}>X</button>
             <div>
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
@@ -140,13 +133,12 @@ const handleCheckbox =()=>{
                     <span className="sr-only">(current)</span>
                   </NavLink>
                 </li>
-                {role === "Admin" || role==="Student" || role === "Company" || role ==="Professor" && (
+                
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/Thesis-List">
                     Thesis list
                   </NavLink>
                 </li>
-                )}
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/Students">
                    Students
@@ -174,9 +166,9 @@ const handleCheckbox =()=>{
                 </li>
               </ul>
             </div>
-            {!loggedIn && (
+            {loggedIn==null && (
               <button onClick={toggleLogin} className="btn-login">Login</button>)}
-            {loggedIn && (
+            {loggedIn !=null && (
               <button onClick={userInformation} className="btn-user">User</button>)}
           </div>
       </nav>
