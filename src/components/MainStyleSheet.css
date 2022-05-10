@@ -8,6 +8,18 @@ nav{
     background-color: rgb(29, 141, 176);
     height: 80px;
 }
+#root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+table {
+    margin: 15px;
+    border-collapse:collapse;
+    position: relative;
+    table-layout:auto; 
+}
   .nav-item{
     background-color: rgb(22, 122, 153);
     color: rgb(0, 0, 0);   

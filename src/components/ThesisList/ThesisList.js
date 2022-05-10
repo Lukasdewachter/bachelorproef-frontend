@@ -1,13 +1,22 @@
 import React,{useEffect, useState} from 'react'
 import axios from 'axios'
-import { Link } from "react-router-dom";
-import ReadOnly from './ReadOnlyRow'
+//import { Link } from "react-router-dom";
+import {ReadOnly, EditRow} from './ThesisAdmin'
+
+import ThesisBlock from './ThesisStudent'
+
 import '../MainStyleSheet.css'
-import EditRow from './EditRow'
+import './ThesisStyleSheet.css'
+import {authHeader, getRole} from '../auth'
+
 
 const api = axios.create({
-  baseURL: `http://localhost:8080/thesis/`
-})
+  baseURL: `http://localhost:8080/thesis/`,
+  headers: {
+    'Authorization': ''+authHeader(),
+  }
+});
+
 const ThesisList = () => {
   const [thesis,setThesis] = useState([])
   const [editFormData, setEditFormData] = useState({
@@ -19,11 +28,11 @@ const ThesisList = () => {
 const [editThesisId, setEditThesisId] = useState(null);
 const handleEditClick = (event,thesis) =>{
     event.preventDefault();
-    setEditThesisId(thesis.idThesis);
+    setEditThesisId(thesis.id);
     const formValues = {
-        idThesis: thesis.idThesis,
+        id: thesis.id,
         name: thesis.name,
-        description: thesis.description,
+        shortDescription: thesis.description,
         address: thesis.address,
         fieldOfStudy: thesis.fieldOfStudy,
         campus: thesis.campus
@@ -32,9 +41,9 @@ const handleEditClick = (event,thesis) =>{
 };
 const [addData, setAddData] = useState({
   name: '',
-description: '',
-fieldOfStudy: '',
-campus: ''
+  description: '',
+  fieldOfStudy: '',
+  campus: ''
 });
 const addThesis = () =>{
   api.post('/add', {
@@ -65,35 +74,33 @@ const handleEditChange = (event) =>{
     setEditFormData(newFormData);
 };
 const handleEditFormSubmit= () =>{
-    api.put(`/update/${editFormData.idThesis}`,{
+    api.put(`/update/${editFormData.id}`,{
         name: editFormData.name,
         description: editFormData.description,
         campus: editFormData.campus,
-        fieldOfStudy: editFormData.fieldOfStudy
+        fieldOfStudy: editFormData.fieldOfStudy,
     });
     setEditThesisId(null);
 };
 const handleCancelClick = () =>{
     setEditThesisId(null);
 };
-const handleDeleteClick = (idThesis) =>{
-    api.delete(`/delete?idThesis=${idThesis}`);
+const handleDeleteClick = (id) =>{
+    api.delete(`/delete?id=${id}`, {
+      
+    });
 }
 
-const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsdWthc0BtYWlsLmNvbSIsImV4cCI6MTY0OTcxMDU2OCwiaWF0IjoxNjQ5NjkyNTY4fQ.x21W6AJKMXjHHKBfbWVg4IFmLk8lVG8TF9w8f9L2u968oFMI_H5Berh4K_fo0-kqHheUX-NNUoW-JFzAPErZuQ'
-
 const getThesis= async () =>{
-    const data = await api.get('/all', {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-        'Authorization': 'Bearer '+ token
-      }})
+    const data = await api.get('/all');
     setThesis(data.data) 
 };
+
 useEffect(()=>{
-    getThesis()
-},[]);      
+  getThesis()
+},[]);
+
+if (getRole() === "Admin"){
     return (
       <div className="table-div">
         <form className='form-table' onSubmit={handleEditFormSubmit}>
@@ -112,7 +119,7 @@ useEffect(()=>{
               {thesis.map((thesis)=>{
                 return(
                   <>
-                    {editThesisId === thesis.idThesis ? (
+                    {editThesisId === thesis.id ? (
                       <EditRow
                         editFormData={editFormData}
                         handleEditChange={handleEditChange}
@@ -165,7 +172,43 @@ useEffect(()=>{
               <input type="submit" value="add thesis" />
           </form>
         </div>
-    </div>
+        </div>
     );
+} else if(getRole() === "Company") {
+  return(
+    <div>
+      <h1>Company</h1>
+    </div>
+  )
+} else if(getRole() === "Student" || getRole() === ""){
+  return(
+      <div className='thesisPage'>
+        <h1 className='thesisSectionTitle'>Student</h1>
+        <p>Uitleg ivm met hoe thesis te kiezen</p>
+        <div className='thesisContainer'>
+          {thesis.map((thesis)=>{
+                return(
+                  <>
+                    <ThesisBlock 
+                      thesis={thesis} 
+                      handleEditClick={handleEditClick}
+                      handleDeleteClick={handleDeleteClick}
+                    />
+                </>
+              );
+            })}  
+        </div> 
+      </div>   
+  )    
+} else {
+  return(
+    <div>
+      <h1>LOL</h1>
+    </div>
+  )
+}    
+    
+
+
 }
 export default ThesisList;
