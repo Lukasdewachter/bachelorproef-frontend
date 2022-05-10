@@ -126,7 +126,7 @@ const registerChange = (event) =>{
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/Thesis-List">
+                  <NavLink className="nav-link" to="/Thesis">
                     Thesis list
                   </NavLink>
                 </li>
