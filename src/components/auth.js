@@ -4,17 +4,11 @@ import axios from 'axios'
 function authHeader(){
     const user = JSON.parse(localStorage.getItem('user'));
     if(user && user.token){
-<<<<<<< Updated upstream
-        return user.token;
-    } else {
-        return {};
-=======
         console.log(user.token)
         console.log(`'Authorization': 'Bearer ` + user.token +`'`)
         return `Bearer ` + user.token;
     } else {
         return null;
->>>>>>> Stashed changes
     } 
 } 
 
