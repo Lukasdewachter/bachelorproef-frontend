@@ -10,11 +10,11 @@ const ReadOnly = ({ student, handleEditClick,handleDeleteClick }) =>{
             <dt className="dt-read">{student.fieldOfStudy} {student.campus}</dt>
             <dt className="dt-read">
                 <button className='btn-edit' onClick={(event)=>handleEditClick(event,student)}><ion-icon name="pencil-outline"></ion-icon></button>
-                <button className='btn-delete' onClick={()=>handleDeleteClick(student.idStudent)}><ion-icon name="close-circle-outline"></ion-icon></button>
+                <button className='btn-delete' onClick={()=>handleDeleteClick(student.id)}><ion-icon name="close-circle-outline"></ion-icon></button>
                            
             </dt>
             </dl>
-            </div>
+        </div>
         );
 };
 export default ReadOnly;

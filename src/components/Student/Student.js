@@ -13,15 +13,6 @@ const api = axios.create({
 });
 const Student= () =>{
     const [student,setStudent] = useState([])
-    /*const [addData, setAddData] = useState({
-        firstName: '',
-        lastName: '',
-        tel: '',
-        address: '',
-        fieldOfStudy: '',
-        mail: '',
-        campus:''
-    });*/
     const [editFormData, setEditFormData] = useState({
         firstName: '',
         lastName: '',
@@ -32,14 +23,6 @@ const Student= () =>{
         campus:''
     });
     const [editId, setEditId] = useState(null);
-    /*const handleAddChange = (event) =>{
-        event.preventDefault();
-        const fieldName = event.target.getAttribute('name');
-        const fieldValue = event.target.value;
-        const newData = {...addData};
-        newData[fieldName] = fieldValue;
-        setAddData(newData);
-    };*/
     const handleEditClick = (event,student) =>{
         event.preventDefault();
         setEditId(student.id);
@@ -79,31 +62,18 @@ const Student= () =>{
     const handleCancelClick = () =>{
         setEditId(null);
     };
-    const handleDeleteClick = (idStudent) =>{
-        api.delete(`/delete?idStudent=${idStudent}`);
+    const handleDeleteClick = (id) =>{
+        api.delete(`/delete?id=${id}`);
     }
-   /* const addStudent = () =>{
-        api.post('/add', {
-            firstName: addData.firstName,
-            lastName: addData.lastName,
-            tel: addData.tel,
-            address: addData.address,
-            fieldOfStudy: addData.fieldOfStudy,
-            mail: addData.mail,
-            campus: addData.campus
-        });
-        getStudent();
-    };*/
-    
     const [loggedIn, setLoggedIn] = useState(false);
     const getStudent= async () =>{
         api.get('/all')
         .then(function(response){
-            setLoggedIn(false)
+            setLoggedIn(true)
             setStudent(response.data)
         })
         .catch(function () {
-            setLoggedIn(true);
+            setLoggedIn(false);
         });
     };
     useEffect(()=>{
@@ -112,7 +82,7 @@ const Student= () =>{
     return (
         <div className="Students">
             <div>
-                {loggedIn && (
+                {!loggedIn && (
                     <div>
                         <p>You don't have permission for this action</p>
                     </div>

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import '../components/MainStyleSheet.css'
+import Role from "./role"
 
 const api = axios.create({
   headers: {
@@ -13,9 +14,9 @@ function Navigation() {
   const [modal, setModal] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const toggleLogin = () =>{
-    setLoggedIn(!login)
     setModal(!modal)
   }
+  const [role, setRole] = useState('');
   const [registerPage, setRegisterPage] = useState(false);
   const toggleRegister = () =>{
     setRegisterPage(!registerPage);
@@ -41,11 +42,12 @@ function Navigation() {
     .then(function (response) {
       localStorage.setItem("user", JSON.stringify(response.data))
       window.location.reload();
+      setLoggedInn();
+      setRole(Role());
   })
     .catch(function (error) {
       console.log(error);
       });
-    setLoggedIn(true);
     };
   const [userInfo, setUserInfo] = useState(false);
   const userInformation = () =>{
@@ -59,9 +61,10 @@ function Navigation() {
   const setLoggedInn = () =>{
     setLoggedIn(true);
 }
-const [role, setRole] = useState({
+const [registerRole, setRegisterRole] = useState({
   role:''
 })
+const [isCompany ,setIsCompany] = useState(false);
 const [isCoordinator, setIsCoordinator] = useState(false);
 const roleChange=(event)=>{
     event.preventDefault();
@@ -70,13 +73,16 @@ const roleChange=(event)=>{
     if(fieldValue === "professor"){
       setIsCoordinator(true)
     }else{setIsCoordinator(false)}
-    const newFormData = {...role};
+    if(fieldValue === "company"){
+      setIsCompany(true)
+    }else{setIsCompany(false)}
+    const newFormData = {...registerRole};
     newFormData[fieldName] = fieldValue;
-    setRole(newFormData);
+    setRegisterRole(newFormData);
     
 }
 const registerService =()=>{
-  api.post(`http://localhost:8080/`+role.role+"/add", {
+  api.post(`http://localhost:8080/`+registerRole.role+"/add", {
     firstName: addData.firstName,
     lastName: addData.lastName,
     address: addData.address,
@@ -85,8 +91,12 @@ const registerService =()=>{
     fieldOfStudy: addData.fieldOfStudy,
     campus: addData.campus,
     password: addData.password,
-    coordinator: addData.coordinator
-  }).then(function(){setModal(false)})
+    coordinator: addData.coordinator,
+    companyName: addData.companyName
+  }).then(function(response){
+    setModal(false);
+    console.log(response)
+  })
   .catch(function(error){
     console.log(error);
   })
@@ -100,7 +110,8 @@ const [addData, setAddData] = useState({
   fieldOfStudy:'',
   campus:'',
   password:'',
-  coordinator:''
+  coordinator:'',
+  companyName:''
 });
 const registerChange = (event) =>{
   event.preventDefault();
@@ -110,6 +121,10 @@ const registerChange = (event) =>{
   newData[fieldName] = fieldValue;
   setAddData(newData);
 };
+const [checked, setChecked] = useState(false);
+const handleCheckbox =()=>{
+  setChecked(!checked);
+}
   return (
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark">  
@@ -125,11 +140,13 @@ const registerChange = (event) =>{
                     <span className="sr-only">(current)</span>
                   </NavLink>
                 </li>
+                {role === "Admin" || role==="Student" || role === "Company" || role ==="Professor" && (
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/Thesis-List">
                     Thesis list
                   </NavLink>
                 </li>
+                )}
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/Students">
                    Students
@@ -220,47 +237,47 @@ const registerChange = (event) =>{
                       <option value="company">Company</option>
                     </select>
                     <form onSubmit={registerService} className="form-login">
-                        <label>First Name</label>
+                        <label>First Name
                         <input
                           type="text"
                           name="firstName"
                           required="required"
                           placeholder="first name"
                           onChange={registerChange}
-                        />
-                        <label>Last Name</label>
+                        /></label>
+                        <label>Last Name
                         <input
                           type="text"
                           name="lastName"
                           required="required"
                           placeholder="last name"
                           onChange={registerChange}
-                        />
-                        <label>Email</label>
+                        /></label>
+                        <label>Email
                         <input
                             type='email'
                             name='mail'
                             required='required'
                             placeholder='email'
                             onChange={registerChange}
-                        />
-                        <label>Tel Nr</label>
+                        /></label>
+                        <label>Tel Nr
                         <input
                           type="text"
                           name="tel"
                           required="required"
                           placeholder="tel nr"
                           onChange={registerChange}
-                        />
-                        <label>Address</label>
+                        /></label>
+                        <label>Address
                         <input
                           type="text"
                           name="address"
                           required="required"
                           placeholder="adress"
                           onChange={registerChange}
-                        />
-                        <label>Field Of Study</label>
+                        /></label>
+                        <label>Field Of Study
                         <select className="select-FOS" name="fieldOfStudy" onChange={registerChange} >
                             <option value="" selected disabled hidden>Choose here</option>
                             <option value="Sociale Wetenschappen">Sociale Wetenschappen</option>
@@ -274,8 +291,8 @@ const registerChange = (event) =>{
                             <option value="Letteren">Letteren</option>
                             <option value="Economie">Economie</option>
                             <option value="Wijsbegeerte">Wijsbegeerte</option>
-                          </select>
-                        <label>Campus</label>
+                          </select></label>
+                        <label>Campus
                         <select className="select-C" name="campus" onChange={registerChange}>
                           <option value="" selected disabled hidden>Choose here</option>
                           <option value="Aalst">Aalst</option>
@@ -288,8 +305,19 @@ const registerChange = (event) =>{
                           <option value="Kortrijk">Kortrijk</option>
                           <option value="Leuven">Leuven</option>
                           <option value="Sint-Katelijne-Waver">Sint-Katelijne-Waver</option>
-                        </select>
+                        </select></label>
                         <input type="hidden" name="coordinator" value="0" />
+                        {isCompany && (
+                          <label>Company name
+                            <input
+                              type="text"
+                              name="companyName"
+                              required="required"
+                              placeholder="company name"
+                              onChange={registerChange}
+                            />
+                          </label>
+                        )}
                         {isCoordinator && (
                           <label>
                           Coordinator
@@ -297,18 +325,19 @@ const registerChange = (event) =>{
                             type="checkbox"
                             name="coordinator"
                             value="1"
-                            onChange={registerChange}
+                            checked={checked}
+                            onChange={handleCheckbox}
                           /> 
                           </label>
                         )}
-                        <label>Password</label>
+                        <label>Password
                         <input
                             type='password'
                             name='password'
                             required='required'
                             placeholder='password'
                             onChange={registerChange}
-                        />
+                        /></label>
                         <input className="btn-login-2" type="submit" value="Register" />
                     </form>
                   <button className="btn-exit" onClick={toggleRegister}><ion-icon name="close-circle-outline"></ion-icon></button>
