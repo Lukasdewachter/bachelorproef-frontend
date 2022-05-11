@@ -3,16 +3,19 @@ import axios from 'axios'
 import ReadOnly from './ReadOnlyRow'
 import '../MainStyleSheet.css'
 import EditRow from './EditRow'
+import {authHeader} from '../auth'
 
 const api = axios.create({
-    baseURL: `http://localhost:8080/professor/`
-})
-const Professors= () =>{
+    baseURL: `http://localhost:8080/professor/`,
+    headers: {
+        'Authorization': ''+authHeader(),
+      }
+});
+const Professor= () =>{
     const [professor,setProfessor] = useState([])
-    
     const [editFormData, setEditFormData] = useState({
-        name: '',
-        surname: '',
+        firstName: '',
+        lastName: '',
         tel: '',
         address: '',
         fieldOfStudy: '',
@@ -20,14 +23,15 @@ const Professors= () =>{
         campus:'',
         coordinator:''
     });
-    const [editProfessorId, setEditProfessorId] = useState(null);
+    const [editId, setEditId] = useState(null);
     const handleEditClick = (event,professor) =>{
         event.preventDefault();
-        setEditProfessorId(professor.idProfessor);
+        setEditId(professor.id);
+        //setEditStudentId(student.id);
         const formValues = {
-            idProfessor: professor.idProfessor,
-            name: professor.name,
-            surname: professor.surname,
+            id: professor.id,
+            firstName: professor.firstName,
+            lastName: professor.lastName,
             tel: professor.tel,
             address: professor.address,
             fieldOfStudy: professor.fieldOfStudy,
@@ -47,9 +51,9 @@ const Professors= () =>{
         setEditFormData(newFormData);
     };
     const handleEditFormSubmit= () =>{
-        api.put(`/update/${editFormData.idProfessor}`,{
-            name: editFormData.name,
-            surname: editFormData.surname,
+        api.put(`/update/${editFormData.id}`,{
+            firstName: editFormData.firstName,
+            lastName: editFormData.lastName,
             tel: editFormData.tel,
             address: editFormData.address,
             fieldOfStudy: editFormData.fieldOfStudy,
@@ -57,65 +61,71 @@ const Professors= () =>{
             campus: editFormData.campus,
             coordinator: editFormData.coordinator
         });
-        setEditProfessorId(null);
+        setEditId(null);
     };
     const handleCancelClick = () =>{
-        setEditProfessorId(null);
+        setEditId(null);
     };
-    const handleDeleteClick = (idProfessor) =>{
-        api.delete(`/delete?idProfessor=${idProfessor}`);
+    const handleDeleteClick = (id) =>{
+        api.delete(`/delete?id=${id}`);
     }
+    const [loggedIn, setLoggedIn] = useState(false);
     const getProfessor= async () =>{
-        const data = await api.get('/all')
-        setProfessor(data.data) 
+        api.get('/all')
+        .then(function(response){
+            setLoggedIn(true)
+            setProfessor(response.data)
+        })
+        .catch(function () {
+            setLoggedIn(false);
+        });
     };
+    const isCoordinator = (coordinator)=>{
+        if(coordinator===1){
+            return "coordinator"
+        }else{return "geen coordinator"}
+    }
     useEffect(()=>{
         getProfessor()
     },[]);
     return (
         <div className="Professor">
-            <form className='form-table' onSubmit={handleEditFormSubmit}>
-                <table>
-                    <thead>
-                        <tr>
-                                <th>Professor id</th>
-                                <th>Name</th>
-                                <th>Surname</th>
-                                <th>Telephone Number</th>
-                                <th>Address</th>
-                                <th>Field of Study</th>
-                                <th>Mail</th>
-                                <th>Campus</th>
-                                <th>Coordinator</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody key='professor'>
+            <div>
+                {!loggedIn && (
+                    <div>
+                        <p>You don't have permission for this action</p>
+                    </div>
+                )}
+                <div className='div-list'>
+                <form className='form-table' onSubmit={handleEditFormSubmit}>                
                             {professor.map((professor)=>{
                                 return(
-                                    <>
-                                        {editProfessorId === professor.idProfessor ? (
+                                    <React.Fragment >
+                                        {editId === professor.id ? (
                                             <EditRow
+                                                key={editId}
+                                                professor={professor}
                                                 editFormData={editFormData}
                                                 handleEditChange={handleEditChange}
                                                 handleCancelClick={handleCancelClick}
                                             />
                                             ):(
                                             <ReadOnly 
+                                                key={editId+1}
                                                 professor={professor} 
                                                 handleEditClick={handleEditClick}
                                                 handleDeleteClick={handleDeleteClick}
+                                                isCoordinator={isCoordinator}
                                                 />
-                                    )}
-                                </>
-                            );
-                        })}       
-                    </tbody>
-                </table>
-            </form>
-        </div>
+                                        )}
+                                    </React.Fragment>
+                                );
+                            })} 
+                </form>
+                </div>
+                </div>
+            </div>
 
     );
 };
-
-export default Professors;
+export default Professor;

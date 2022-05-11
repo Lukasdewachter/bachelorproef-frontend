@@ -181,14 +181,15 @@ const handleCheckbox =()=>{
             {loggedIn==null && (
               <button onClick={toggleLogin} className="btn-login">Login</button>)}
             {loggedIn !=null && (
-              <button onClick={userInformation} className="btn-user">User</button>)}
+              <button onClick={userInformation} className="btn-user"><ion-icon title={false} name="person-outline"></ion-icon></button>)}
           </div>
       </nav>
       {userInfo &&(
-        <div className = 'userInfo'>
+        <div className ='userInfo'>
             <ul>
               <h2>User Info</h2>
             </ul>
+            <ul>Role: {getRole()}</ul>
             <ul>
               <button className="btn-logout" onClick={logout}>Log Out</button>
             </ul>
@@ -234,7 +235,7 @@ const handleCheckbox =()=>{
                 <div className="box-register">
                     <h2>Register</h2>
                     <label className="label-role">Role</label>
-                    <select name="role" onChange={roleChange} className="select-role">
+                    <select name="role" onChange={roleChange} className="select-R">
                       <option value="" selected disabled hidden>Choose here</option>
                       <option value="student">Student</option>
                       <option value="professor">Professor</option>
@@ -288,7 +289,7 @@ const handleCheckbox =()=>{
                         />
                        
                         <select className="select-FOS" name="fieldOfStudy" onChange={registerChange} >
-                            <option value="" selected disabled hidden>Choose here</option>
+                            <option value="" selected disabled hidden>Choose Field of Study</option>
                             <option value="Sociale Wetenschappen">Sociale Wetenschappen</option>
                             <option value="Burgerlijk Ingenieur">Burgerlijk Ingenieur</option>
                             <option value="Bio-ingenieur">Bio-ingenieur</option>
@@ -303,7 +304,7 @@ const handleCheckbox =()=>{
                           </select>
                         
                         <select className="select-C" name="campus" onChange={registerChange}>
-                          <option value="" selected disabled hidden>Choose here</option>
+                          <option value="" selected disabled hidden>Choose campus</option>
                           <option value="Aalst">Aalst</option>
                           <option value="Antwerpen">Antwerpen</option>
                           <option value="Brugge">Brugge</option>

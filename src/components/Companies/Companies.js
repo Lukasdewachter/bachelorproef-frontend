@@ -3,46 +3,41 @@ import axios from 'axios'
 import ReadOnly from './ReadOnlyRow'
 import '../MainStyleSheet.css'
 import EditRow from './EditRow'
+import {authHeader} from '../auth'
 
 const api = axios.create({
-    baseURL: `http://localhost:8080/company/`
-})
-const Companies= () =>{
+    baseURL: `http://localhost:8080/company/`,
+    headers: {
+        'Authorization': ''+authHeader(),
+      }
+});
+const Company= () =>{
     const [company,setCompany] = useState([])
-    const [addData, setAddData] = useState({
-        companyName: '',
-        contactName: '',
-        tel:'',
-        address: '',
-        mail: ''
-    });
     const [editFormData, setEditFormData] = useState({
-        companyName: '',
-        contactName: '',
-        tel:'',
+        firstName: '',
+        lastName: '',
+        tel: '',
         address: '',
-        mail: ''
+        fieldOfStudy: '',
+        mail: '',
+        campus:'',
+        companyName:''
     });
-    const [editCompanyId, setEditCompanyId] = useState(null);
-    const handleAddChange = (event) =>{
-        event.preventDefault();
-        const fieldName = event.target.getAttribute('name');
-        const fieldValue = event.target.value;
-
-        const newData = {...addData};
-        newData[fieldName] = fieldValue;
-        setAddData(newData);
-    };
+    const [editId, setEditId] = useState(null);
     const handleEditClick = (event,company) =>{
         event.preventDefault();
-        setEditCompanyId(company.idCompany);
+        setEditId(company.id);
+        //setEditStudentId(student.id);
         const formValues = {
-            idCompany: company.idCompany,
-            companyName: company.companyName,
-            contactName: company.contactName,
+            id: company.id,
+            firstName: company.firstName,
+            lastName: company.lastName,
             tel: company.tel,
             address: company.address,
-            mail: company.mail
+            fieldOfStudy: company.fieldOfStudy,
+            mail: company.mail,
+            campus: company.campus,
+            companyName: company.companyName
         };
         setEditFormData(formValues);
     };
@@ -56,117 +51,75 @@ const Companies= () =>{
         setEditFormData(newFormData);
     };
     const handleEditFormSubmit= () =>{
-        api.put(`/update/${editFormData.idCompany}`,{
-            companyName: editFormData.companyName,
-            contactName: editFormData.contactName,
+        api.put(`/update/${editFormData.id}`,{
+            firstName: editFormData.firstName,
+            lastName: editFormData.lastName,
             tel: editFormData.tel,
             address: editFormData.address,
-            mail: editFormData.mail
+            fieldOfStudy: editFormData.fieldOfStudy,
+            mail: editFormData.mail,
+            campus: editFormData.campus,
+            companyName: editFormData.companyName
         });
-        setEditCompanyId(null);
+        setEditId(null);
     };
     const handleCancelClick = () =>{
-        setEditCompanyId(null);
+        setEditId(null);
     };
-    const handleDeleteClick = (idCompany) =>{
-        api.delete(`/delete?idCompany=${idCompany}`);
+    const handleDeleteClick = (id) =>{
+        api.delete(`/delete?id=${id}`);
     }
-    const addCompany = () =>{
-        api.post('/add', {
-            companyName: addData.companyName,
-            contactName: addData.contactName,
-            tel: addData.tel,
-            address: addData.address,
-            mail: addData.mail
-        });
-    };
+    const [loggedIn, setLoggedIn] = useState(false);
     const getCompany= async () =>{
-        const data = await api.get('/all')
-        setCompany(data.data) 
+        api.get('/all')
+        .then(function(response){
+            setLoggedIn(true)
+            setCompany(response.data)
+        })
+        .catch(function () {
+            setLoggedIn(false);
+        });
     };
     useEffect(()=>{
         getCompany()
     },[]);
     return (
-        <div className="Company">
-                <form className='form-table' onSubmit={handleEditFormSubmit}>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Company id</th>
-                                <th>Company</th>
-                                <th>Contact</th>
-                                <th>Telephone Number</th>
-                                <th>Address</th>
-                                <th>Mail</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody key='company'>
+        <div className="Com^pany">
+            <div>
+                {!loggedIn && (
+                    <div>
+                        <p>You don't have permission for this action</p>
+                    </div>
+                )}
+                <div className='div-list'>
+                <form className='form-table' onSubmit={handleEditFormSubmit}>                
                             {company.map((company)=>{
                                 return(
-                                    <>
-                                        {editCompanyId === company.idCompany ? (
+                                    <React.Fragment >
+                                        {editId === company.id ? (
                                             <EditRow
+                                                key={editId}
+                                                company={company}
                                                 editFormData={editFormData}
                                                 handleEditChange={handleEditChange}
                                                 handleCancelClick={handleCancelClick}
                                             />
                                             ):(
                                             <ReadOnly 
+                                                key={editId+1}
                                                 company={company} 
                                                 handleEditClick={handleEditClick}
                                                 handleDeleteClick={handleDeleteClick}
                                                 />
                                         )}
-                                    </>
+                                    </React.Fragment>
                                 );
-                            })}       
-                        </tbody>
-                    </table>
+                            })} 
                 </form>
-                <form onSubmit={addCompany} className='form-table'>
-                    <label>New Company</label>
-                    <input
-                        type='text'
-                        name='companyName'
-                        required='required'
-                        placeholder='company name'
-                        onChange=  {handleAddChange}
-                    />
-                    <input
-                        type='text'
-                        name='contactName'
-                        required='required'
-                        placeholder='contact name'
-                        onChange=  {handleAddChange}
-                    />
-                     <input
-                        type='number'
-                        name='tel'
-                        required='required'
-                        placeholder='telephone number'
-                        onChange=  {handleAddChange}
-                    />
-                    <input
-                        type='text'
-                        name='address'
-                        required='required'
-                        placeholder='address'
-                        onChange=  {handleAddChange}
-                    />
-                    <input
-                        type='email'
-                        name='mail'
-                        required='required'
-                        placeholder='mail'
-                        onChange=  {handleAddChange}
-                    />
-                    <input type="submit" value="add company" />
-                </form>
+                </div>
+                </div>
             </div>
 
     );
 };
-export default Companies;
+export default Company;

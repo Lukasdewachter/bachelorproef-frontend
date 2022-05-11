@@ -2,7 +2,7 @@ import React from "react";
 import '../MainStyleSheet.css'
 const EditRow = ({student,editFormData, handleEditChange, handleCancelClick}) => {
     return(
-    <dl className="dl-edit">
+    <dl className="dl-edit-student">
         <dt>
             <input
                 type='text'
@@ -80,8 +80,8 @@ const EditRow = ({student,editFormData, handleEditChange, handleCancelClick}) =>
             </select>
         </dt>
         <dt>
-            <button className='btn-save' type='submit'><ion-icon name="checkmark-outline"></ion-icon></button>
-            <button className='btn-cancel' type='button' onClick={handleCancelClick}><ion-icon name="close-circle-outline"></ion-icon></button>
+            <button className='btn-save-student' type='submit'><ion-icon name="checkmark-outline"></ion-icon></button>
+            <button className='btn-cancel-student' type='button' onClick={handleCancelClick}><ion-icon name="close-circle-outline"></ion-icon></button>
         </dt>
     </dl>
     );

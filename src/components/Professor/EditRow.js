@@ -1,40 +1,29 @@
 import React from "react";
 import '../MainStyleSheet.css'
-const EditRow = ({editFormData, handleEditChange, handleCancelClick}) => {
+const EditRow = ({professor,editFormData, handleEditChange, handleCancelClick}) => {
     return(
-    <tr>
-        <td></td>
-        <td>
+    <dl className="dl-edit">
+        <dt>
             <input
                 type='text'
-                name='name'
+                name='firstName'
                 required='required'
-                placeholder='name'
-                value={editFormData.name}
-                onChange={handleEditChange} 
-            />
-        </td>
-        <td>
-            <input
-                type='text'
-                name='surname'
-                required='required'
-                placeholder='surname'
-                value={editFormData.surname}
-                onChange={handleEditChange} 
-            />
-        </td>
-        <td>
-            <input
-                type='number'
-                name='tel'
-                required='required'
-                placeholder='tel number'
-                value={editFormData.tel}
+                placeholder='first name'
+                value={editFormData.firstName}
                 onChange={handleEditChange}
-                />
-        </td>
-        <td>
+                size = "10" 
+            />
+            <input
+                type='text'
+                name='lastName'
+                required='required'
+                placeholder='last name'
+                value={editFormData.lastName}
+                onChange={handleEditChange}
+                size = "10" 
+            />
+        </dt>
+        <dt>
             <input
                 type='text'
                 name='address'
@@ -43,18 +32,17 @@ const EditRow = ({editFormData, handleEditChange, handleCancelClick}) => {
                 value={editFormData.address}
                 onChange={handleEditChange}
                  />
-        </td>
-        <td>
             <input
                 type='text'
-                name='fieldOfStudy'
+                name='tel'
                 required='required'
-                placeholder='field of study'
-                value={editFormData.fieldOfStudy}
+                placeholder='tel number'
+                value={editFormData.tel}
                 onChange={handleEditChange}
+                size="9"
                 />
-        </td>
-        <td>
+        </dt>
+        <dt>
             <input
                 type='email'
                 name='mail'
@@ -63,18 +51,35 @@ const EditRow = ({editFormData, handleEditChange, handleCancelClick}) => {
                 value={editFormData.mail}
                 onChange={handleEditChange}
                  />
-        </td>
-        <td>
-            <input
-                type='text'
-                name='campus'
-                required='required'
-                placeholder='campus'
-                value={editFormData.campus}
-                onChange={handleEditChange}
-                 />
-        </td>
-        <td>
+        </dt>
+        <dt>
+            <select className="select-FOS" name="fieldOfStudy" value={editFormData.fieldOfStudy} onChange={handleEditChange} >
+                <option value="Sociale Wetenschappen">Sociale Wetenschappen</option>
+                <option value="Burgerlijk Ingenieur">Burgerlijk Ingenieur</option>
+                <option value="Bio-ingenieur">Bio-ingenieur</option>
+                <option value="Industrieel Ingenieur">Industrieel Ingenieur</option>
+                <option value="Wetenschappen">Wetenschappen</option>
+                <option value="Architectuur">Architectuur</option>
+                <option value="Geneeskunde">Geneeskunde</option>
+                <option value="Farmacie">Farmacie</option>
+                <option value="Letteren">Letteren</option>
+                <option value="Economie">Economie</option>
+                <option value="Wijsbegeerte">Wijsbegeerte</option>
+            </select>
+            <select className="select-C" name="campus" value={editFormData.campus} onChange={handleEditChange}>
+                <option value="Aalst">Aalst</option>
+                <option value="Antwerpen">Antwerpen</option>
+                <option value="Brugge">Brugge</option>
+                <option value="Brussel">Brussel</option>
+                <option value="Diepenbeek">Diepenbeek</option>
+                <option value="Geel">Geel</option>
+                <option value="Gent">Gent</option>
+                <option value="Kortrijk">Kortrijk</option>
+                <option value="Leuven">Leuven</option>
+                <option value="Sint-Katelijne-Waver">Sint-Katelijne-Waver</option>
+            </select>
+        </dt>
+        <dt>
         <input
                 type='number'
                 name='coordinator'
@@ -82,13 +87,13 @@ const EditRow = ({editFormData, handleEditChange, handleCancelClick}) => {
                 placeholder='coordinator'
                 value={editFormData.coordinator}
                 onChange={handleEditChange}
-                 />
-        </td>
-        <td>
-        <button className='btn-save' type='submit'><ion-icon name="checkmark-outline"></ion-icon></button>
-            <button className='btn-delete' type='button' onClick={handleCancelClick}><ion-icon name="close-circle-outline"></ion-icon></button>
-        </td>
-    </tr>
+                />
+        </dt>
+        <dt>
+            <button className='btn-save' type='submit'><ion-icon name="checkmark-outline"></ion-icon></button>
+            <button className='btn-cancel' type='button' onClick={handleCancelClick}><ion-icon name="close-circle-outline"></ion-icon></button>
+        </dt>
+    </dl>
     );
 }
 export default EditRow;

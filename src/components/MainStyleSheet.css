@@ -78,7 +78,7 @@ table {
   right: 0;
   bottom: 0;
   position: fixed;
-  z-index: 10;
+  z-index: 1000;
 }
 
 .login-content {
@@ -87,7 +87,7 @@ table {
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: #f1f1f1;
+  background: #ffffff;
   padding: 14px 28px;
   border-radius: 3px;
   min-width: 200px;
@@ -138,7 +138,7 @@ table {
   border-radius: 3px;
   min-height: 400px;
   min-width: 238px;
-  z-index: 11;
+  z-index: 1010;
 }
 .register-input{
   border: none;
@@ -169,9 +169,9 @@ table {
 }
 /*USER CONTENT*/
 .userInfo{
-  position: absolute;
+  position:fixed;
   right: 0px;
-  background:rgba(221, 221, 221, 0.792);
+  background:rgba(221, 221, 221, 0.933);
   padding: 14px 28px;
   border-style: groove;
   border-radius: 3px;
@@ -182,16 +182,15 @@ table {
 /*LIST*/
 .form-table{
   display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit,minmax(355px,1fr));
     grid-template-rows: 1fr 1fr;
-    
 }
 .dl-read{
   position: relative;
   margin: 10px;
   padding: 10px 10px;
-  max-width: 500px;
-  min-height: 238px;
+  width: 356px;
+  height: 378px;
   border-style: groove;
   border-radius: 8px;
   border-width: 3px;
@@ -199,21 +198,23 @@ table {
   border-color: rgb(108, 107, 107);
 }
 .dl-edit{
+  position: relative;
   margin: 10px;
-  padding: 10px 28px;
-  max-width: 500px;
-  min-height: 238px;
+  padding: 10px 10px;
+  width: 356px;
+
+  height: 378px;
   border-style: groove;
   border-radius: 8px;
   border-width: 3px;
-  border-color: rgb(108, 107, 107);
   background-color: rgb(193, 193, 193);
+  border-color: rgb(108, 107, 107);
 }
 
 .btn-edit{
   margin: 5px;
   position: relative;
-  top:25px;
+  top:11px;
   right: 25px;
   background-color: rgb(193, 193, 193);
   border:none;
@@ -228,15 +229,16 @@ table {
 }
 .btn-delete{
   position:relative;
-  left: 385px;
-  top:25px;
+  left: 240px;
+  top:11px;
   font-size: 25px;
   margin: 5px;
   background-color: rgb(193, 193, 193);
   border:none;
   border-radius: 8px;
   transition-duration: 0.4s;
-  color:rgb(255, 0, 0)
+  color:rgb(255, 0, 0);
+  z-index:10;
 }
 .btn-delete:hover{
   background-color: rgba(150, 149, 149, 0.726);
@@ -244,8 +246,8 @@ table {
 }
 .btn-cancel{
   position:relative;
-  left: 371px;
-  top:21px;
+  left: 246px;
+  top:-3px;
   font-size: 25px;
   margin: 5px;
   background-color: rgb(193, 193, 193);
@@ -260,8 +262,8 @@ table {
 }
 .btn-save{
   position:relative;
-  right: 37px;
-  top:21px;
+  right: 20px;
+  top:-3px;
   font-size: 25px;
   margin: 5px;
   background-color: rgb(193, 193, 193);
@@ -274,6 +276,97 @@ table {
   background-color: rgba(150, 149, 149, 0.726);
   border-radius: 8px;
 }
+.dl-read-student{
+  position: relative;
+  margin: 10px;
+  padding: 10px 10px;
+  width: 356px;
+  height: 329px;
+  border-style: groove;
+  border-radius: 8px;
+  border-width: 3px;
+  background-color: rgb(193, 193, 193);
+  border-color: rgb(108, 107, 107);
+}
+.dl-edit-student{
+  position: relative;
+  margin: 10px;
+  padding: 10px 10px;
+  width: 356px;
+
+  height: 329px;
+  border-style: groove;
+  border-radius: 8px;
+  border-width: 3px;
+  background-color: rgb(193, 193, 193);
+  border-color: rgb(108, 107, 107);
+}
+
+.btn-edit-student{
+  margin: 5px;
+  position: relative;
+  top:40px;
+  right: 20px;
+  background-color: rgb(193, 193, 193);
+  border:none;
+  border-radius: 8px;
+  font-size: 25px;
+  transition-duration: 0.4s;
+  color: rgb(46, 161, 255);
+}
+.btn-edit-student:hover{
+  background-color: rgba(150, 149, 149, 0.726);
+  border-radius: 8px;
+}
+.btn-delete-student{
+  position:relative;
+  left: 247px;
+  top:40px;
+  font-size: 25px;
+  margin: 5px;
+  background-color: rgb(193, 193, 193);
+  border:none;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+  color:rgb(255, 0, 0);
+  z-index:10;
+}
+.btn-delete-student:hover{
+  background-color: rgba(150, 149, 149, 0.726);
+  border-radius: 8px;
+}
+.btn-cancel-student{
+  position:relative;
+  left: 246px;
+  top:-3px;
+  font-size: 25px;
+  margin: 5px;
+  background-color: rgb(193, 193, 193);
+  border:none;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+  color:rgb(255, 0, 0)
+}
+.btn-cancel-student:hover{
+  background-color: rgba(150, 149, 149, 0.726);
+  border-radius: 8px;
+}
+.btn-save-student{
+  position:relative;
+  right: 20px;
+  top:-3px;
+  font-size: 25px;
+  margin: 5px;
+  background-color: rgb(193, 193, 193);
+  color:rgb(23, 255, 23);
+  border:none;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+.btn-save-student:hover{
+  background-color: rgba(150, 149, 149, 0.726);
+  border-radius: 8px;
+}
 dt{
   margin: 5px;
   padding: 0px;
@@ -282,6 +375,38 @@ dt{
 .dt-read{
   margin: 10px
 }
+.select-C{
+  max-width: 220px;
+  margin:5px;
+  border-radius:5px;
+}
+.select-R{
+  max-width: 220px;
+  margin:5px;
+  border-radius:5px;
+}
 .select-FOS{
   max-width: 220px;
+  margin:5px;
+  border-radius: 5px;
+}
+input[type=email]{
+  margin: 5px;
+  border-style: solid;
+  border-radius:5px;
+}
+input[type=password]{
+  margin: 5px;
+  border-style: solid;
+  border-radius:5px;
+}
+input[type=text]{
+  margin: 5px;
+  border-style: solid;
+  border-radius:5px;
+}
+input[type=number]{
+  margin: 5px;
+  border-style: solid;
+  border-radius:5px;
 }
