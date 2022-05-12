@@ -43,6 +43,7 @@ table {
     right: 0;
     bottom: 0;
     position: fixed;
+    z-index: 10;
 }
 /*LOGIN CONTENT*/
   .login-content {

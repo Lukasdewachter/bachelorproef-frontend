@@ -4,8 +4,6 @@ import axios from 'axios'
 function authHeader(){
     const user = JSON.parse(localStorage.getItem('user'));
     if(user && user.token){
-        console.log(user.token)
-        console.log(`'Authorization': 'Bearer ` + user.token +`'`)
         return `Bearer ` + user.token;
     } else {
         return null;
@@ -16,14 +14,23 @@ function getRole(){
     const user = JSON.parse(localStorage.getItem('user'));
     if(user && user.token){
         var decodedToken = jwt_decode(user.token);
-        console.log(decodedToken);
         return decodedToken.role;
     } else {
         return "";
     } 
 } 
 
-export {authHeader, getRole}
+function getUserId(){
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user && user.token){
+        var decodedToken = jwt_decode(user.token);
+        return decodedToken.sub;
+    } else {
+        return "";
+    } 
+} 
+
+export {authHeader, getRole, getUserId}
 
 function refreshToken() {
 
