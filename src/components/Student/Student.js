@@ -92,7 +92,7 @@ const Student= () =>{
                 <form className='form-table' onSubmit={handleEditFormSubmit}>                
                             {student.map((student)=>{
                                 return(
-                                    <React.Fragment >
+                                    <>
                                         {editId === student.id ? (
                                             <EditRow
                                                 key={editId}
@@ -109,7 +109,7 @@ const Student= () =>{
                                                 handleDeleteClick={handleDeleteClick}
                                                 />
                                         )}
-                                    </React.Fragment>
+                                    </>
                                 );
                             })} 
                 </form>

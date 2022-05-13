@@ -189,20 +189,7 @@ const ThesisPage = () => {
   if (getRole() === "Admin"){
       return (
         <div className="table-div">
-          <form className='form-table' onSubmit={handleEditFormSubmit}>
-            <table>
-              <thead>
-                <tr>
-                  <th>Thesis id</th>
-                  <th>Subject</th>
-                  <th>Description</th>
-                  <th>Field of Study</th>
-                  <th>Campus</th>
-                  <th>Edit/Delete</th>
-                </tr>
-              </thead>
-              <tbody>
-                {thesis.map((thesis)=>{
+                {thesisList.map((thesis)=>{
                   return(
                     <>
                       {editThesisId === thesis.id ? (
@@ -210,20 +197,19 @@ const ThesisPage = () => {
                           editFormData={thesis}
                           handleEditChange={handleEditChange}
                           handleCancelClick={handleCancelClick}
+
                         />
                         ):(
                         <ReadOnly 
                           thesis={thesis} 
                           handleEditClick={handleEditClick}
                           handleDeleteClick={handleDeleteClick}
+                          handleMoreInfoClick={handleMoreInfoClick}
                         />
                       )}
                     </>
                   );
                 })}
-              </tbody>
-            </table>
-            </form>
             <div className="add">
               <form className="add-table" onSubmit={addThesis}>
               <label>New Thesis</label>

@@ -1,20 +1,18 @@
 import React from "react";
 import '../MainStyleSheet.css'
 
-const ReadOnly = ({ thesis, handleEditClick,handleDeleteClick }) =>{
+const ReadOnly = ({ thesis, handleEditClick,handleDeleteClick,handleMoreInfoClick }) =>{
     return(
-        <tr key={thesis.id}>
-            <td>{thesis.id}</td>
-            <td>{thesis.name}</td>
-            <td>{thesis.description}</td>
-            <td>{thesis.fieldOfStudy}</td>
-            <td>{thesis.campus}</td>
-            <td>
-                <button className='btn-edit' onClick={(event)=>handleEditClick(event,thesis)}><ion-icon name="pencil-outline"></ion-icon></button>
-                <button className='btn-delete' onClick={()=>handleDeleteClick(thesis.idThesis)}><ion-icon name="close-circle-outline"></ion-icon></button>
-                
-            </td>
-            </tr>
+        <div className="thesisBlock">
+            <h2>{thesis.name}</h2>
+            <p>{thesis.shortDescription}</p>
+            <p><ion-icon name="location-outline"></ion-icon> {thesis.campus}</p>
+            <p><ion-icon name="book"></ion-icon> {thesis.fieldOfStudy}</p>
+            <p><ion-icon name="school"></ion-icon> {thesis.promotor}</p>
+            <p><ion-icon name="people"></ion-icon> {thesis.numberOfPers}</p>
+            <ion-icon name="star-outline" size="medium"></ion-icon>
+            <button onClick={(event)=>handleMoreInfoClick(event, thesis)} className="thesisMoreInfo">Meer info</button>
+        </div>
         );
 };
 

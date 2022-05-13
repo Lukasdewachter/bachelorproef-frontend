@@ -4,7 +4,7 @@
 }
 .thesisContainer {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
     grid-template-rows: 1fr 1fr;
     margin-right: 10px;
     column-gap: 10px;
@@ -14,6 +14,8 @@
 
 .thesisBlock {
     position: relative;
+    width:300px;
+    height: 280px;
     background-color: rgb(29, 141, 176, 0.1);
     margin: 5px;
     margin-left: 0px;
@@ -48,10 +50,10 @@
 .thesisInfoBlock {
     width:30%;
     height: calc(80% - 30px);
-    position: absolute;
+    position:fixed;
     top: 80px;
     right: 0px;
-    background-color: rgb(29, 141, 176, 0.4);
+    background-color: rgba(159, 233, 255, 0.901);
     border-radius: 5px;
     margin: 10px;
     padding: 10px;
