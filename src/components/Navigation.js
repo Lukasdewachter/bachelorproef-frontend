@@ -165,12 +165,6 @@ const handleCheckbox =()=>{
                   </NavLink>
                 </li>
                   )}
-                
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/FAQ">
-                    FAQ
-                  </NavLink>
-                </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/Contact">
                     Contact

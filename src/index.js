@@ -9,7 +9,6 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Navigation from './components/Navigation'
 import Contact from './components/Contact';
-import FAQ from './components/FAQ';
 import './index.css';
 //import reportWebVitals from './reportWebVitals';
 
@@ -22,7 +21,6 @@ ReactDOM.render(
     <Route path="/students" element={<Student />}/>
     <Route path="/companies" element={<Companies />}/>
     <Route path="/professors" element={<Professors />}/>
-    <Route path="/FAQ" element={<FAQ />} />
     <Route path="/contact" element={<Contact />}/>
   </Routes>
   <Footer />
