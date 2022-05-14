@@ -8,6 +8,7 @@ import {ThesisBlock, ThesisInfo } from './ThesisStudent'
 import '../MainStyleSheet.css'
 import './ThesisStyleSheet.css'
 import {authHeader, getRole, getUserId} from '../auth'
+import {ProfComp} from './ThesisProfComp'
 
 
 const api = axios.create({
@@ -188,7 +189,9 @@ const ThesisPage = () => {
 
   if (getRole() === "Admin"){
       return (
-        <div className="table-div">
+        <div className="thesisPage">
+        <h1>Thesis list   <button className="btn-add"><ion-icon name="add-circle-outline"></ion-icon></button></h1>
+        <div className='thesisContainer'>
                 {thesisList.map((thesis)=>{
                   return(
                     <>
@@ -210,6 +213,7 @@ const ThesisPage = () => {
                     </>
                   );
                 })}
+                </div>
             <div className="add">
               <form className="add-table" onSubmit={addThesis}>
               <label>New Thesis</label>
@@ -247,14 +251,25 @@ const ThesisPage = () => {
           </div>
       );
 
-  } else if(getRole() === "Company") {
+  } else if(getRole() === "Company" || getRole() === "Professor") {
     return(
-      <div>
-        <h1>Company</h1>
-      </div>
+      <div className='thesisPage'>
+          <h1 className='thesisSectionTitle'>THESISONDERWERPEN</h1>
+          <p>Hier kan je een overzicht vinden van alle thesisonderwerpen die open staan. Door op "Meer info" te drukken kan je een uitgebreide beschrijving van elk thesisonderwerp lezen.
+            <br/><br/>
+            Om een thesis toe te voegen duw je op de plus knop. 
+          </p>
+          <div >
+              {thesisList.map((thesis) => {
+                <ProfComp
+                  thesis={thesis}
+                />
+              })}
+          </div>
+        </div>   
     );
-
-  } else if(getRole() === "Student" || getRole() === ""){
+  }
+   else if(getRole() === "Student" || getRole() === ""){
     return(
         <div className='thesisPage'>
           <h1 className='thesisSectionTitle'>THESISONDERWERPEN</h1>
@@ -285,7 +300,7 @@ const ThesisPage = () => {
   } else {
     return(
       <div>
-        <h1>LOL</h1>
+        <p>Error, Log opnieuw in</p>
       </div>
     )
   }    

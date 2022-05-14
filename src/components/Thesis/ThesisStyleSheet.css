@@ -1,6 +1,6 @@
 .thesisPage {
     height: 80%;
-    padding: 30px;
+    padding: 10px;
 }
 .thesisContainer {
     display: grid;
@@ -11,7 +11,25 @@
     row-gap: 10px;
     height: 80%
 }
-
+.btn-add{
+    border: none;
+    font-size: 45px;
+    position:absolute;
+    top: 75px;
+    background-color: rgb(255, 255, 255);
+    color:rgba(98, 185, 211, 0.726);
+    margin: 15px;
+    outline: none;
+}
+.btn-add:hover{
+    color:rgb(98, 185, 211)
+}
+.btn-add:focus{
+    color: rgb(6, 255, 48);
+    border-color: rgb(255, 255, 255);
+    border:none;
+    outline: none;
+}
 .thesisBlock {
     position: relative;
     width:300px;
