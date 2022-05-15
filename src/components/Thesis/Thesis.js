@@ -11,14 +11,14 @@ import {authHeader, getRole, getUserId} from '../auth'
 import {ProfComp} from './ThesisProfComp'
 
 const api = axios.create({
-  baseURL: `http://localhost:8080/thesis/`,
+  baseURL: `https://localhost:8080/thesis/`,
   headers: {
     'Authorization': ''+authHeader(),
   }
 });
 
 const apiBookmark = axios.create({
-  baseURL: `http://localhost:8080/bookmark/`,
+  baseURL: `https://localhost:8080/bookmark/`,
   headers: {
     'Authorization': ''+authHeader(),
   }
