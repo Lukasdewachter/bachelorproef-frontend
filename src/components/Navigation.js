@@ -34,7 +34,7 @@ function Navigation() {
   }
   const loginService = (event) => {
     event.preventDefault();
-    api.post(`http://localhost:8080/authenticate`,{
+    api.post(`https://localhost:8080/authenticate`,{
       username: login.username,
       password: login.password
     })
@@ -76,7 +76,7 @@ const roleChange=(event)=>{
     
 }
 const registerService =()=>{
-  api.post(`http://localhost:8080/`+registerRole.role+"/add", {
+  api.post(`https://localhost:8080/`+registerRole.role+"/add", {
     firstName: addData.firstName,
     lastName: addData.lastName,
     address: addData.address,
