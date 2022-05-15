@@ -45,12 +45,6 @@
     border-style: solid;
 }
 
-.bookmarkBlock{
-    position: absolute;
-    right: 5px;
-    top : 5px;
-}
-
 .thesisMoreInfo{
     position: absolute;
     right: 10px;
@@ -88,6 +82,11 @@
 
 ion-button{
     cursor: pointer;
+}
+
+ion-icon {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .star .starSelect{
