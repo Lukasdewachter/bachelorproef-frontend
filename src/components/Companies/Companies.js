@@ -6,7 +6,7 @@ import EditRow from './EditRow'
 import {authHeader} from '../auth'
 
 const api = axios.create({
-    baseURL: `http://localhost:8080/company/`,
+    baseURL: `https://localhost:8080/company/`,
     headers: {
         'Authorization': ''+authHeader(),
       }

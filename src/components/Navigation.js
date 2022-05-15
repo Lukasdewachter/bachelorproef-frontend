@@ -34,7 +34,7 @@ function Navigation() {
   }
   const loginService = (event) => {
     event.preventDefault();
-    api.post(`http://localhost:8080/authenticate`,{
+    api.post(`https://localhost:8080/authenticate`,{
       username: login.username,
       password: login.password
     })
@@ -76,7 +76,7 @@ const roleChange=(event)=>{
     
 }
 const registerService =()=>{
-  api.post(`http://localhost:8080/`+registerRole.role+"/add", {
+  api.post(`https://localhost:8080/`+registerRole.role+"/add", {
     firstName: addData.firstName,
     lastName: addData.lastName,
     address: addData.address,
@@ -134,34 +134,41 @@ const handleCheckbox =()=>{
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/Thesis">
-                    Thesis list
+                    Thesissen
                   </NavLink>
                 </li>
+                {getRole()==="Student" && (
+                  <li className="nav-item">
+                  <NavLink className="nav-link" to="/Bookmarks">
+                   Bladwijzers
+                  </NavLink>
+                </li>
+                )}
                 {getRole()==="Admin" && (
                   <li className="nav-item">
                   <NavLink className="nav-link" to="/Students">
-                   Students
+                   Studenten
                   </NavLink>
                 </li>
                 )}
                 {getRole()==="Professor" && (
                   <li className="nav-item">
                   <NavLink className="nav-link" to="/Students">
-                   Students
+                   Studenten
                   </NavLink>
                 </li>
                 )}
                 {getRole()==="Admin" && (
                   <li className="nav-item">
                   <NavLink className="nav-link" to="/Professors">
-                    Professors
+                    Professoren
                   </NavLink>
                 </li>
                   )}
                   {getRole()==="Admin" && (
                     <li className="nav-item">
                   <NavLink className="nav-link" to="/Companies">
-                    Companies
+                    Bedrijven
                   </NavLink>
                 </li>
                   )}

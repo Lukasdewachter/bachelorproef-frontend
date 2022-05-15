@@ -8,7 +8,7 @@ import {ThesisBlock, ThesisInfo } from './ThesisStudent'
 import '../MainStyleSheet.css'
 import './ThesisStyleSheet.css'
 import {authHeader, getRole, getUserId} from '../auth'
-import {ProfComp} from './ThesisProfComp'
+import {ProfComp, ProfCompThesisInfo} from './ThesisProfComp'
 
 const api = axios.create({
   baseURL: `https://localhost:8080/thesis/`,
@@ -36,6 +36,7 @@ const ThesisPage = () => {
     numberOfPers: '',
     bookmarked: ''
   });
+  const [thesisContainerWidth, setThesisContainerWidth] = useState(null);
   const [moreInfo, setMoreInfo] = useState(null)
   const [addThesisPage, setAddThesisPage] = useState(false);
   const toggleAddPage = () =>{
@@ -44,10 +45,12 @@ const ThesisPage = () => {
   const handleMoreInfoClick = async (event, thesis) => {
     if(thesis === null){
       setThesis(null);
-      setMoreInfo(false)
+      setMoreInfo(false);
+      setThesisContainerWidth('100%');
     } else {
       setThesis(thesis);
-      setMoreInfo(true)
+      setMoreInfo(true);
+      setThesisContainerWidth('70%');
     }
   }
 
@@ -256,35 +259,50 @@ const ThesisPage = () => {
                     onChange={handleAddChange}
                 />
             </form>
-          </div>)}
-          <div className='thesisContainer'>
-              {thesisList.map((thesis) => {
-                return(
-                  <ProfComp
-                  thesis={thesis}
-                  handleMoreInfoClick={handleMoreInfoClick}
-                  />
-                )
-              })}
-              {moreInfo && (<ThesisInfo thesis={thesis} 
-                                      handleMoreInfoClick={handleMoreInfoClick} 
-                                      handleStarClick={handleStarClick} 
-                                      handleBookmarkClick={handleBookmarkClick}/>)}
           </div>
+          </div>
+      );
+  } else if(getRole() === "Company" || getRole() === "Professor") {
+    return(
+      <div className='thesisPage'>
+        <div style={{ width: thesisContainerWidth }}>
+          <h1 className='thesisSectionTitle'>THESISONDERWERPEN</h1>
+          <p>Hier kan je een overzicht vinden van alle thesisonderwerpen die open staan. Door op "Meer info" te drukken kan je een uitgebreide beschrijving van elk thesisonderwerp lezen.
+            <br/><br/>
+            Om een thesis toe te voegen duw je op de plus knop. 
+          </p>
+        </div>
+        <div className='thesisContainer' style={{ width: thesisContainerWidth }}>
+            {thesisList.map((thesis) => {
+              return(
+                <ProfComp
+                thesis={thesis}
+                handleMoreInfoClick={handleMoreInfoClick}
+                />
+              )
+            })}
+          </div>
+          <div>
+            {moreInfo && (<ProfCompThesisInfo thesis={thesis} 
+                                    handleMoreInfoClick={handleMoreInfoClick} 
+                                    handleStarClick={handleStarClick}/>)}
+          </div>)}
         </div>   
     );
   }
    else if(getRole() === "Student" || getRole() === ""){
     return(
         <div className='thesisPage'>
-          <h1 className='thesisSectionTitle'>THESISONDERWERPEN</h1>
-          <p>Hier kan je een overzicht vinden van alle thesisonderwerpen die open staan. Door op "Meer info" te drukken kan je een uitgebreide beschrijving van elk thesisonderwerp lezen.
-            <br/><br/>
-            Thesisonderwerpen die je interesseren kunnen opgeslagen worden door op het bladwijzericoon te drukken.
-            <br/><br/>
-            Om je definitieve keuze in te dienen wordt er gewerkt met een drie-sterrensysteem. In totaal moet je drie thesisonderwerpen doorgeven die je ziet zitten. Geef de thesisonderwerpen die je het meest interesseren drie sterren en degene die je wat minder aanspreken twee of een ster. 
-          </p>
-          <div className='thesisContainer'>
+          <div style={{ width: thesisContainerWidth }}>
+            <h1 className='thesisSectionTitle'>THESISONDERWERPEN</h1>
+            <p>Hier kan je een overzicht vinden van alle thesisonderwerpen die open staan. Door op "Meer info" te drukken kan je een uitgebreide beschrijving van elk thesisonderwerp lezen.
+              <br/><br/>
+              Thesisonderwerpen die je interesseren kunnen opgeslagen worden door op het bladwijzericoon te drukken.
+              <br/><br/>
+              Om je definitieve keuze in te dienen wordt er gewerkt met een drie-sterrensysteem. In totaal moet je drie thesisonderwerpen doorgeven die je ziet zitten. Geef de thesisonderwerpen die je het meest interesseren drie sterren en degene die je wat minder aanspreken twee of een ster. 
+            </p>
+          </div>
+          <div className='thesisContainer' style={{ width: thesisContainerWidth }}>
             {thesisList.map((thesis)=>{
                 return(
                     <ThesisBlock 

@@ -1,11 +1,19 @@
   footer{
     background-color: rgb(29, 141, 176);
     width: 100%;
+    height: 50px;
     position:fixed;
     bottom:0vh;
     z-index: 900;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
   }
-  .footer{
-    min-height: 50px;
-    margin-top: auto;
-  }
+
+.socials ion-icon {
+  color: white;
+}
