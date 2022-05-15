@@ -10,7 +10,6 @@ import './ThesisStyleSheet.css'
 import {authHeader, getRole, getUserId} from '../auth'
 import {ProfComp, ProfCompThesisInfo} from './ThesisProfComp'
 
-
 const api = axios.create({
   baseURL: `https://localhost:8080/thesis/`,
   headers: {
@@ -37,10 +36,12 @@ const ThesisPage = () => {
     numberOfPers: '',
     bookmarked: ''
   });
-  const [moreInfo, setMoreInfo] = useState(null);
   const [thesisContainerWidth, setThesisContainerWidth] = useState(null);
-
-
+  const [moreInfo, setMoreInfo] = useState(null)
+  const [addThesisPage, setAddThesisPage] = useState(false);
+  const toggleAddPage = () =>{
+    setAddThesisPage(!addThesisPage);
+  }
   const handleMoreInfoClick = async (event, thesis) => {
     if(thesis === null){
       setThesis(null);
@@ -213,10 +214,23 @@ const ThesisPage = () => {
                   );
                 })}
                 </div>
-            <div className="add">
-              <form className="add-table" onSubmit={addThesis}>
-              <label>New Thesis</label>
-                <input
+          </div>
+      );
+
+  } else if(getRole() === "Company" || getRole() === "Professor") {
+    return(
+      <div className='thesisPage'>
+          <h1>Thesis subjects   <button onClick={toggleAddPage} className="btn-add"><ion-icon name="add-circle-outline"></ion-icon></button></h1>
+          <p>Hier kan je een overzicht vinden van alle thesisonderwerpen die open staan. Door op "Meer info" te drukken kan je een uitgebreide beschrijving van elk thesisonderwerp lezen.
+            <br/><br/>
+            Om een thesis toe te voegen duw je op de plus knop. 
+          </p>
+          {addThesisPage && (
+          <div className='add-page'>
+            <button className='btn-exit-addPage' onClick={toggleAddPage}><ion-icon name="close-circle-outline"></ion-icon></button>
+            <h3>Add Thesis</h3>
+            <form className="form-addPage">
+            <input
                     type='text'
                     name='name'
                     required='required'
@@ -232,24 +246,22 @@ const ThesisPage = () => {
                 />
                 <input
                     type='text'
-                    name='campus'
-                    required='required'
-                    placeholder='campus'
-                    onChange={handleAddChange}
-                />
-                <input
-                    type='text'
                     name='fieldOfStudy'
                     required='required'
                     placeholder='field of study'
                     onChange={handleAddChange}
                 />
-                <input type="submit" value="add thesis" />
+                <input
+                    type='text'
+                    name='campus'
+                    required='required'
+                    placeholder='campus'
+                    onChange={handleAddChange}
+                />
             </form>
           </div>
           </div>
       );
-
   } else if(getRole() === "Company" || getRole() === "Professor") {
     return(
       <div className='thesisPage'>
@@ -274,7 +286,7 @@ const ThesisPage = () => {
             {moreInfo && (<ProfCompThesisInfo thesis={thesis} 
                                     handleMoreInfoClick={handleMoreInfoClick} 
                                     handleStarClick={handleStarClick}/>)}
-          </div>
+          </div>)}
         </div>   
     );
   }

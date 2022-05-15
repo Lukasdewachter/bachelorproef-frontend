@@ -11,12 +11,44 @@
     row-gap: 10px;
     height: 80%
 }
+.btn-exit-addPage{
+    position:absolute;
+    left:460px;
+    top:-10px;
+  font-size: 25px;
+  margin: 5px;
+  background-color: #ffffff00;
+  border:none;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+  color:rgb(255, 0, 0);
+  border-color: rgb(255, 255, 255);
+    border:none;
+    
+}
+.btn-exit-addPage:hover{
+    color:rgb(169, 6, 6);
+}
+.btn-exit-addPage:focus{
+    color: rgba(255, 0, 0, 0.775);
+    outline: none;
+}
+.add-page{
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    top:140px;
+    border-style:groove;
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
+    z-index: 10;
+}
 .btn-add{
     border: none;
     font-size: 45px;
     position:absolute;
     top: 75px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0);
     color:rgba(98, 185, 211, 0.726);
     margin: 15px;
     outline: none;
