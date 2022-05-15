@@ -6,7 +6,7 @@ import EditRow from './EditRow'
 import { Link } from 'react-router-dom'
 
 const api = axios.create({
-    baseURL: `http://localhost:8080/thesis/`
+    baseURL: `https://localhost:8080/thesis/`
   })
   const ThesisAdd = () => {
     const [thesis,setThesis] = useState([]);
