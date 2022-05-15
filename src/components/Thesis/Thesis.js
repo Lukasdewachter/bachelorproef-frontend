@@ -190,31 +190,31 @@ const ThesisPage = () => {
   if (getRole() === "Admin"){
       return (
         <div className="thesisPage">
-        <h1>Thesis list   <button className="btn-add"><ion-icon name="add-circle-outline"></ion-icon></button></h1>
-        <div className='thesisContainer'>
-                {thesisList.map((thesis)=>{
-                  return(
-                    <>
-                      {editThesisId === thesis.id ? (
-                        <EditRow
-                          editFormData={thesis}
-                          handleEditChange={handleEditChange}
-                          handleCancelClick={handleCancelClick}
+          <h1>Thesis list   <button className="btn-add"><ion-icon name="add-circle-outline"></ion-icon></button></h1>
+          <div className='thesisContainer'>
+              {thesisList.map((thesis)=>{
+                return(
+                  <>
+                    {editThesisId === thesis.id ? (
+                      <EditRow
+                        editFormData={thesis}
+                        handleEditChange={handleEditChange}
+                        handleCancelClick={handleCancelClick}
 
-                        />
-                        ):(
-                        <ReadOnly 
-                          thesis={thesis} 
-                          handleEditClick={handleEditClick}
-                          handleDeleteClick={handleDeleteClick}
-                          handleMoreInfoClick={handleMoreInfoClick}
-                        />
-                      )}
-                    </>
-                  );
-                })}
-                </div>
+                      />
+                      ):(
+                      <ReadOnly 
+                        thesis={thesis} 
+                        handleEditClick={handleEditClick}
+                        handleDeleteClick={handleDeleteClick}
+                        handleMoreInfoClick={handleMoreInfoClick}
+                      />
+                    )}
+                  </>
+                );
+              })}
           </div>
+        </div>
       );
 
   } else if(getRole() === "Company" || getRole() === "Professor") {
@@ -225,43 +225,44 @@ const ThesisPage = () => {
             <br/><br/>
             Om een thesis toe te voegen duw je op de plus knop. 
           </p>
+          
           {addThesisPage && (
-          <div className='add-page'>
-            <button className='btn-exit-addPage' onClick={toggleAddPage}><ion-icon name="close-circle-outline"></ion-icon></button>
-            <h3>Add Thesis</h3>
-            <form className="form-addPage">
-            <input
-                    type='text'
-                    name='name'
-                    required='required'
-                    placeholder='name'
-                    onChange={handleAddChange}
+            <div className='add-page'>
+              <button className='btn-exit-addPage' onClick={toggleAddPage}><ion-icon name="close-circle-outline"></ion-icon></button>
+              <h3>Add Thesis</h3>
+              <form className="form-addPage">
+                <input
+                  type='text'
+                  name='name'
+                  required='required'
+                  placeholder='name'
+                  onChange={handleAddChange}
                 />
                 <input
-                    type='text'
-                    name='description'
-                    required='required'
-                    placeholder='description'
-                    onChange={handleAddChange}
+                  type='text'
+                  name='description'
+                  required='required'
+                  placeholder='description'
+                  onChange={handleAddChange}
                 />
                 <input
-                    type='text'
-                    name='fieldOfStudy'
-                    required='required'
-                    placeholder='field of study'
-                    onChange={handleAddChange}
+                  type='text'
+                  name='fieldOfStudy'
+                  required='required'
+                  placeholder='field of study'
+                  onChange={handleAddChange}
                 />
                 <input
-                    type='text'
-                    name='campus'
-                    required='required'
-                    placeholder='campus'
-                    onChange={handleAddChange}
+                  type='text'
+                  name='campus'
+                  required='required'
+                  placeholder='campus'
+                  onChange={handleAddChange}
                 />
-            </form>
-          </div>
-          </div>
-      );
+              </form>
+            </div>)}
+        </div>
+    );
   } else if(getRole() === "Company" || getRole() === "Professor") {
     return(
       <div className='thesisPage'>
@@ -281,13 +282,13 @@ const ThesisPage = () => {
                 />
               )
             })}
-          </div>
-          <div>
-            {moreInfo && (<ProfCompThesisInfo thesis={thesis} 
-                                    handleMoreInfoClick={handleMoreInfoClick} 
-                                    handleStarClick={handleStarClick}/>)}
-          </div>)}
-        </div>   
+        </div>
+        <div>
+          {moreInfo && (<ProfCompThesisInfo thesis={thesis} 
+                                  handleMoreInfoClick={handleMoreInfoClick} 
+                                  handleStarClick={handleStarClick}/>)}
+        </div>
+      </div>   
     );
   }
    else if(getRole() === "Student" || getRole() === ""){
