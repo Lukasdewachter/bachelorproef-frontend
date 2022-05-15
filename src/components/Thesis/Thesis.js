@@ -145,8 +145,7 @@ const ThesisPage = () => {
   };
 
   const handleDeleteClick = (id) =>{
-      api.delete(`/delete?id=${id}`, {
-        
+      api.delete(`/delete?id=${id}`, {    
       });
   };
 
@@ -158,35 +157,32 @@ const ThesisPage = () => {
   const getApprovedThesis = async () =>{
     const data = await api.get('/approved');
     getBookmarked(data.data)
-
   };
 
   const getBookmarked = async (thesisList) =>{
-    const data = await apiBookmark.put('/user', {
-      userId: getUserId(),
-    });
+    if(getRole() === "Student"){
+      const data = await apiBookmark.put('/user', {
+        userId: getUserId(),
+      });
 
-    thesisList.forEach(function(thesis){
-      data.data.forEach(function(obj) {
-        if(obj.id === thesis.id){
-          thesis.bookmarked = true
-          //console.log(thesis)
-        }})
-        setThesis(thesis)
-      })
-      setThesisList(thesisList)
-      console.log(thesisList)
-
+      thesisList.forEach(function(thesis){
+        data.data.forEach(function(obj) {
+          if(obj.id === thesis.id){
+            thesis.bookmarked = true
+          }})
+          setThesis(thesis)
+        })
+    }
+    setThesisList(thesisList)
   };
 
   useEffect(()=>{
     if (getRole() === "Admin"){
       getThesis()
-    } else if(getRole() === "Student" || getRole() === ""){
+    } else {
       getApprovedThesis()
     }
   },[]);
-
   if (getRole() === "Admin"){
       return (
         <div className="thesisPage">
@@ -259,12 +255,19 @@ const ThesisPage = () => {
             <br/><br/>
             Om een thesis toe te voegen duw je op de plus knop. 
           </p>
-          <div >
+          <div className='thesisContainer'>
               {thesisList.map((thesis) => {
-                <ProfComp
+                return(
+                  <ProfComp
                   thesis={thesis}
-                />
+                  handleMoreInfoClick={handleMoreInfoClick}
+                  />
+                )
               })}
+              {moreInfo && (<ThesisInfo thesis={thesis} 
+                                      handleMoreInfoClick={handleMoreInfoClick} 
+                                      handleStarClick={handleStarClick} 
+                                      handleBookmarkClick={handleBookmarkClick}/>)}
           </div>
         </div>   
     );
