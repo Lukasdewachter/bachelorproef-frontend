@@ -30,7 +30,6 @@ function getUserId(){
     } 
 } 
 function getCoordinator(){
-    const coordinator = ''
     const coordinatorApi = axios.create({
         baseURL:`https://localhost:8080/professor/`,
         headers: {

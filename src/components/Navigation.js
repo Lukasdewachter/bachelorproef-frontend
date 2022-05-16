@@ -176,7 +176,7 @@ const coordinator = localStorage.getItem('coordinator')
                   )}
                 {coordinator==="true" && (
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/Contact">
+                  <NavLink className="nav-link" to="/Approve-Thesis">
                     Approve page
                   </NavLink>
                 </li>)}

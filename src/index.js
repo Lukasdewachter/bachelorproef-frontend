@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Navigation from './components/Navigation'
 import Contact from './components/Contact';
+import {ApproveThesis} from './components/Thesis/ApproveThesis';
 import './index.css';
 //import reportWebVitals from './reportWebVitals';
 
@@ -24,6 +25,7 @@ ReactDOM.render(
     <Route path="/companies" element={<Companies />}/>
     <Route path="/professors" element={<Professors />}/>
     <Route path="/contact" element={<Contact />}/>
+    <Route path="/Approve-Thesis" element={<ApproveThesis/>}/>
   </Routes>
   <Footer />
 </Router>,
