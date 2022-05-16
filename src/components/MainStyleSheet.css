@@ -9,7 +9,8 @@ nav{
     height: 80px;
 }
 #root {
-    margin-top: 80px;
+    height: 100%;
+    padding-top: 80px;
     padding-bottom: 50px;
 }
 table {
