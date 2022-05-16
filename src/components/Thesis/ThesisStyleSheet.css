@@ -34,8 +34,8 @@
     outline: none;
 }
 .add-page{
-    width: 500px;
-    height: 500px;
+    width: 520px;
+    padding: 10px;
     position: absolute;
     top:140px;
     border-style:groove;
@@ -47,7 +47,7 @@
     border: none;
     font-size: 45px;
     position:absolute;
-    top: 75px;
+    top: 65px;
     background-color: rgba(255, 255, 255, 0);
     color:rgba(98, 185, 211, 0.726);
     margin: 15px;
@@ -136,4 +136,20 @@ ion-icon {
 
 .starSelect > ion-icon:hover ~ ion-icon:before{
     color: black;
+}
+.select-pers{
+    max-width: 220px;
+    margin:5px;
+    border-radius:5px;
+}
+textarea{
+    width: 97.5%;
+    margin: 5px;
+    border-radius: 5px;
+}
+.btn-add-2{
+    margin:5px;
+    border-radius: 5px;
+    background-color: rgb(98, 185, 211);
+    color:white;
 }

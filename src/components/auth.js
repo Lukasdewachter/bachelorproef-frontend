@@ -29,8 +29,19 @@ function getUserId(){
         return "";
     } 
 } 
-
-export {authHeader, getRole, getUserId}
+function getCoordinator(){
+    const coordinatorApi = axios.create({
+        baseURL:`https://localhost:8080/professor/`,
+        headers: {
+          'Authorization': ''+authHeader(),
+        }
+      })     
+    const coordinator = coordinatorApi.put('/iscoordinator',{
+        userId:getUserId()
+    })
+    return coordinator; 
+}
+export {authHeader, getRole, getUserId, getCoordinator}
 
 function refreshToken() {
 

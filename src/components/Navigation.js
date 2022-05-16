@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import {authHeader,getRole} from "./auth";
+import {authHeader,getRole, getUserId,getCoordinator} from "./auth";
 import '../components/MainStyleSheet.css'
 
 const api = axios.create({
@@ -9,10 +9,10 @@ const api = axios.create({
     'Content-Type': 'application/json'
     }
 });
-
 function Navigation() {
   const [modal, setModal] = useState(false)
   const loggedIn = authHeader();
+  const coordinator = getCoordinator();
   const toggleLogin = () =>{
     setModal(!modal)
   }
@@ -172,6 +172,12 @@ const handleCheckbox =()=>{
                   </NavLink>
                 </li>
                   )}
+                {getCoordinator()==="true" && (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/Contact">
+                    Approve page
+                  </NavLink>
+                </li>)}
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/Contact">
                     Contact
