@@ -18,7 +18,7 @@ const ThesisBlock = ({thesis, handleMoreInfoClick, handleBookmarkClick}) =>{
             <p><ion-icon name="book"></ion-icon> {thesis.fieldOfStudy}</p>
             <p><ion-icon name="school"></ion-icon> {thesis.promotor}</p>
             <p><ion-icon name="people"></ion-icon> {thesis.numberOfPers}</p>
-            <button onClick={(event)=>handleMoreInfoClick(event, thesis)} className="thesisMoreInfo">Meer info</button>
+            <button onClick={(event)=>handleMoreInfoClick(event, thesis)} className="thesisMoreInfo">More info</button>
         </div>  
         );
 };
@@ -37,7 +37,7 @@ const ThesisInfo = ({thesis, handleMoreInfoClick, handleStarClick, handleBookmar
                 )}
                 {thesis.name}
             </h1>
-            <ion-button onClick={(event)=>handleMoreInfoClick(event, null)}><ion-icon name="close" size="large" class="thesisInfoClose"  title="Sluit meer info"></ion-icon></ion-button>
+            <ion-button onClick={(event)=>handleMoreInfoClick(event, null)}><ion-icon name="close" size="large" class="thesisInfoClose"  title="Close more info"></ion-icon></ion-button>
             <p>{thesis.longDescription}</p>
             <p><ion-icon name="location-outline"></ion-icon> {thesis.campus}</p>
             <p><ion-icon name="book"></ion-icon> {thesis.fieldOfStudy}</p>

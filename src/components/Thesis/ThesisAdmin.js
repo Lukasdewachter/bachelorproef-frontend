@@ -11,7 +11,7 @@ const ReadOnly = ({ thesis, handleEditClick,handleDeleteClick,handleMoreInfoClic
             <p><ion-icon name="school"></ion-icon> {thesis.promotor}</p>
             <p><ion-icon name="people"></ion-icon> {thesis.numberOfPers}</p>
             <ion-icon name="star-outline" size="medium"></ion-icon>
-            <button onClick={(event)=>handleMoreInfoClick(event, thesis)} className="thesisMoreInfo">Meer info</button>
+            <button onClick={(event)=>handleMoreInfoClick(event, thesis)} className="thesisMoreInfo">More info</button>
         </div>
         );
 };

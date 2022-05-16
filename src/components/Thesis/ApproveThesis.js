@@ -85,7 +85,7 @@ const ApproveThesisInfo = ({thesis, handleMoreInfoClick}) => {
     console.log(thesis)
     return(
         <div className="thesisInfoBlock">
-            <ion-button onClick={(event)=>handleMoreInfoClick(event, null)}><ion-icon name="close" size="large" class="thesisInfoClose"  title="Sluit meer info"></ion-icon></ion-button>
+            <ion-button onClick={(event)=>handleMoreInfoClick(event, null)}><ion-icon name="close" size="large" class="thesisInfoClose"  title="Close more info"></ion-icon></ion-button>
             <h1>{thesis.name}</h1>
             <p>{thesis.longDescription}</p>
             <p><ion-icon name="location-outline"></ion-icon> {thesis.campus}</p>

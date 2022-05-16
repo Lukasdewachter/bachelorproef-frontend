@@ -130,41 +130,41 @@ const coordinator = localStorage.getItem('coordinator')
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/Thesis">
-                    Thesissen
+                    Theses
                   </NavLink>
                 </li>
                 {getRole()==="Student" && (
                   <li className="nav-item">
                     <NavLink className="nav-link" to="/Bookmarks">
-                    Bladwijzers
+                    Bookmarks
                     </NavLink>
                   </li>
                 )}
                 {getRole()==="Admin" && (
                   <li className="nav-item">
                   <NavLink className="nav-link" to="/Students">
-                   Studenten
+                   Students
                   </NavLink>
                 </li>
                 )}
                 {getRole()==="Professor" && (
                   <li className="nav-item">
                   <NavLink className="nav-link" to="/Students">
-                   Studenten
+                  Students
                   </NavLink>
                 </li>
                 )}
                 {getRole()==="Admin" && (
                   <li className="nav-item">
                   <NavLink className="nav-link" to="/Professors">
-                    Professoren
+                    Professors
                   </NavLink>
                 </li>
                   )}
                   {getRole()==="Admin" && (
                     <li className="nav-item">
                   <NavLink className="nav-link" to="/Companies">
-                    Bedrijven
+                    Companies
                   </NavLink>
                 </li>
                   )}

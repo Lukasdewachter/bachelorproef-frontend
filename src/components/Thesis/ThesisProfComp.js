@@ -11,7 +11,7 @@ const ProfComp = ({thesis, handleMoreInfoClick }) =>{
             <p><ion-icon name="school"></ion-icon> {thesis.promotor}</p>
             <p><ion-icon name="people"></ion-icon> {thesis.numberOfPers}</p>
             <ion-icon name="star-outline" size="medium"></ion-icon>
-            <button onClick={(event)=>handleMoreInfoClick(event, thesis)} className="thesisMoreInfo">Meer info</button>
+            <button onClick={(event)=>handleMoreInfoClick(event, thesis)} className="thesisMoreInfo">More info</button>
         </div>
         );
 };
@@ -21,7 +21,7 @@ const ProfCompThesisInfo = ({thesis, handleMoreInfoClick}) => {
     console.log(thesis.bookmarked)
     return(
         <div className="thesisInfoBlock">
-            <ion-button onClick={(event)=>handleMoreInfoClick(event, null)}><ion-icon name="close" size="large" class="thesisInfoClose"  title="Sluit meer info"></ion-icon></ion-button>
+            <ion-button onClick={(event)=>handleMoreInfoClick(event, null)}><ion-icon name="close" size="large" class="thesisInfoClose"  title="Close more info"></ion-icon></ion-button>
             <h1>{thesis.name}</h1>
             <p>{thesis.longDescription}</p>
             <p><ion-icon name="location-outline"></ion-icon> {thesis.campus}</p>

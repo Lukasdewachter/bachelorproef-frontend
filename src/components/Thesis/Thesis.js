@@ -220,9 +220,9 @@ const ThesisPage = () => {
     return(
       <div className='thesisPage'>
           <h1>Thesis subjects   <button onClick={toggleAddPage} className="btn-add"><ion-icon name="add-circle-outline"></ion-icon></button></h1>
-          <p>Hier kan je een overzicht vinden van alle thesisonderwerpen die open staan. Door op "Meer info" te drukken kan je een uitgebreide beschrijving van elk thesisonderwerp lezen.
+          <p>Here you can find an overview of all the thesis subjects that are open for the moment. When you press the button "More info", you'll get a screen with more information about the specific thesis subject.
             <br/><br/>
-            Om een thesis toe te voegen duw je op de plus knop. 
+            Press the plus button to add a new thesis.
           </p>
           
           {addThesisPage && (
@@ -317,12 +317,10 @@ const ThesisPage = () => {
     return(
         <div className='thesisPage'>
           <div style={{ width: thesisContainerWidth }}>
-            <h1 className='thesisSectionTitle'>THESISONDERWERPEN</h1>
-            <p>Hier kan je een overzicht vinden van alle thesisonderwerpen die open staan. Door op "Meer info" te drukken kan je een uitgebreide beschrijving van elk thesisonderwerp lezen.
+            <h1 className='thesisSectionTitle'>Thesis subjects</h1>
+            <p>Here you can find an overview of all the thesis subjects that are open for the moment. When you press the button "More info", you'll get a screen with more information about the specific thesis subject.
               <br/><br/>
-              Thesisonderwerpen die je interesseren kunnen opgeslagen worden door op het bladwijzericoon te drukken.
-              <br/><br/>
-              Om je definitieve keuze in te dienen wordt er gewerkt met een drie-sterrensysteem. In totaal moet je drie thesisonderwerpen doorgeven die je ziet zitten. Geef de thesisonderwerpen die je het meest interesseren drie sterren en degene die je wat minder aanspreken twee of een ster. 
+              You can save the thesis subjects that you are interested in by pressing the bookmark icon.
             </p>
           </div>
           <div className='thesisContainer' style={{ width: thesisContainerWidth }}>

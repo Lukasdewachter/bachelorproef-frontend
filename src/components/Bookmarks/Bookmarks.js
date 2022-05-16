@@ -171,12 +171,10 @@ const BookmarksPage = () => {
           <div className='bookmarksInfo' style={{ width: thesisContainerWidth }}>
             <div>
               <h1 className='thesisSectionTitle'>BLADWIJZERS</h1>
-              <p>Hier kan je een overzicht vinden van alle thesisonderwerpen die open staan. Door op "Meer info" te drukken kan je een uitgebreide beschrijving van elk thesisonderwerp lezen.
-                <br/><br/>
-                Thesisonderwerpen die je interesseren kunnen opgeslagen worden door op het bladwijzericoon te drukken.
-                <br/><br/>
-                Om je definitieve keuze in te dienen wordt er gewerkt met een drie-sterrensysteem. In totaal moet je drie thesisonderwerpen doorgeven die je ziet zitten. Geef de thesisonderwerpen die je het meest interesseren drie sterren en degene die je wat minder aanspreken twee of een ster. 
-              </p>
+              <p>Here you can find an overview of all the thesis subjects that you gave a bookmark. When you press the button "More info", you'll get a screen with more information about the specific thesis subject.
+              <br/><br/>
+              On the right side you can select your three preferences of theses. You can save them to edit them later, or make your decision permanent by submitting your choice.
+            </p>
             </div>
             <div>
               <Preferences thesisList={thesisList} 
