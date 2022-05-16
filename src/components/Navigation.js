@@ -141,10 +141,10 @@ const coordinator = localStorage.getItem('coordinator')
                 </li>
                 {getRole()==="Student" && (
                   <li className="nav-item">
-                  <NavLink className="nav-link" to="/Bookmarks">
-                   Bladwijzers
-                  </NavLink>
-                </li>
+                    <NavLink className="nav-link" to="/Bookmarks">
+                    Bladwijzers
+                    </NavLink>
+                  </li>
                 )}
                 {getRole()==="Admin" && (
                   <li className="nav-item">
