@@ -39,7 +39,8 @@ function ApproveThesis(){
           setThesisContainerWidth('70%');
         }
     }
-    const approveThesis = (event,thesis) =>{
+    const approveThesis = (event, thesis) =>{
+        console.log(thesis)
         event.preventDefault();
         api.put(`/update/${thesis.id}`,{
             approved:true
@@ -57,33 +58,18 @@ function ApproveThesis(){
          {coordinator==="true" && (
         <div>
             <h3>Here you can approve new theses</h3>
-            <div>
+            <div className='thesisContainer' style={{ width: thesisContainerWidth }}>
             {thesis.map((thesis)=>{
                 return(
-                    <div>
-                    {thesis.approved===false && (
-                    <div className='thesisContainer' style={{ width: thesisContainerWidth }}>
-                    <div className="thesisBlock">
-                    
-                    <h2>{thesis.name}</h2>
-                    <p>{thesis.shortDescription}</p>
-                    <p><ion-icon name="location-outline"></ion-icon> {thesis.campus}</p>
-                    <p><ion-icon name="book"></ion-icon> {thesis.fieldOfStudy}</p>
-                    <p><ion-icon name="school"></ion-icon> {thesis.promotor}</p>
-                    <p><ion-icon name="people"></ion-icon> {thesis.numberOfPers}</p>
-                    <button className="btn-approve" onClick={(event)=>approveThesis(event,thesis)}>Approve</button>
-                    <button onClick={(event)=>handleMoreInfoClick(event, thesis)} className="thesisMoreInfo">More info</button>
-                    {moreInfo && (
-                        <div>
-                        <ApproveThesisInfo 
-                            thesis={currentThesis} 
-                            handleMoreInfoClick={handleMoreInfoClick} 
-                                      />
-                        </div>)}
-                    </div>
-                    </div>)}</div>)})}
-             </div>
-             
+                    <ThesisBlok
+                        thesis={thesis}
+                        currentThesis={currentThesis}
+                        moreInfo={moreInfo}
+                        approveThesis={approveThesis}
+                        handleMoreInfoClick={handleMoreInfoClick}
+                    />
+                )})}
+             </div> 
         </div>
         )}
         </div>
@@ -95,6 +81,34 @@ function ApproveThesis(){
         </div>
     );
 }
+
+const ThesisBlok= ({thesis, currentThesis, approveThesis, handleMoreInfoClick, moreInfo}) => {
+    if(thesis.approved===false){
+        return(
+            <div className="thesisBlock">
+            <h2>{thesis.name}</h2>
+            <p>{thesis.shortDescription}</p>
+            <p><ion-icon name="location-outline"></ion-icon> {thesis.campus}</p>
+            <p><ion-icon name="book"></ion-icon> {thesis.fieldOfStudy}</p>
+            <p><ion-icon name="school"></ion-icon> {thesis.promotor}</p>
+            <p><ion-icon name="people"></ion-icon> {thesis.numberOfPers}</p>
+            <button className="btn-approve" onClick={(event)=>approveThesis(event,thesis)}>Approve</button>
+            <button onClick={(event)=>handleMoreInfoClick(event, thesis)} className="thesisMoreInfo">More info</button>
+            {moreInfo && (
+                <div>
+                <ApproveThesisInfo 
+                    thesis={currentThesis} 
+                    handleMoreInfoClick={handleMoreInfoClick} 
+                            />
+                </div>)}
+            </div>
+        ) 
+    } else {
+        return(null)
+    }
+    
+}
+
 const ApproveThesisInfo = ({thesis, handleMoreInfoClick}) => {
     console.log(thesis)
     return(
@@ -109,4 +123,4 @@ const ApproveThesisInfo = ({thesis, handleMoreInfoClick}) => {
         </div>
     )
 }  
-export {ApproveThesis, ApproveThesisInfo};
+export {ApproveThesis, ApproveThesisInfo, ThesisBlok};
