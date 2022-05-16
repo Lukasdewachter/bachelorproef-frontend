@@ -9,8 +9,8 @@ import Professors from "./components/Professor/Professors";
 import Footer from './components/Footer';
 import Home from './components/Home';
 import Navigation from './components/Navigation'
-import Contact from './components/Contact';
 import {ApproveThesis} from './components/Thesis/ApproveThesis';
+import AssignThesis from './components/Thesis/AssignThesis'
 import './index.css';
 //import reportWebVitals from './reportWebVitals';
 
@@ -24,8 +24,8 @@ ReactDOM.render(
     <Route path="/students" element={<Student />}/>
     <Route path="/companies" element={<Companies />}/>
     <Route path="/professors" element={<Professors />}/>
-    <Route path="/contact" element={<Contact />}/>
     <Route path="/Approve-Thesis" element={<ApproveThesis/>}/>
+    <Route path="/Assign-Thesis" element={<AssignThesis/>}/>
   </Routes>
   <Footer />
 </Router>,

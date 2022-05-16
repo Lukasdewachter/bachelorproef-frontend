@@ -180,11 +180,12 @@ const coordinator = localStorage.getItem('coordinator')
                     Approve page
                   </NavLink>
                 </li>)}
+                {coordinator==="true" && (
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/Contact">
-                    Contact
+                  <NavLink className="nav-link" to="/Assign-Thesis">
+                    Assign Student
                   </NavLink>
-                </li>
+                </li>)}
               </ul>
             </div>
             {loggedIn==null && (
