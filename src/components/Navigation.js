@@ -130,7 +130,7 @@ const coordinator = localStorage.getItem('coordinator')
             <div>
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/Thesis">
+                  <NavLink className="nav-link" to="/">
                     Thesissen
                   </NavLink>
                 </li>
