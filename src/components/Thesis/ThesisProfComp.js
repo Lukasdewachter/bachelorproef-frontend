@@ -2,6 +2,8 @@ import React from "react";
 import './ThesisStyleSheet.css'
 
 const ProfComp = ({thesis, handleMoreInfoClick }) =>{
+    
+  
     return(
         <div  className="thesisBlock">
             <h2>{thesis.name}</h2>
@@ -10,7 +12,6 @@ const ProfComp = ({thesis, handleMoreInfoClick }) =>{
             <p><ion-icon name="book"></ion-icon> {thesis.fieldOfStudy}</p>
             <p><ion-icon name="school"></ion-icon> {thesis.promotor}</p>
             <p><ion-icon name="people"></ion-icon> {thesis.numberOfPers}</p>
-            <ion-icon name="star-outline" size="medium"></ion-icon>
             <button onClick={(event)=>handleMoreInfoClick(event, thesis)} className="thesisMoreInfo">Meer info</button>
         </div>
         );

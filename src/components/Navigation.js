@@ -38,6 +38,7 @@ function Navigation() {
       password: login.password
     })
     .then(function (response) {
+      event.preventDefault();
       localStorage.setItem("user", JSON.stringify(response.data))
       getCoordinator();
       setModal(false);
