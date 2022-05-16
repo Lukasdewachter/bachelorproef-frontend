@@ -14,9 +14,7 @@ function ApproveThesis(){
     const [thesis, setThesis] = useState([]);
     const getSubmittedThesis =async () =>{
         const data = await api.get('/all');
-
-            setThesis(data.data)    
-        
+            setThesis(data.data)
     }
     const [thesisContainerWidth, setThesisContainerWidth] = useState(null);
     const [currentThesis, setCurrentThesis] = useState({
@@ -26,7 +24,8 @@ function ApproveThesis(){
         fieldOfStudy: '',
         campus: '',
         promotor: '',
-        numberOfPers: ''
+        numberOfPers: '',
+        approved:''
     })
     const [moreInfo, setMoreInfo] = useState(false)
     const handleMoreInfoClick = async (event, thesis) => {
@@ -39,20 +38,32 @@ function ApproveThesis(){
           setMoreInfo(true);
           setThesisContainerWidth('70%');
         }
-      }
+    }
+    const approveThesis = (event,thesis) =>{
+        event.preventDefault();
+        api.put(`/update/${thesis.id}`,{
+            approved:true
+        }).then(function(){
+            getSubmittedThesis();
+        })
+    }
+   
     useEffect(()=>{
         getSubmittedThesis()
     },[]);
     return (
-       
+       <div>
         <div className="thesisPage">
          {coordinator==="true" && (
         <div>
             <h3>Here you can approve new theses</h3>
-            <div className='thesisContainer' style={{ width: thesisContainerWidth }}>
+            <div>
             {thesis.map((thesis)=>{
                 return(
-                <div className="thesisBlock">
+                    <div>
+                    {thesis.approved===false && (
+                    <div className='thesisContainer' style={{ width: thesisContainerWidth }}>
+                    <div className="thesisBlock">
                     
                     <h2>{thesis.name}</h2>
                     <p>{thesis.shortDescription}</p>
@@ -60,6 +71,7 @@ function ApproveThesis(){
                     <p><ion-icon name="book"></ion-icon> {thesis.fieldOfStudy}</p>
                     <p><ion-icon name="school"></ion-icon> {thesis.promotor}</p>
                     <p><ion-icon name="people"></ion-icon> {thesis.numberOfPers}</p>
+                    <button className="btn-approve" onClick={(event)=>approveThesis(event,thesis)}>Approve</button>
                     <button onClick={(event)=>handleMoreInfoClick(event, thesis)} className="thesisMoreInfo">More info</button>
                     {moreInfo && (
                         <div>
@@ -68,12 +80,14 @@ function ApproveThesis(){
                             handleMoreInfoClick={handleMoreInfoClick} 
                                       />
                         </div>)}
-        </div>
-             )})}
+                    </div>
+                    </div>)}</div>)})}
              </div>
+             
         </div>
         )}
-        {coordinator !="true" && (
+        </div>
+        {coordinator !=="true" && (
             <div>
                 <h1>Not authorised</h1>
             </div>

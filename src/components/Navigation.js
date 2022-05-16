@@ -38,6 +38,7 @@ function Navigation() {
       password: login.password
     })
     .then(function (response) {
+      event.preventDefault();
       localStorage.setItem("user", JSON.stringify(response.data))
       getCoordinator();
       setModal(false);
@@ -129,7 +130,7 @@ const coordinator = localStorage.getItem('coordinator')
             <div>
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/Thesis">
+                  <NavLink className="nav-link" to="/">
                     Theses
                   </NavLink>
                 </li>

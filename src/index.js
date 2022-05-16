@@ -7,7 +7,6 @@ import Student from './components/Student/Student';
 import Companies from './components/Companies/Companies';
 import Professors from "./components/Professor/Professors";
 import Footer from './components/Footer';
-import Home from './components/Home';
 import Navigation from './components/Navigation'
 import {ApproveThesis} from './components/Thesis/ApproveThesis';
 import AssignThesis from './components/Thesis/AssignThesis'
@@ -19,7 +18,6 @@ ReactDOM.render(
   <Navigation />
   <Routes>
     <Route path="/" element={<ThesisPage />} />
-    <Route path="/thesis" element={<ThesisPage />} />
     <Route path="/bookmarks" element={<Bookmarks />} />
     <Route path="/students" element={<Student />}/>
     <Route path="/companies" element={<Companies />}/>
