@@ -29,7 +29,7 @@ function ApproveThesis(){
         numberOfPers: ''
     })
     const [moreInfo, setMoreInfo] = useState(false)
-    const handleMoreInfoClick = async (thesis) => {
+    const handleMoreInfoClick = async (event, thesis) => {
         if(thesis === null){
           setCurrentThesis(null);
           setMoreInfo(false);
@@ -82,6 +82,7 @@ function ApproveThesis(){
     );
 }
 const ApproveThesisInfo = ({thesis, handleMoreInfoClick}) => {
+    console.log(thesis)
     return(
         <div className="thesisInfoBlock">
             <ion-button onClick={(event)=>handleMoreInfoClick(event, null)}><ion-icon name="close" size="large" class="thesisInfoClose"  title="Sluit meer info"></ion-icon></ion-button>
