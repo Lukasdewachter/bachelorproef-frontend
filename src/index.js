@@ -9,7 +9,7 @@ import Professors from "./components/Professor/Professors";
 import Footer from './components/Footer';
 import Navigation from './components/Navigation'
 import {ApproveThesis} from './components/Thesis/ApproveThesis';
-import AssignThesis from './components/Thesis/AssignThesis'
+import {AssignThesisPage} from './components/Thesis/AssignThesis'
 import './index.css';
 //import reportWebVitals from './reportWebVitals';
 
@@ -23,7 +23,7 @@ ReactDOM.render(
     <Route path="/companies" element={<Companies />}/>
     <Route path="/professors" element={<Professors />}/>
     <Route path="/Approve-Thesis" element={<ApproveThesis/>}/>
-    <Route path="/Assign-Thesis" element={<AssignThesis/>}/>
+    <Route path="/Assign-Thesis" element={<AssignThesisPage/>}/>
   </Routes>
   <Footer />
 </Router>,
