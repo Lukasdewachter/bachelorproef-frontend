@@ -30,16 +30,19 @@ function getUserId(){
     } 
 } 
 function getCoordinator(){
+    const coordinator = ''
     const coordinatorApi = axios.create({
         baseURL:`https://localhost:8080/professor/`,
         headers: {
           'Authorization': ''+authHeader(),
+          'Content-Type': 'application/json'
         }
       })     
-    const coordinator = coordinatorApi.put('/iscoordinator',{
+    coordinatorApi.put('/iscoordinator',{
         userId:getUserId()
+    }).then(function(response){
+        localStorage.setItem("coordinator",response.data)
     })
-    return coordinator; 
 }
 export {authHeader, getRole, getUserId, getCoordinator}
 
