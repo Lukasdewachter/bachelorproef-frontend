@@ -3,8 +3,8 @@ import React from 'react'
 import '../MainStyleSheet.css'
 import './Bookmarks.css'
 
-const Preferences = ({thesisList, preference, save, submit, registerChange}) => {
-    return(
+const Preferences = ({thesisList, preference, saved, save, submit, registerChange}) => {
+  return(
           <div className='preferencesContainer'>
               <div className='preferences'>
                 <div>
@@ -69,7 +69,7 @@ const Preferences = ({thesisList, preference, save, submit, registerChange}) => 
 
                   {!preference.submitted  && (
                         <div>
-                            <button className="btn-pref" onClick={save}>Save</button>
+                            <button className="btn-pref" onClick={save} style={{  'background-color': saved }}>Save</button>
                             <button className="btn-pref" onClick={submit}>Submit</button>
                         </div>
                       )

@@ -49,7 +49,8 @@ const BookmarksPage = () => {
     firstChoice: '',
     secondChoice: '',
     thirdChoice: '',
-    submitted: ''
+    submitted: '',
+    saved: false
   });
 
 
@@ -130,22 +131,16 @@ const BookmarksPage = () => {
         preference.firstChoice === preference.thirdChoice){
           window.alert("You have to choose for every preference a different thesis")
     } else {
-      const newPreference = {...preference};
-      console.log(newPreference["idStudent"])
-
-      newPreference["idStudent"] = getUserId()
-      console.log(newPreference["idStudent"])
-
-      setPreference(newPreference);
-      console.log(preference)
       await apiPref.post(`/update/${getUserId()}`, {
-          idStudent: preference.idStudent, 
+          idStudent: getUserId(), 
           firstChoice: preference.firstChoice,
           secondChoice: preference.secondChoice,
           thirdChoice: preference.thirdChoice,
           submitted: false
         });
-      getPreference()
+      var newPreference = {...preference};
+      newPreference["saved"] = "green"
+      setPreference(newPreference);
     }
   }
 
@@ -156,7 +151,7 @@ const BookmarksPage = () => {
           window.alert("You have to choose for every preference a different thesis")
         } else {
             await apiPref.post(`/update/${getUserId()}`, {
-                idStudent: preference.userId, 
+                idStudent: getUserId(), 
                 firstChoice: preference.firstChoice,
                 secondChoice: preference.secondChoice,
                 thirdChoice: preference.thirdChoice,
@@ -186,6 +181,7 @@ const BookmarksPage = () => {
             <div>
               <Preferences thesisList={thesisList} 
                           preference={preference}
+                          saved={preference.saved}
                           save={save}
                           submit={submit}
                           registerChange={registerChange}/>

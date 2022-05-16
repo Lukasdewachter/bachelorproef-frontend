@@ -53,3 +53,7 @@ label {
   flex-direction: row;
   padding-right: 10px;
 }
+
+.prefSaved{
+  color: green;
+}
