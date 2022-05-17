@@ -117,7 +117,7 @@ const AssignThesis = ({thesis, handleAssignClick}) => {
         setAssigned(newFormData);
     }
     const assignStudent=(thesis)=>{
-        studentApi.post(`/update/${assigned.idStudent}`,{
+        studentApi.put(`/update/${assigned.idStudent}`,{
             thesisId:thesis.id
         })
     }
@@ -138,16 +138,16 @@ const AssignThesis = ({thesis, handleAssignClick}) => {
                 <select name="idStudent" onChange={handleAssignChange}>
                     <option value="" selected disabled hidden>Choose First option</option>
                     {student.firstChoice === thesis.id && (
-                       <option value={student.idStudent}>first choice student {student.idStudent}</option> 
+                       <option value={student.idStudent}>First choice student {student.idStudent}</option> 
                     )}
                     {student.secondChoice === thesis.id && (
-                       <option value={student.idStudent}>second choice student {student.idStudent}</option> 
+                       <option value={student.idStudent}>Second choice student {student.idStudent}</option> 
                     )}
                     {student.thirdChoice === thesis.id && (
-                       <option value={student.idStudent}>thrid choice student {student.idStudent}</option> 
+                       <option value={student.idStudent}>Third choice student {student.name}</option> 
                     )}
                </select>
-               <button onClick={assignStudent(thesis)}>Comfirm</button>
+               <button onClick={assignStudent(thesis)} className="confirm-btn">Confirm</button>
                </div>
             )})}
             
