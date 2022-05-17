@@ -9,7 +9,12 @@ const api = axios.create({
         'Authorization': ''+authHeader(),
       }
 });
-
+const studentApi = axios.create({
+    baseURL:`https://localhost:8080/student/`,
+    headers: {
+        'Authorization': ''+authHeader(),
+      }
+})
 const prefApi = axios.create({
     baseURL: `https://localhost:8080/preferences/`,
     headers: {
@@ -48,16 +53,9 @@ function AssignThesisPage(){
           setCurrentThesis(thesis);
           setMoreInfo(true);
           setThesisContainerWidth('70%');
-          getStudentsWithPref(thesis);
         }
       }
-
-    const getStudentsWithPref =async(thesis) => {
-        const data = await api.get(`/all`);
-        if(thesis.id === data.data.firstChoice){
-
-        }
-    }
+    
 
     useEffect(()=>{
         getSubmittedThesis()
@@ -101,7 +99,31 @@ function AssignThesisPage(){
     );
 }
 const AssignThesis = ({thesis, handleAssignClick}) => {
-    console.log(thesis)
+    const [studentsPref, setStudentsPref] = useState([]);
+    const getStudentsPref =async(thesis) => {
+        const data = await prefApi.get(`/all`);
+        setStudentsPref(data.data);
+    }
+    const [assigned, setAssigned] = useState({
+        idStudent:''
+    }
+    )
+    const handleAssignChange=(event)=>{
+        event.preventDefault();
+        const fieldName = event.target.getAttribute('name');
+        const fieldValue = event.target.value;
+        const newFormData = {...assigned};
+        newFormData[fieldName] = fieldValue;
+        setAssigned(newFormData);
+    }
+    const assignStudent=(thesis)=>{
+        studentApi.post(`/update/${assigned.idStudent}`,{
+            thesisId:thesis.id
+        })
+    }
+    useEffect(()=>{
+        getStudentsPref();
+    },[]);
     return(
         <div className="thesisInfoBlock">
             <ion-button onClick={(event)=>handleAssignClick(event, null)}><ion-icon name="close" size="large" class="thesisInfoClose"  title="Sluit meer info"></ion-icon></ion-button>
@@ -110,7 +132,25 @@ const AssignThesis = ({thesis, handleAssignClick}) => {
             <p><ion-icon name="location-outline"></ion-icon> {thesis.campus}</p>
             <p><ion-icon name="book"></ion-icon> {thesis.fieldOfStudy}</p>
             <p><ion-icon name="school"></ion-icon> {thesis.promotor}</p>
-            <GetStudents thesis={thesis}/>
+            {studentsPref.map((student)=>{
+                return(
+                <div>
+                <select name="idStudent" onChange={handleAssignChange}>
+                    <option value="" selected disabled hidden>Choose First option</option>
+                    {student.firstChoice === thesis.id && (
+                       <option value={student.idStudent}>first choice student {student.idStudent}</option> 
+                    )}
+                    {student.secondChoice === thesis.id && (
+                       <option value={student.idStudent}>second choice student {student.idStudent}</option> 
+                    )}
+                    {student.thirdChoice === thesis.id && (
+                       <option value={student.idStudent}>thrid choice student {student.idStudent}</option> 
+                    )}
+               </select>
+               <button onClick={assignStudent(thesis)}>Comfirm</button>
+               </div>
+            )})}
+            
         </div>
     )
 }  
