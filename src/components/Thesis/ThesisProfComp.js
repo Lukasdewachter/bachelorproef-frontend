@@ -19,7 +19,6 @@ const ProfComp = ({thesis, handleMoreInfoClick }) =>{
 
 
 const ProfCompThesisInfo = ({thesis, handleMoreInfoClick}) => {
-    console.log(thesis.bookmarked)
     return(
         <div className="thesisInfoBlock">
             <ion-button onClick={(event)=>handleMoreInfoClick(event, null)}><ion-icon name="close" size="large" class="thesisInfoClose"  title="Close more info"></ion-icon></ion-button>

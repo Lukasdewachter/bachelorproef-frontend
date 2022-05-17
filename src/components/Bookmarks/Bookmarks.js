@@ -116,16 +116,12 @@ const BookmarksPage = () => {
   const registerChange = (event) =>{
     const fieldName = event.target.getAttribute('name');
     const fieldValue = event.target.value;
-    console.log(fieldName)
-    console.log(fieldValue)
     const newPreference = {...preference};
     newPreference[fieldName] = fieldValue;
     setPreference(newPreference);
-    console.log(preference)
   };
 
   const save = async () =>{
-    console.log(preference)
     if(preference.firstChoice === preference.secondChoice ||
         preference.secondChoice === preference.thirdChoice ||
         preference.firstChoice === preference.thirdChoice){

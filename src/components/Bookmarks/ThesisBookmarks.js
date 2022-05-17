@@ -31,7 +31,6 @@ const ThesisBlock = ({thesis, handleMoreInfoClick, handleBookmarkClick}) =>{
 
 
 const ThesisInfo = ({thesis, handleMoreInfoClick, handleBookmarkClick}) => {
-    console.log(thesis.bookmarked)
     return(
         <div className="thesisInfoBlock">
             <h1>

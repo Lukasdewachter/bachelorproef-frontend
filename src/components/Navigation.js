@@ -55,7 +55,7 @@ function Navigation() {
   const logout = () =>{
     localStorage.removeItem('coordinator')
     localStorage.removeItem('user');
-    window.location.reload();
+    window.open("/", "_self");
   }
 const [registerRole, setRegisterRole] = useState({
   role:''
@@ -90,10 +90,8 @@ const registerService =()=>{
     coordinator: addData.coordinator,
     companyName: addData.companyName
   }).then(function(response){
-    console.log(response)
   })
   .catch(function(error){
-    console.log(error);
   })
 }
 const [addData, setAddData] = useState({

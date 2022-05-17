@@ -145,3 +145,11 @@ textarea{
     background-color: rgb(29, 141, 176);
     color: white;
 }
+
+.confirm-btn{
+    border-radius: 3px;
+    border-color: rgb(29, 141, 176);
+    background-color: rgb(29, 141, 176);
+    color: white;
+    margin-left: 5px;
+}

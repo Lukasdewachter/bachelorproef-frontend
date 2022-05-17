@@ -40,7 +40,6 @@ function ApproveThesis(){
         }
     }
     const approveThesis = (event, thesis) =>{
-        console.log(thesis)
         event.preventDefault();
         api.put(`/update/${thesis.id}`,{
             approved:true
@@ -110,7 +109,6 @@ const ThesisBlok= ({thesis, currentThesis, approveThesis, handleMoreInfoClick, m
 }
 
 const ApproveThesisInfo = ({thesis, handleMoreInfoClick}) => {
-    console.log(thesis)
     return(
         <div className="thesisInfoBlock">
             <ion-button onClick={(event)=>handleMoreInfoClick(event, null)}><ion-icon name="close" size="large" class="thesisInfoClose"  title="Close more info"></ion-icon></ion-button>

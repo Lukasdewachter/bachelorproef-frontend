@@ -157,7 +157,6 @@ const AssignThesis = ({thesis, handleAssignClick}) => {
 
 const GetStudents = ({thesis}) => {
     for(var i=0; i<=thesis.numberOfPers; i++){
-        console.log(i)
         return(
             <p>{i}. <ion-icon name="people"></ion-icon></p>
         )
